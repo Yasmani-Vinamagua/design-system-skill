@@ -246,10 +246,17 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 6. Para cada concepto, documentar idea central, relevancia, traducción visual, fortalezas y riesgos.
 7. Recomendar uno con criterios explícitos, sin ocultar las ventajas de las alternativas.
 8. Si el tipo de marca gráfica quedó en "lo decide Yas Design", proponerlo aquí con su justificación y la alternativa más cercana (ver "Inicio" en `SKILL.md`), para que los bocetos partan de él.
+9. Generar `concepto/opciones.html` para que el usuario vea las opciones antes de elegir (ver "Vista de opciones" abajo). Hazlo antes de pedir la decisión, no después.
 
-**Presentación:** diagramas como listas anidadas; tabla de tres conceptos candidatos; recomendación razonada.
+**Vista de opciones (`concepto/opciones.html`)**
+- Archivo único y autocontenido (estilos y SVG incrustados, sin recursos externos), que se abre con doble clic en el navegador.
+- Una tarjeta por concepto, con la misma letra y nombre que se usarán al preguntar (A, B, C): idea central, traducción visual, fortalezas y riesgos en pocas líneas, y marcado el recomendado.
+- Cada tarjeta lleva un esquema SVG muy simple del concepto (silueta o composición, en una tinta, sin color ni tipografía final) y un rótulo visible «Boceto de concepto, no es el logo final».
+- Si el usuario pide una combinación o una nueva exploración, regenera el archivo con las opciones nuevas.
+
+**Presentación:** diagramas como listas anidadas; tabla de tres conceptos candidatos; recomendación razonada. En el resumen que cierra la fase y antes de preguntar, indica la ruta completa de `concepto/opciones.html` (por ejemplo `.yas/brand/concepto/opciones.html`, o la carpeta de salida elegida) para que el usuario la abra y compare.
 **Referencia:** el caso de LEGO en Logo Design Love (de la idea a un sistema visual coherente).
-**Entregable:** `concepto/diagramas-radiales.md`, `concepto/conceptos.md` y actualización del spec.
+**Entregable:** `concepto/diagramas-radiales.md`, `concepto/conceptos.md`, `concepto/opciones.html` y actualización del spec.
 **Criterio de aprobación:** el usuario selecciona un concepto, solicita una combinación concreta o autoriza una nueva exploración.
 
 **Rebranding:** según el alcance aprobado en la Fase 0b. En **ajuste** y **evolución**, sustituye los conceptos por 2-3 **líneas de evolución** (grado de cambio por elemento; qué conserva cada una, qué cambia y el riesgo de perder reconocimiento) y recomienda una, respetando la decisión por elemento de la sección 0b. En **rebranding integral**, antes de los conceptos redacta el nuevo posicionamiento, propósito, público y personalidad, que el concepto debe expresar.
@@ -263,8 +270,16 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 3. Evaluar los bocetos por relevancia, simplicidad, distinción, legibilidad a tamaño pequeño y potencial de aplicación.
 4. Seleccionar tres candidatos y explicar diferencias reales entre ellos.
 5. Si se generan SVG exploratorios, identificarlos claramente como bocetos no finales.
+6. Generar `logo/exploracion/opciones.html` para que el usuario vea los candidatos antes de elegir (ver "Vista de opciones" abajo). Hazlo antes de pedir la decisión, no después.
 
-**Entregable:** bocetos y matriz de evaluación.
+**Vista de opciones (`logo/exploracion/opciones.html`)**
+- Mismo formato que en la Fase 3: archivo único y autocontenido, que se abre con doble clic, con los SVG exploratorios incrustados.
+- Muestra primero los tres candidatos, con la misma letra y nombre que se usarán al preguntar, el recomendado marcado y sus diferencias reales en pocas líneas. Debajo, el resto de bocetos descartados con la nota de por qué.
+- Cada boceto se muestra en grande y a tamaño reducido (por ejemplo 32 px) para juzgar la silueta y la legibilidad.
+- Rótulo visible «Boceto exploratorio, no es el logo final». Si el usuario pide ajustes, regenera el archivo.
+- En el resumen que cierra la fase y antes de preguntar, indica la ruta completa del archivo (por ejemplo `.yas/brand/logo/exploracion/opciones.html`, o la carpeta de salida elegida).
+
+**Entregable:** bocetos, `logo/exploracion/opciones.html` y matriz de evaluación.
 **Criterio de aprobación:** el usuario selecciona un candidato —o dos para una comparación controlada— antes de construir el arte final.
 
 **Rebranding:** parte de la marca actual y muestra la comparación antes y después; no reemplaza ningún activo existente sin el alcance aprobado.
@@ -282,7 +297,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 4. Usar trazados y huecos reales cuando la geometría lo requiera; evitar depender de formas blancas superpuestas que fallen sobre fondos de color.
 5. Mantener la construcción editable y organizada. Evitar complejidad innecesaria y puntos de ancla superfluos.
 6. Documentar las medidas relevantes. No afirmar que se usa proporción áurea salvo que exista una construcción verificable y justificada.
-7. Generar una vista previa para facilitar la revisión.
+7. Generar una vista previa para facilitar la revisión e indicar su ruta completa en el resumen, antes de pedir la aprobación.
 
 **Pruebas:** ejecutar las de la sección 5 de `construccion-logo.md` (negro al 100 %, negativa, tamaño reducido, silueta, equilibrio, espacio negativo, tipografía, contraste, producción física, integridad del archivo, consistencia y diferenciación frente a la competencia estudiada) y marcar cada una con el estado definido allí. Una evaluación visual no sustituye una búsqueda legal de marcas registradas.
 
@@ -300,7 +315,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 5. Definir proporciones orientativas de uso, combinaciones aprobadas y combinaciones que deben evitarse.
 6. Comprobar contraste para texto e interfaz cuando corresponda, e identificar los fondos en los que el logo pierde legibilidad.
 7. Si hay degradados, documentar colores, posiciones y dirección, además de una alternativa sólida.
-8. Producir exploraciones vectoriales muy simples con cada paleta propuesta para que el usuario tenga una noción del resultado.
+8. Producir exploraciones vectoriales muy simples con cada paleta propuesta para que el usuario tenga una noción del resultado. Guárdalas en `paleta/exploracion/` e indica su ruta completa en el resumen, antes de pedir la aprobación.
 9. Anticipar los roles semánticos (acción, éxito, aviso, error, información) que necesitará el sistema de diseño.
 
 No afirmar que un color es accesible solo por su nombre o apariencia: registrar la combinación concreta y el resultado del cálculo de contraste cuando sea aplicable.
@@ -319,8 +334,17 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 5. Definir tipografía de títulos, texto y, solo si es necesario, una tipografía auxiliar.
 6. Especificar pesos, jerarquía, tamaños, interlineado y usos.
 7. Comprobar la compatibilidad visual con el símbolo y la legibilidad en tamaños pequeños.
+8. Generar `tipografia/opciones.html` para que el usuario vea las tipografías antes de elegir (ver "Vista de opciones" abajo). Hazlo antes de pedir la decisión, no después.
 
-**Entregable:** `tipografia/sistema-tipografico.md` y actualización del spec.
+**Vista de opciones (`tipografia/opciones.html`)**
+- Mismo formato que en las Fases 3 y 4: archivo único y autocontenido, que se abre con doble clic en el navegador.
+- Una tarjeta por finalista, con la misma letra y nombre que se usarán al preguntar, el recomendado marcado, y proveedor, licencia y disponibilidad (web y Figma) en una línea.
+- Cada tarjeta muestra el nombre de la marca y el logo (o el símbolo aprobado) compuestos con esa tipografía, el alfabeto completo con cifras y signos, un texto corrido de párrafo y la jerarquía propuesta (título, subtítulo, texto) con los pesos reales. Añade una línea a tamaño pequeño (por ejemplo 12-14 px) para juzgar la legibilidad.
+- Carga las fuentes sin depender de recursos inesperados: usa archivos locales o incrustados si la licencia lo permite; si solo están disponibles desde un proveedor web (por ejemplo Google Fonts), enlázalas e indica en el archivo que necesita conexión. Si una fuente no puede cargarse, dilo en su tarjeta y no la sustituyas en silencio por otra.
+- Rótulo visible «Muestra tipográfica, no es la decisión final». Si el usuario pide una combinación o ajustes, regenera el archivo.
+- En el resumen que cierra la fase y antes de preguntar, indica la ruta completa del archivo (por ejemplo `.yas/brand/tipografia/opciones.html`, o la carpeta de salida elegida).
+
+**Entregable:** `tipografia/sistema-tipografico.md`, `tipografia/opciones.html` y actualización del spec.
 **Criterio de aprobación:** el usuario aprueba las familias, sus usos y la jerarquía tipográfica.
 
 ## Fase 8 — Versiones y activos de marca
@@ -334,6 +358,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 4. Crear una versión reducida simplificada solo si el diseño principal no funciona a tamaños pequeños.
 5. Descartar las variantes que fallen y documentar la razón.
 6. Verificar que los archivos SVG se abran y que no dependan de recursos externos inesperados.
+7. En el resumen, indica la carpeta de `logo/` donde el usuario puede ver las versiones (y la vista previa, si se generó una) antes de pedir la aprobación.
 
 **Entregable:** SVG finales organizados en `logo/` y registro de variantes en el spec.
 **Criterio de aprobación:** el usuario aprueba el conjunto de versiones y sus reglas de uso.
@@ -349,6 +374,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 5. Incluir al menos un documento de uso real con la identidad aplicada, por ejemplo una carta, propuesta, ficha o documento comercial, si es pertinente.
 6. Diferenciar claramente los mockups ilustrativos de los archivos listos para producción.
 7. Indicar las especificaciones que necesitan revisión física o técnica.
+8. En el resumen, lista la ruta de cada aplicación en `aplicaciones/` (y el índice o la vista general, si se generó) antes de pedir la aprobación.
 
 **Entregable:** archivos en `aplicaciones/` y registro de las aplicaciones aprobadas.
 **Criterio de aprobación:** el usuario aprueba la selección y las aplicaciones representativas.
@@ -376,6 +402,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
    - Reglas de reproducción y limitaciones conocidas.
 6. Comprobar enlaces, imágenes y rutas locales del HTML.
 7. Registrar las pruebas realizadas y los puntos que requieren validación humana o física.
+8. En el resumen, indica la ruta completa de `manual/manual-identidad.html` (para abrirlo en el navegador) y de `manual/manual-identidad.md`.
 
 **Entregable:** `manual/manual-identidad.md`, `manual/manual-identidad.html` y lista de comprobación final.
 **Criterio de aprobación:** el usuario aprueba el manual y recibe un resumen de los archivos entregados y pendientes.

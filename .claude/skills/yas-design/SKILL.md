@@ -14,7 +14,7 @@ Método: **Analizar → Decidir → Ejecutar → Documentar → Validar**. Cada 
 
 Antes de actuar, lee `../yas-core/references/reglas-comunes.md`: inspección inicial, contexto, ejecución, archivos, protección, calidad, documentación, transparencia y regla de alcance. Valen para todos los subcomandos y no se repiten aquí.
 
-**Alcance de esta skill:** ejecuta el subcomando pedido, fase a fase y con aprobación. Las propuestas conceptuales (brief, concepto, bocetos, dirección visual, estructura de pantallas) no se convierten en código si no se pidió código. No audita, no exporta a Figma ni añade entregables que no se pidieron: los ofrece.
+**Alcance de esta skill:** ejecuta el subcomando pedido, fase a fase y con aprobación. Las propuestas conceptuales (brief, concepto, bocetos, dirección visual, estructura de pantallas) no se convierten en código si no se pidió código; la única excepción son las vistas de opciones de las Fases 3, 4 y 7 (`concepto/opciones.html`, `logo/exploracion/opciones.html` y `tipografia/opciones.html`), que son parte del proceso para que el usuario pueda ver lo que elige. No audita, no exporta a Figma ni añade entregables que no se pidieron: los ofrece.
 
 ## Vocabulario y criterios de marca
 

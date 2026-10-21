@@ -163,6 +163,15 @@ Copy the four `yas-*` folders into `<your-project>/.claude/skills/`.
 
 **Verify:** open a new Claude Code session and type `/yas-`. You should see `/yas-design`, `/yas-audit`, and `/yas-figma` (`yas-core` does not appear because it is not invoked directly).
 
+### Updating
+
+The skills do not update themselves: everyone works with the copy they installed. To get the changes (see [`CHANGELOG.md`](CHANGELOG.md)):
+
+- **Option A (`npx skills`):** run `npx skills update`, or run the install command again.
+- **Options B and C:** `git pull` in your clone and copy the `yas-*` folders again.
+
+Your data lives in `.yas/` and is not touched by an update.
+
 ### Requirements
 
 | Requirement | Required? |

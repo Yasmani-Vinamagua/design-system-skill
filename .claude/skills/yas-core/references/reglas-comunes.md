@@ -32,6 +32,7 @@ Se aplican a **todas** las skills de Yas Design (`/yas-design`, `/yas-audit`, `/
 ### Archivos
 - Cuando la tarea produce algo, entrega archivos reales en el proyecto (Markdown, SVG, HTML, JSON de tokens), no solo texto en pantalla. Por defecto van en `.yas/` salvo que el usuario indique otra carpeta.
 - Usa nombres descriptivos y rutas previsibles, respeta las convenciones que el proyecto ya tenga e indica la ruta de cada archivo al terminar.
+- **Todo lo que el usuario deba ver** (vistas de opciones, bocetos, vistas previas, mockups, HTML de entrega, manual) se anuncia con su **ruta completa** en el resumen de cierre del paso que lo genera, y **antes de pedir una decisión** si de él depende. No basta con describirlo en el chat: si hay un archivo para mirar, di dónde está y cómo abrirlo (doble clic en el navegador para HTML; abrir con el navegador o un editor de imágenes para SVG).
 
 ### Protección
 - **Antes de modificar o reemplazar un archivo existente, léelo y comprueba qué función cumple.** Un archivo que no sabes qué hace no se sobrescribe.

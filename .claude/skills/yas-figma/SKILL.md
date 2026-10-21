@@ -238,7 +238,7 @@ Si el MCP está instalado pero **no permite seguir editando** (cuota o límite d
 4. **Estado:** `.yas/figma-state.json` guarda `fileKey`, URL del archivo, `scope` y, por elemento, `pending | done | error` con el id del nodo creado en Figma. Se actualiza **tras cada elemento**, no al final, para no perder avance si el límite vuelve a cortar.
 5. **Reanudación:** si el estado existe, no recrees lo `done`; verifica con `search_design_system` que sigue en Figma y continúa con lo `pending` o `error`. Nunca dupliques variables o componentes.
 6. **Cortes:** ante un límite de uso o error persistente aplica "Si el MCP falla a mitad de trabajo" y deja el estado consistente para que el siguiente `/yas-figma push` continúe donde se quedó.
-7. **Cierre:** informa lo creado, lo pendiente y la URL del archivo de Figma. Actualiza `design-system.html` para reflejar el estado real (qué ya existe en Figma y qué no).
+7. **Cierre:** informa lo creado, lo pendiente y la URL del archivo de Figma. Actualiza `design-system.html` para reflejar el estado real (qué ya existe en Figma y qué no) e indica su ruta completa para abrirlo en el navegador.
 
 ### Límite de páginas en el plan gratuito de Figma
 
