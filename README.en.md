@@ -139,6 +139,8 @@ npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
 
 To see what the repository contains without installing anything, add `--list`. Do not use `--skill` with a single skill: `yas-core` would be missing.
 
+The installer stores the skills in `.agents/skills/` and leaves links in `.claude/skills/` that point to them. Do not delete `.agents/`: Claude Code would stop finding the skills.
+
 **Option B · Manual copy, for all your projects (global)**
 
 ```bash
