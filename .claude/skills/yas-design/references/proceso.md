@@ -410,7 +410,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 
 **Siguientes pasos que se ofrecen** (solo ofrecerlos si la skill correspondiente está disponible; nunca afirmar que se hicieron hasta haberlos ejecutado):
 - **Auditoría:** `/yas-audit` sobre el resultado.
-- **Design system en Figma:** `/yas-figma push`, solo si el MCP de Figma está instalado.
-- **Design system en local** solo con el manual: `/yas-figma document manual`.
+- **Design system en Figma:** `/yas-figma mini` o `/yas-figma full` lo generan a partir del manual y lo crean en Figma si el MCP está instalado; si no, lo dejan en local. `/yas-figma push` carga a Figma uno ya generado.
+- **HTML del design system** solo a partir del manual: `/yas-figma documentation manual`.
 
 **Entrega final:** resumir los archivos creados, las decisiones aprobadas, las pruebas ejecutadas y los pendientes. No declarar el proyecto completamente terminado si existen aprobaciones o validaciones importantes sin resolver.

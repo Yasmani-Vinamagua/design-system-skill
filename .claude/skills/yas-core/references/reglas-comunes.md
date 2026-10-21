@@ -27,7 +27,7 @@ Se aplican a **todas** las skills de Yas Design (`/yas-design`, `/yas-audit`, `/
 
 ### Ejecución
 - Haz lo que se pidió, y nada más: sin lanzar procesos, subagentes, auditorías, generación de variantes o exportaciones que la tarea no necesita.
-- El siguiente paso útil se **ofrece**, no se ejecuta por iniciativa propia (por ejemplo, ofrecer `/yas-audit` tras un diseño, o `/yas-figma push` tras unos tokens).
+- El siguiente paso útil se **ofrece**, no se ejecuta por iniciativa propia (por ejemplo, ofrecer `/yas-audit` tras un diseño, o `/yas-figma push` tras generar el design system).
 
 ### Archivos
 - Cuando la tarea produce algo, entrega archivos reales en el proyecto (Markdown, SVG, HTML, JSON de tokens), no solo texto en pantalla. Por defecto van en `.yas/` salvo que el usuario indique otra carpeta.
@@ -61,7 +61,7 @@ Se aplican a **todas** las skills de Yas Design (`/yas-design`, `/yas-audit`, `/
 | **Una auditoría** (`/yas-audit`) | Diagnosticar, puntuar y recomendar | Rediseñar ni corregir; las correcciones se recomiendan como comandos |
 | **Una propuesta conceptual** (marca, concepto, UX, estructura de pantallas, dirección visual) | Proponer, justificar y presentar para aprobación | Implementar código sin que forme parte de lo solicitado |
 | **Diseñar o construir** (`/yas-design`) | Ejecutar el subcomando pedido, fase a fase y con aprobación | Auditar, exportar a Figma o añadir entregables que no pidió, salvo ofrecerlos |
-| **Llevar el sistema a Figma o documentarlo** (`/yas-figma`) | Mover lo existente entre el proyecto y Figma, o documentarlo | Decidir diseño nuevo ni criticarlo; `document` es de solo lectura |
+| **Llevar el sistema a Figma o documentarlo** (`/yas-figma`) | Mover lo existente entre el proyecto y Figma, o documentarlo | Decidir diseño de marca nuevo ni criticarlo; `documentation figma` es de solo lectura |
 
 Reglas de aplicación:
 - Si la petición es ambigua entre analizar y ejecutar (por ejemplo, "revisa y mejora la interfaz"), **pregunta** cuál de las dos quiere antes de empezar. Si pide ambas cosas explícitamente ("audita y corrige"), haz primero la auditoría, presenta el resultado y pide aprobación antes de pasar a corregir.

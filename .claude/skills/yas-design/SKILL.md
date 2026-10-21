@@ -1,6 +1,6 @@
 ---
 name: yas-design
-description: Crea la identidad de un proyecto: estrategia de marca o rebranding, marca gráfica (logo) y manual de identidad, documentando cada decisión en archivos reales del proyecto. El manual de identidad que genera es la fuente de datos de /yas-figma. Úsala cuando el usuario pida crear o rehacer una marca o definir su identidad visual. Para evaluar algo ya hecho usa /yas-audit; para llevarlo a Figma, /yas-figma.
+description: "Crea la identidad de un proyecto: estrategia de marca o rebranding, marca gráfica (logo) y manual de identidad, documentando cada decisión en archivos reales del proyecto. El manual de identidad que genera es la fuente de datos de /yas-figma. Úsala cuando el usuario pida crear o rehacer una marca o definir su identidad visual. Para evaluar algo ya hecho usa /yas-audit; para llevarlo a Figma, /yas-figma."
 argument-hint: "[init | brief | brand | rebrand] [descripción, ruta o adjunto]"
 ---
 

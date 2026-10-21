@@ -22,19 +22,20 @@ Rutas relativas a la raíz del proyecto. `.yas/brand/` es la carpeta de salida p
 | Logo y variantes | `.yas/brand/logo/*.svg` | `/yas-design` (fases 5 y 8) | `/yas-figma` (Brand assets), `/yas-audit` |
 | Manual de identidad | `.yas/brand/manual/manual-identidad.{md,html}` | `/yas-design` (fase 10) | `/yas-figma` (fuente de datos), `/yas-audit` |
 | Origen de datos de marca | `.yas/brand-source.json` | `/yas-figma` | `/yas-design`, `/yas-audit` |
-| **Tokens de diseño** | `.yas/tokens/tokens.json` (formato DTCG) | `/yas-figma` (`colors`, `push`, `document manual`) | `/yas-figma` |
+| **Tokens de diseño** | `.yas/tokens/tokens.json` (formato DTCG) | `/yas-figma` (`colors`, `mini`, `full`, `documentation manual`) | `/yas-figma` |
 | Informe de contraste | `.yas/tokens/contraste.md` | Quien genere los tokens semánticos | `/yas-audit` |
 | Registro de cambios de tokens | `.yas/tokens/CHANGELOG.md` | Quien modifique los tokens | Las tres |
 | Estado de Figma | `.yas/figma-state.json` | `/yas-figma` | `/yas-figma` |
-| Lectura de Figma | `.yas/figma-snapshot.json` | `/yas-figma document` | `/yas-figma` |
-| Paquete local de Figma y HTML | `.yas/figma-local/` | `/yas-figma` | `/yas-figma` |
+| Lectura de Figma | `.yas/figma-snapshot.json` | `/yas-figma documentation figma` | `/yas-figma` |
+| Paquete local del design system y su HTML | `.yas/figma-local/` | `/yas-figma mini` y `full` | `/yas-figma push` |
+| HTML del design system (entregable) | `.yas/deliverables/*.html` | `/yas-figma documentation` | El usuario |
 | Informes de auditoría | `.yas/audits/AAAA-MM-DD-marca.md` | `/yas-audit` | `/yas-design` (para corregir) |
 
 ## Reglas de compartición
 
 - **Una fuente de verdad por dato.** El color vive en la paleta y en los tokens; la tipografía, en su sistema y en los tokens; los nombres de archivo del logo, en `yas-design/references/construccion-logo.md`. Los demás archivos enlazan, no copian.
 - **Leer antes de producir.** Antes de crear un artefacto, comprueba si ya existe. Si existe, léelo y complétalo; no lo regeneres de cero ni lo sobrescribas (regla de Protección de `reglas-comunes.md`).
-- **Producir cuando falta.** Si una skill necesita un artefacto que otra produciría y no existe (por ejemplo, tokens de color antes de que se ejecute `/yas-figma push`), puede crearlo siguiendo la especificación común, y lo registra en el `CHANGELOG.md` del artefacto. Después, la otra skill lo completa sin reescribirlo.
+- **Producir cuando falta.** Si una skill necesita un artefacto que otra produciría y no existe (por ejemplo, tokens de color antes de que se ejecute `/yas-figma mini` o `full`), puede crearlo siguiendo la especificación común, y lo registra en el `CHANGELOG.md` del artefacto. Después, la otra skill lo completa sin reescribirlo.
 - **Cabecera de origen.** Todo artefacto generado lleva fecha, skill y subcomando que lo produjo, y de qué fuente salió (por ejemplo, "desde `paleta/paleta.md`").
 - **Cambios con registro.** Cualquier cambio en `tokens.json` se anota en `.yas/tokens/CHANGELOG.md` con fecha, qué cambió y por qué.
 - **Divergencias.** Si dos artefactos se contradicen (la paleta dice un HEX y los tokens otro), no se resuelve en silencio: se señala, prevalece lo aprobado en `marca-spec.md` y se registra el conflicto.

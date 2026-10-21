@@ -1,56 +1,58 @@
 <div align="center">
 
-# 🎨 Yas Design System
+# Yas Design System
 
 **Branding y sistema de diseño con Claude Code:**
 de la idea a una marca documentada, auditada y lista para Figma.
 
-![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-D97757?style=for-the-badge)
-![Idioma](https://img.shields.io/badge/idioma-espa%C3%B1ol-2563EB?style=for-the-badge)
-![Estado](https://img.shields.io/badge/estado-beta-F59E0B?style=for-the-badge)
-![Figma MCP](https://img.shields.io/badge/Figma_MCP-opcional-7C3AED?style=for-the-badge)
+![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-D97757?style=flat-square)
+![Idioma](https://img.shields.io/badge/idioma-espa%C3%B1ol-2563EB?style=flat-square)
+![Estado](https://img.shields.io/badge/estado-beta-F59E0B?style=flat-square)
+![Licencia](https://img.shields.io/badge/licencia-MIT-16A34A?style=flat-square)
 
-[Instalación](#-instalación) · [Inicio rápido](#-inicio-rápido) · [Las skills](#-las-skills) · [Qué genera](#-qué-archivos-genera) · [Estado](#-estado-y-hoja-de-ruta)
+**Español** · [English](README.en.md)
+
+[Instalación](#instalación) · [Inicio rápido](#inicio-rápido) · [Las skills](#las-skills) · [Qué genera](#qué-archivos-genera) · [Estado](#estado-y-hoja-de-ruta)
 
 </div>
 
 ---
 
-## ✨ ¿Qué es?
+## ¿Qué es?
 
 Yas Design **no es una colección de prompts**: es una **metodología de diseño** empaquetada como skills de [Claude Code](https://claude.com/claude-code). Cada skill analiza, decide, ejecuta, documenta y valida, y deja **archivos reales** en tu proyecto.
 
-- 🧭 **Proceso con puertas de aprobación.** Cada fase tiene objetivo, qué hacer, qué preguntar, entregable y criterio de aprobación. Al terminar, resume y espera tu visto bueno antes de avanzar.
-- 🔗 **Tres especialistas que comparten resultados.** Lo que crea una skill lo leen las otras; nada se rehace ni se copia.
-- 🧪 **Honestidad verificable.** Distingue lo comprobado de las hipótesis y de lo que no pudo verificar, y nunca declara validado lo que no ejecutó.
-- 🛟 **Funciona aunque Figma falle.** Sin el MCP de Figma, o sin cuota, genera el sistema en local con un HTML navegable listo para entregar.
+- **Proceso con puertas de aprobación.** Cada fase tiene objetivo, qué hacer, qué preguntar, entregable y criterio de aprobación. Al terminar, resume y espera tu visto bueno antes de avanzar.
+- **Tres especialistas que comparten resultados.** Lo que crea una skill lo leen las otras; nada se rehace ni se copia.
+- **Honestidad verificable.** Distingue lo comprobado de las hipótesis y de lo que no pudo verificar, y nunca declara validado lo que no ejecutó.
+- **Funciona aunque Figma falle.** Sin el MCP de Figma, o sin cuota, genera el sistema en local con un HTML navegable listo para entregar.
 
 ```mermaid
 flowchart LR
-    A["🎨 /yas-design<br/>crea la identidad"] --> M[("📘 Manual de identidad<br/>.yas/brand/")]
-    M --> B["🔗 /yas-figma<br/>tokens y Figma"]
-    M --> C["🔍 /yas-audit<br/>diagnóstico sobre 20"]
-    B --> T[("🧩 Tokens<br/>.yas/tokens/")]
+    A["/yas-design<br/>crea la identidad"] --> M[("Manual de identidad<br/>.yas/brand/")]
+    M --> B["/yas-figma<br/>design system y Figma"]
+    M --> C["/yas-audit<br/>diagnóstico sobre 20"]
+    B --> T[("Tokens<br/>.yas/tokens/")]
     C -. recomienda acciones .-> A
-    K["⚙️ yas-core<br/>reglas y criterios compartidos"] -.-> A
+    K["yas-core<br/>reglas y criterios compartidos"] -.-> A
     K -.-> B
     K -.-> C
 ```
 
 ---
 
-## 🧰 Las skills
+## Las skills
 
 | Skill | Responsabilidad | Comandos |
 |---|---|---|
-| 🎨 **`/yas-design`** | **Crear** la identidad: marca nueva o rebranding, hasta el manual de identidad | `init` · `brief` · `brand` · `rebrand` |
-| 🔍 **`/yas-audit`** | **Auditar** la marca y puntuar sobre 20. Solo diagnostica, nunca corrige | `estrategia` · `identidad-verbal` · `competencia` · `identidad-visual` · `consistencia` · `digital` · `sistema` |
-| 🔗 **`/yas-figma`** | **Llevar** el sistema a Figma, o documentarlo | `push` · `colors` · `library` · `document` |
-| ⚙️ **`yas-core`** | Núcleo compartido (no se invoca): reglas, artefactos, tokens, calidad y referencias | — |
+| **`/yas-design`** | **Crear** la identidad: marca nueva o rebranding, hasta el manual de identidad | `init` · `brief` · `brand` · `rebrand` |
+| **`/yas-audit`** | **Auditar** la marca y puntuar sobre 20. Solo diagnostica, nunca corrige | `estrategia` · `identidad-verbal` · `competencia` · `identidad-visual` · `consistencia` · `digital` · `sistema` |
+| **`/yas-figma`** | **Generar** el design system a partir del manual y llevarlo a Figma, o documentarlo | `mini` · `full` · `push` · `documentation` · `colors` |
+| **`yas-core`** | Núcleo compartido (no se invoca): reglas, artefactos, tokens, calidad y referencias | — |
 
 > **Regla de alcance:** cada skill hace el tipo de trabajo que pediste y no pasa al siguiente sin que forme parte de lo solicitado. Una auditoría no rediseña; una propuesta conceptual no se convierte en código; el siguiente paso útil se **ofrece**, no se ejecuta por su cuenta.
 
-### 🎨 `/yas-design` — de la idea a la marca
+### `/yas-design` — de la idea a la marca
 
 Empieza preguntando el punto de partida:
 
@@ -75,7 +77,7 @@ El proceso completo son **fases con puerta de aprobación**:
 | 10 · 10b | Manual de identidad (Markdown y HTML) · *(rebranding)* plan de transición |
 | 11 | Control final y entrega |
 
-### 🔍 `/yas-audit` — diagnóstico con puntuación sobre 20
+### `/yas-audit` — diagnóstico con puntuación sobre 20
 
 No se limita a decir si un logo «se ve bien»: **detecta problemas, justifica cada hallazgo y propone mejoras priorizadas.** Siete módulos independientes alimentan cinco categorías, cada una de 0 a 4:
 
@@ -91,33 +93,51 @@ No se limita a decir si un logo «se ve bien»: **detecta problemas, justifica c
 
 Cada hallazgo incluye **problema, evidencia, impacto, prioridad** (crítica, alta, media o baja, con criterios explícitos), **recomendación y validación**. Además, la skill separa lo **comprobado**, las **hipótesis** y lo **no verificado**: si no puede renderizar o abrir algo, no afirma haberlo validado visualmente. Las hipótesis no restan puntos.
 
-### 🔗 `/yas-figma` — del manual a Figma
+### `/yas-figma` — del manual al design system
+
+Todos los valores salen del **manual de identidad** (el que genera `/yas-design` o el que tú adjuntes). Nunca se inventan colores ni fuentes de relleno.
 
 | Comando | Qué hace |
 |---|---|
-| `push [mini\|full]` | Crea o completa el design system en Figma (variables, estilos, componentes). Es **idempotente y reanudable**: si se corta por límite de uso, el siguiente `push` continúa donde se quedó |
-| `colors` | Convierte la paleta de la marca en tokens de color y **variables semánticas** (claro y oscuro) |
-| `document figma <URL>` | Lee un archivo de Figma (solo lectura) y genera un **entregable HTML** con sus datos reales |
-| `document manual` | Genera el design system **en local** solo con el manual de identidad, sin tocar Figma |
+| `/yas-figma mini` | Genera el **Mini Design System**: solo fundamentos, en 9 páginas |
+| `/yas-figma full` | Genera el **Full Design System**: fundamentos, componentes, patrones y plantillas, en 28 páginas |
+| `/yas-figma push` | **Carga a Figma un design system ya generado** antes por `mini` o `full`. Es idempotente y reanudable: si se corta por límite de uso, el siguiente `push` continúa donde se quedó |
+| `/yas-figma documentation figma <URL>` | Lee un archivo de Figma (solo lectura) y genera el **HTML del design system** con sus datos reales |
+| `/yas-figma documentation manual` | Genera el **HTML del design system** solo a partir de un manual de identidad, sin tocar Figma |
+| `/yas-figma colors` | Convierte la paleta de la marca en tokens de color y **variables semánticas** (claro y oscuro) |
 
-**Dos alcances:**
+**Qué incluye cada alcance:**
 
 | | **Mini** (9 páginas) | **Full** (28 páginas) |
 |---|---|---|
-| Contenido | Solo fundamentos: Cover, Icons, Brand assets, Colors, Type scale, Spacing and layout, Radios, Shadows, Grids | Fundamentos + 16 componentes base + componentes de la app, patrones y plantillas |
+| Páginas | Cover · Icons · Brand assets · Colors · Type scale · Spacing and layout · Radios · Shadows · Grids | Cover · fundamentos (Brand, Color, Iconography, Images, Layout and spacing, Shadows and effects, Typography, Motion) · 16 componentes · Components - App · Patterns · Templates and applications |
 | Pensado para | MVP, prototipo o marca nueva | Producto existente o varios equipos |
 
-> 💡 **Plan gratuito de Figma (3 páginas por archivo):** la skill lo detecta y te ofrece tres opciones: ampliar el plan, crear la estructura de páginas manualmente, o generar solo iconos, color y tipografía.
+> **Sin el MCP de Figma, o sin cuota:** `mini` y `full` avisan con el motivo concreto y generan el paquete local (`.yas/figma-local/`) con `design-system.html`, variables, estilos y una guía para implementarlo a mano. Cuando haya MCP, `push` lo carga a Figma. `documentation figma` es la excepción: si no puede leer Figma, anuncia el problema y termina.
 
-> 🛟 **Sin MCP, sin cuota o con errores persistentes:** `/yas-figma` avisa con el motivo concreto y genera el paquete local (`.yas/figma-local/`) con `design-system.html`, variables, estilos y una guía para implementarlo a mano. `document figma` es la excepción: si no puede leer Figma, anuncia el problema y termina.
+> **Plan gratuito de Figma (3 páginas por archivo):** la skill lo detecta y te ofrece tres opciones: ampliar el plan, crear la estructura de páginas manualmente, o generar solo iconos, color y tipografía.
 
 ---
 
-## 📦 Instalación
+## Instalación
 
-Las skills son carpetas. Copia **las cuatro** (`yas-core`, `yas-design`, `yas-audit` y `yas-figma`) **juntas** en la misma carpeta de skills, porque se referencian entre sí con rutas relativas.
+Las cuatro skills (`yas-core`, `yas-design`, `yas-audit` y `yas-figma`) **van siempre juntas**: se referencian entre sí con rutas relativas y `yas-core` es obligatoria. Instala las cuatro, nunca una sola.
 
-**Opción A · Para todos tus proyectos (global)**
+**Opción A · Con `npx skills` (recomendada)**
+
+Usa el instalador [`skills`](https://github.com/vercel-labs/skills), que descubre las skills del repositorio y las instala por ti.
+
+```bash
+# En el proyecto actual
+npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code
+
+# Para todos tus proyectos (instalación global)
+npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
+```
+
+Para ver qué contiene el repositorio sin instalar nada, añade `--list`. No uses `--skill` con una sola skill: faltaría `yas-core`.
+
+**Opción B · Copia manual, para todos tus proyectos (global)**
 
 ```bash
 git clone https://github.com/Yasmani-Vinamagua/yas-design-system.git
@@ -135,11 +155,11 @@ New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
 Copy-Item -Recurse yas-design-system\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
 ```
 
-**Opción B · Solo en un proyecto**
+**Opción C · Copia manual, solo en un proyecto**
 
 Copia las cuatro carpetas `yas-*` dentro de `<tu-proyecto>/.claude/skills/`.
 
-**Verifica:** abre una sesión nueva de Claude Code y escribe `/yas-` . Deberían aparecer `/yas-design`, `/yas-audit` y `/yas-figma` (`yas-core` no aparece porque no se invoca directamente).
+**Verifica:** abre una sesión nueva de Claude Code y escribe `/yas-`. Deberían aparecer `/yas-design`, `/yas-audit` y `/yas-figma` (`yas-core` no aparece porque no se invoca directamente).
 
 ### Requisitos
 
@@ -163,7 +183,7 @@ Después, escribe `/mcp` en Claude Code para autenticarte.
 
 ---
 
-## 🚀 Inicio rápido
+## Inicio rápido
 
 **Crear una marca nueva**
 
@@ -186,17 +206,20 @@ Adjunta el logo, el manual o la URL. Primero se evalúa lo que hay y se acuerda 
 ```
 Adjunta el material (logo, manual, URL, ruta del proyecto). Audita todos los módulos, o uno concreto: `/yas-audit digital`.
 
-**Llevar el sistema a Figma**
+**Generar el design system y llevarlo a Figma**
 
 ```text
-/yas-figma colors          # solo la paleta, como variables semánticas
-/yas-figma push mini       # fundamentos completos
-/yas-figma document manual # design system local en HTML, sin Figma
+/yas-figma mini                    # fundamentos: 9 páginas
+/yas-figma full                    # sistema completo: 28 páginas
+/yas-figma push                    # cargar a Figma un sistema ya generado
+/yas-figma documentation manual    # HTML del design system desde el manual
+/yas-figma documentation figma <URL>   # HTML a partir de un archivo de Figma
+/yas-figma colors                  # solo la paleta, como variables semánticas
 ```
 
 ---
 
-## 🧾 Qué archivos genera
+## Qué archivos genera
 
 Todo vive en `.yas/` dentro de tu proyecto, y las skills comparten estos archivos en lugar de copiarlos.
 
@@ -213,16 +236,16 @@ Todo vive en `.yas/` dentro de tu proyecto, y las skills comparten estos archivo
 │   ├── tokens.json               formato DTCG, primitivas y semánticas, claro y oscuro
 │   ├── contraste.md              pares de color con su ratio WCAG calculado
 │   └── CHANGELOG.md
-├── figma-local/                  ← /yas-figma (modo local)
+├── figma-local/                  ← /yas-figma mini y full
 │   └── design-system.html        entregable navegable
-├── deliverables/                 ← /yas-figma document
+├── deliverables/                 ← /yas-figma documentation
 ├── audits/AAAA-MM-DD-marca.md    ← /yas-audit
 └── figma-state.json              progreso de Figma, para reanudar
 ```
 
 ---
 
-## 🛡️ Reglas de calidad compartidas
+## Reglas de calidad compartidas
 
 Las tres skills cumplen las mismas ocho reglas (`yas-core`):
 
@@ -239,19 +262,19 @@ Las tres skills cumplen las mismas ocho reglas (`yas-core`):
 
 ---
 
-## 🧭 Estado y hoja de ruta
+## Estado y hoja de ruta
 
 El proyecto está en **beta**. Las skills están diseñadas y revisadas, pero todavía no tienen una batería de pruebas automatizadas, y la integración con Figma depende del comportamiento real del MCP. Si encuentras algo roto, abre un issue.
 
 | Estado | Funcionalidad |
 |---|---|
-| ✅ Disponible | `/yas-design` (`init`, `brief`, `brand`, `rebrand`) · `/yas-audit` (siete módulos) · `/yas-figma` (`push`, `colors`, `library`, `document`) |
-| 🚧 Sin implementar | `/yas-figma pull`, `sync`, `connect` (Code Connect) y `push screens`. La skill lo indica con claridad si se invocan |
-| ⚠️ Limitaciones conocidas | Solo en español · la creación de variables, estilos y páginas en Figma depende de las herramientas del MCP y de tu plan · las auditorías de percepción real necesitan datos que tú aportes |
+| Disponible | `/yas-design` (`init`, `brief`, `brand`, `rebrand`) · `/yas-audit` (siete módulos) · `/yas-figma` (`mini`, `full`, `push`, `documentation`, `colors`) |
+| Sin implementar | Importar de Figma al código, sincronizar Figma con el código, Code Connect y llevar pantallas del código a Figma. La skill lo indica con claridad si se piden |
+| Limitaciones conocidas | Solo en español · la creación de variables, estilos y páginas en Figma depende de las herramientas del MCP y de tu plan · las auditorías de percepción real necesitan datos que tú aportes |
 
 ---
 
-## 📁 Estructura del repositorio
+## Estructura del repositorio
 
 ```text
 .claude/skills/
@@ -263,7 +286,7 @@ El proyecto está en **beta**. Las skills están diseñadas y revisadas, pero to
 
 ---
 
-## 📚 Referencias e inspiración
+## Referencias e inspiración
 
 Las skills consultan estas fuentes como **referencias de método y de organización, no como modelos a imitar**:
 
@@ -276,7 +299,7 @@ Las skills consultan estas fuentes como **referencias de método y de organizaci
 
 ---
 
-## 🤝 Contribuir
+## Contribuir
 
 Las contribuciones son bienvenidas: abre un *issue* con el problema o la propuesta, o un *pull request* pequeño y enfocado. Para mantener la coherencia del ecosistema:
 
@@ -286,8 +309,6 @@ Las contribuciones son bienvenidas: abre un *issue* con el problema o la propues
 
 ---
 
-<div align="center">
+## Licencia
 
-Hecho para diseñar marcas con criterio, método y trazabilidad. 🎨
-
-</div>
+Distribuido bajo la licencia [MIT](LICENSE). Puedes usar, copiar, modificar y distribuir el proyecto, conservando el aviso de copyright y la licencia.

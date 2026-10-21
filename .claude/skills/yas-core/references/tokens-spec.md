@@ -1,6 +1,6 @@
 # Especificación de tokens
 
-Formato único de los tokens de diseño del ecosistema. Lo usa `/yas-figma` (`colors`, `push`, `document manual`). Aquí se define una vez; las skills lo referencian.
+Formato único de los tokens de diseño del ecosistema. Lo usa `/yas-figma` (`colors`, `mini`, `full`, `documentation manual`). Aquí se define una vez; las skills lo referencian.
 
 **Archivo:** `.yas/tokens/tokens.json`, en formato DTCG (Design Tokens Community Group): cada token tiene `$value` y `$type`, y los grupos pueden fijar un `$type` heredado.
 
@@ -75,5 +75,5 @@ Cada generación de `tokens.json` añade en `$description` del grupo raíz o en 
 ## Quién escribe qué
 
 - `/yas-figma colors` genera y actualiza **solo `color.*`**; no toca el resto.
-- `/yas-figma` (`push`, `document manual`) genera las demás categorías del alcance elegido a partir del manual.
+- `/yas-figma` (`mini`, `full`, `documentation manual`) genera las demás categorías del alcance elegido a partir del manual.
 - Si el archivo ya existe, la skill lo lee, **fusiona** lo que falta y no reescribe lo existente sin confirmación (regla de Protección). Si un valor existente contradice la paleta aprobada, lo señala y pregunta.

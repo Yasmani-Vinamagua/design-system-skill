@@ -1,6 +1,6 @@
 ---
 name: yas-core
-description: Núcleo compartido de Yas Design: reglas comunes obligatorias, artefactos compartidos, especificación de tokens, criterios de calidad y referencias externas que usan /yas-design, /yas-audit y /yas-figma. No se invoca directamente; las otras skills lo leen.
+description: "Núcleo compartido de Yas Design: reglas comunes obligatorias, artefactos compartidos, especificación de tokens, criterios de calidad y referencias externas que usan /yas-design, /yas-audit y /yas-figma. No se invoca directamente; las otras skills lo leen."
 user-invocable: false
 ---
 

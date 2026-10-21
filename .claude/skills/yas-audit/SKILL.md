@@ -1,6 +1,6 @@
 ---
 name: yas-audit
-description: Audita una marca (estrategia, identidad visual y verbal, consistencia, presencia digital y sistema de activos) y entrega un informe con puntuación sobre 20 (cinco categorías de 0 a 4), hallazgos priorizados con evidencia, impacto, recomendación y validación, y acciones recomendadas con los comandos de Yas Design. Solo diagnostica; no corrige ni rediseña. Úsala cuando el usuario pida auditar, revisar, evaluar o validar una marca, su identidad o su manual, comparar con la competencia o comprobar qué mejoró tras un cambio.
+description: "Audita una marca (estrategia, identidad visual y verbal, consistencia, presencia digital y sistema de activos) y entrega un informe con puntuación sobre 20 (cinco categorías de 0 a 4), hallazgos priorizados con evidencia, impacto, recomendación y validación, y acciones recomendadas con los comandos de Yas Design. Solo diagnostica; no corrige ni rediseña. Úsala cuando el usuario pida auditar, revisar, evaluar o validar una marca, su identidad o su manual, comparar con la competencia o comprobar qué mejoró tras un cambio."
 argument-hint: "[estrategia | identidad-verbal | competencia | identidad-visual | consistencia | digital | sistema] [ruta | URL | adjunto]"
 ---
 
