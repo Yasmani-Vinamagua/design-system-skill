@@ -74,7 +74,7 @@ The full process is a set of **phases with an approval gate**:
 | 4 | Sketches and selection |
 | 5 | Building the brand mark in SVG, one-color first |
 | 6 · 7 | Color · Typography |
-| 8 | Brand versions and assets |
+| 8 · 8b | Brand versions and assets · Iconography (style, grid, base SVG set) |
 | 9 | Brand applications |
 | 10 · 10b | Brand manual (Markdown and HTML) · *(rebranding)* transition plan |
 | 11 | Final check and delivery |
@@ -117,7 +117,9 @@ Every value comes from the **brand manual** (the one `/yas-design` generates or 
 
 > **Without the Figma MCP, or without quota:** `mini` and `full` warn you with the specific reason and generate the local package (`.yas/figma-local/`) with `design-system.html`, variables, styles, and a guide to build it by hand. Once an MCP is available, `push` loads it into Figma. `documentation figma` is the exception: if it cannot read Figma, it reports the problem and stops.
 
-> **Figma free plan (3 pages per file):** the skill detects it and offers three options: upgrade the plan, create the page structure manually, or generate only icons, color, and typography.
+> **Figma Starter teams (3 pages per file; drafts have no such limit):** the skill detects it when Figma returns the error and offers four options: use a file in Drafts, upgrade the plan, create the page structure manually, or generate only icons, color, and typography.
+>
+> **Figma file:** the skill writes only to the file you point it to (URL) or the one saved in `.yas/figma-state.json`; it never creates files on its own. To save MCP read quota, it checks and verifies inside `use_figma`.
 
 ---
 
@@ -243,7 +245,7 @@ Everything lives in `.yas/` inside your project, and the skills share these file
 │   ├── investigacion/  concepto/
 │   ├── logo/                     SVG: master and variants
 │   ├── paleta/paleta.md          color table (HEX, RGB, CMYK, Pantone reference)
-│   ├── tipografia/  aplicaciones/
+│   ├── tipografia/  iconografia/  aplicaciones/
 │   └── manual/manual-identidad.{md,html}
 ├── tokens/                       ← /yas-figma
 │   ├── tokens.json               DTCG format, primitives and semantics, light and dark

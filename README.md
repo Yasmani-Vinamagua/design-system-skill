@@ -72,7 +72,7 @@ El proceso completo son **fases con puerta de aprobación**:
 | 4 | Bocetos y selección |
 | 5 | Construcción de la marca gráfica en SVG, primero a una tinta |
 | 6 · 7 | Color · Tipografía |
-| 8 | Versiones y activos de marca |
+| 8 · 8b | Versiones y activos de marca · Iconografía (estilo, cuadrícula, set base en SVG) |
 | 9 | Aplicaciones de marca |
 | 10 · 10b | Manual de identidad (Markdown y HTML) · *(rebranding)* plan de transición |
 | 11 | Control final y entrega |
@@ -115,7 +115,9 @@ Todos los valores salen del **manual de identidad** (el que genera `/yas-design`
 
 > **Sin el MCP de Figma, o sin cuota:** `mini` y `full` avisan con el motivo concreto y generan el paquete local (`.yas/figma-local/`) con `design-system.html`, variables, estilos y una guía para implementarlo a mano. Cuando haya MCP, `push` lo carga a Figma. `documentation figma` es la excepción: si no puede leer Figma, anuncia el problema y termina.
 
-> **Plan gratuito de Figma (3 páginas por archivo):** la skill lo detecta y te ofrece tres opciones: ampliar el plan, crear la estructura de páginas manualmente, o generar solo iconos, color y tipografía.
+> **Equipos Starter de Figma (3 páginas por archivo; los borradores no tienen ese límite):** la skill lo detecta cuando Figma devuelve el error y te ofrece cuatro opciones: usar un archivo en Drafts, ampliar el plan, crear la estructura de páginas manualmente, o generar solo iconos, color y tipografía.
+>
+> **Archivo de Figma:** la skill escribe solo en el archivo que le indicas (URL) o en el guardado en `.yas/figma-state.json`; no crea archivos por su cuenta. Para ahorrar cuota de lectura del MCP, comprueba y verifica dentro de `use_figma`.
 
 ---
 
@@ -241,7 +243,7 @@ Todo vive en `.yas/` dentro de tu proyecto, y las skills comparten estos archivo
 │   ├── investigacion/  concepto/
 │   ├── logo/                     SVG: maestro y variantes
 │   ├── paleta/paleta.md          tabla de colores (HEX, RGB, CMYK, Pantone de referencia)
-│   ├── tipografia/  aplicaciones/
+│   ├── tipografia/  iconografia/  aplicaciones/
 │   └── manual/manual-identidad.{md,html}
 ├── tokens/                       ← /yas-figma
 │   ├── tokens.json               formato DTCG, primitivas y semánticas, claro y oscuro

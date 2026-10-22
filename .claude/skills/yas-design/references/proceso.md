@@ -11,7 +11,7 @@ Reglas de las puertas:
 - Agrupa las preguntas en una sola interacción cuando sea práctico y no exijas respuestas que no sean necesarias para avanzar.
 - **Al cerrar cada fase, enlaza cada archivo generado** con su ruta absoluta, como indica el formato de enlace clicable de `../../yas-core/references/reglas-comunes.md` (sección «Archivos»). Nunca los nombres solo por su nombre. Aplica también al resumen corto de una línea y al **rebranding** (archivos de comparación y variantes). Si pides la decisión con la herramienta de preguntas, escribe en el texto de la pregunta la ruta absoluta en texto plano del archivo donde se ven las opciones (ver la misma sección de `reglas-comunes.md`). Los «indica su ruta completa» de las fases significan eso.
 
-**Carpeta de salida:** por defecto `.yas/brand/` (es donde `/yas-figma` busca el manual). Si el usuario elige otra, créala ahí y anota la ruta en `.yas/brand-source.json` (`manualPath`) para que el resto del ecosistema la encuentre. El spec se llama `marca-spec.md` y vive en la raíz de esa carpeta; los entregables van en `investigacion/`, `concepto/`, `logo/`, `paleta/`, `tipografia/`, `aplicaciones/` y `manual/`.
+**Carpeta de salida:** por defecto `.yas/brand/` (es donde `/yas-figma` busca el manual). Si el usuario elige otra, créala ahí y anota la ruta en `.yas/brand-source.json` (`manualPath`) para que el resto del ecosistema la encuentre. El spec se llama `marca-spec.md` y vive en la raíz de esa carpeta; los entregables van en `investigacion/`, `concepto/`, `logo/`, `paleta/`, `tipografia/`, `iconografia/`, `aplicaciones/` y `manual/`.
 
 **Documentos de apoyo** (incluidos en `references/` de esta skill): `construccion-logo.md` (fase 5) y `manual-plantilla.md` (fase 10). Compruébalos en la fase 0; si falta alguno, dilo, regístralo como dependencia faltante y pide al usuario cómo proceder. No los reconstruyas de memoria.
 
@@ -112,6 +112,15 @@ Es el documento vivo del proyecto: se crea en la fase 0 y se completa fase a fas
 - Variantes reducidas:
 - Formatos y rutas:
 - Versiones descartadas y motivos:
+
+## 8b. Iconografía
+- Estilo (contorno, relleno o dual) y justificación ligada al brief:
+- Cuadrícula, tamaños y área de seguridad:
+- Grosor de trazo, esquinas y terminales:
+- Color y roles (según la paleta y `icon.*`):
+- Set base (iconos creados y por qué) y convención de nombres:
+- Pruebas realizadas y limitaciones:
+- Licencia, si se parte de una librería externa:
 
 ## 9. Aplicaciones
 - Aplicaciones seleccionadas:
@@ -366,6 +375,31 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 **Entregable:** SVG finales organizados en `logo/` y registro de variantes en el spec.
 **Criterio de aprobación:** el usuario aprueba el conjunto de versiones y sus reglas de uso.
 
+## Fase 8b — Iconografía
+**Objetivo:** definir el lenguaje de iconos de la marca y crear el set base, coherente con el logo, la paleta y la tipografía aprobados.
+
+**Qué hacer**
+1. Partir del manual y de lo aprobado: forma y radios del logo, peso de la tipografía, paleta y personalidad del brief. En rebranding, respetar el estilo de iconos existente si la decisión por elemento (sección 0b) lo conserva.
+2. Definir el **estilo**: contorno, relleno o dual; esquinas y terminales (redondeados o rectos); grosor de trazo; perspectiva plana, sin sombras salvo que el brief las pida.
+3. Definir la **cuadrícula y los tamaños**: base de 24 px con margen de 2 px (área de seguridad) y tamaños de uso 16, 20 y 24 px, salvo que el brief justifique otros. Los valores que no consten se marcan como *propuesta*.
+4. Definir el **color**: los iconos usan solo colores de la paleta, por los roles `icon.*` de `../../yas-core/references/tokens-spec.md`; sin colores nuevos.
+5. Definir la **convención de nombres**: `icon/<categoría>/<nombre>` en minúsculas con guion; archivos `iconografia/iconos/<categoria>-<nombre>.svg`.
+6. Acordar el **set base** con el usuario: solo los iconos que las aplicaciones previstas necesiten (por ejemplo navegación, acciones y estados), no una librería genérica. Si el proyecto ya usa una librería externa, registrarla con su licencia en lugar de redibujarla.
+7. Dibujar los iconos en SVG sobre la cuadrícula, con `currentColor` o un único relleno/trazo editable, sin recursos externos ni formas superpuestas que fallen sobre fondos de color.
+8. Probar: legibilidad a 16 px, coherencia de trazo y esquinas entre iconos, peso visual homogéneo, contraste sobre los fondos de la paleta (registrar la combinación y el resultado del cálculo) y que el icono no dependa solo del color para comunicar.
+9. Generar `iconografia/vista-previa.html`, autocontenido y abrible con doble clic: cada icono en grande y a 16, 20 y 24 px, sobre fondo claro y oscuro de la paleta, con la cuadrícula visible en una muestra. Rótulo «Muestra de iconografía, sujeta a aprobación».
+
+**Qué preguntar**
+- ¿Hay una librería de iconos ya en uso o que deba usarse?
+- ¿Qué pantallas o soportes necesitan iconos y cuáles son imprescindibles?
+- ¿Prefieres contorno, relleno o ambos? (si el usuario no decide, propón uno con su razón)
+
+**Referencia:** M3 o HIG, según la plataforma, para tamaños, cuadrícula y comportamiento de los iconos en interfaz.
+**Entregable:** `iconografia/iconografia.md` (estilo, cuadrícula, tamaños, color, nombres, pruebas y usos incorrectos), `iconografia/iconos/*.svg`, `iconografia/vista-previa.html` y actualización del spec. En el resumen que cierra la fase, indica la ruta completa de la vista previa y de `iconografia.md`.
+**Criterio de aprobación:** el usuario aprueba el estilo, las reglas y el set base. Si falla la legibilidad o la coherencia, corrige aquí; si choca con el logo o la tipografía, vuelve a la Fase 5 o 7.
+
+**Rebranding:** compara los iconos actuales con los nuevos solo si existen; no reemplaza ningún icono en uso sin el alcance aprobado.
+
 ## Fase 9 — Aplicaciones de marca
 **Objetivo:** demostrar que la identidad funciona en contextos representativos y consistentes.
 
@@ -429,6 +463,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 - [ ] La paleta incluye valores y reglas de uso documentadas.
 - [ ] Las tipografías y licencias están registradas.
 - [ ] Los tamaños mínimos y el área de respeto se basan en pruebas.
+- [ ] La iconografía tiene estilo, cuadrícula, tamaños y set base aprobados, y sus iconos usan solo colores de la paleta.
 - [ ] Se documentan usos incorrectos.
 - [ ] Las aplicaciones utilizan los activos oficiales aprobados.
 - [ ] El manual Markdown y el HTML son coherentes.

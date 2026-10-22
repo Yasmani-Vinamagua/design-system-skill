@@ -106,6 +106,7 @@ Reglas:
 | 6 | Color | Respeta el color reconocible |
 | 7 | Tipografía | Igual |
 | 8 | Versiones y activos de marca | Igual |
+| 8b | Iconografía | Respeta el estilo de iconos existente si consta |
 | 9 | Aplicaciones de marca | Con antes y después |
 | 10 | Manual de identidad | Igual |
 | 10b | — | Plan de transición |

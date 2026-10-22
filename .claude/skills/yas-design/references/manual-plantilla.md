@@ -178,7 +178,7 @@ Si las aplicaciones son mockups conceptuales y no piezas finales de producción,
 Documenta los recursos adicionales que formen parte del sistema aprobado:
 
 - Patrones y formas de apoyo.
-- Iconografía y su criterio de estilo.
+- Iconografía: estilo, cuadrícula, tamaños, color y set base, a partir de `iconografia/iconografia.md` (Fase 8b) con ejemplos reales de `iconografia/iconos/`.
 - Estilo fotográfico.
 - Tono de voz, si corresponde al alcance del manual.
 - Colores y degradados permitidos para los recursos, siempre coherentes con la paleta.

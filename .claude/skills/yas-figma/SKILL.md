@@ -58,7 +58,7 @@ Comprueba qué hay en `.yas/tokens/tokens.json`:
 
 ## Iconos derivados
 
-Si el manual no define un set de iconos, no se deja la sección vacía: se propone la **especificación** a partir del manual, marcada *propuesta*:
+Si existe `iconografia/iconografia.md` (Fase 8b de `/yas-design`), es la fuente: se usa tal cual, con sus iconos SVG. Si el manual no define un set de iconos, no se deja la sección vacía: se propone la **especificación** a partir del manual, marcada *propuesta*:
 - **Tamaños:** 16, 20 y 24 px (cuadrícula base de 24 con margen de 2 px).
 - **Trazo:** grosor tomado del trazo o del peso del logotipo si lo hay; si no, 1.5 px a 24 px, escalado proporcional.
 - **Esquinas y terminales:** redondeadas o rectas según el radio y la forma del logotipo y de `radius.*`.
@@ -207,7 +207,7 @@ No inventes componentes ni tokens que no existan en el sistema; si falta algo qu
 
 ## Conexión con Figma (MCP)
 
-Los comandos que usan Figma verifican primero si las herramientas del MCP están disponibles (`mcp__plugin_figma_figma__*`, por ejemplo `whoami`, `use_figma`, `create_new_file`). Si aparecen como herramientas diferidas, cárgalas con ToolSearch; si no existen, el MCP no está instalado.
+Los comandos que usan Figma verifican primero si las herramientas del MCP de Figma están disponibles (`whoami`, `use_figma`, `create_session`…), con cualquier prefijo según cómo esté instalado (por ejemplo `mcp__plugin_figma_figma__*`, `mcp__figma__*` o `mcp__Figma__*`). Si aparecen como herramientas diferidas, cárgalas con ToolSearch; si no existen con ningún prefijo, el MCP no está instalado.
 
 ### Si el MCP no está instalado
 
@@ -228,11 +228,24 @@ No intentes simular llamadas al MCP ni inventes URLs de Figma.
 
 ### Si el MCP está instalado
 
-Confirma la sesión con `whoami`; si falla la autenticación, indica al usuario que ejecute `/mcp` y se autentique. Luego trabaja en **modo MCP**:
-- Pide o localiza el `fileKey` (URL `figma.com/design/:fileKey/...`) o crea un archivo nuevo con el skill `figma:figma-create-new-file`.
-- Llama a `create_session` con el fileKey y una descripción breve antes de cualquier otra herramienta de archivo.
+Confirma la sesión con `whoami` **una sola vez por ejecución**; si falla la autenticación, indica al usuario que ejecute `/mcp` y se autentique. No uses el plan que devuelva `whoami` para suponer límites: se detectan solo cuando Figma devuelve el error. Luego trabaja en **modo MCP**:
+- **Archivo destino**, en este orden de prioridad:
+  1. La URL de Figma que pase el usuario en este comando (`figma.com/design/:fileKey/...`): usa su `fileKey` y guárdalo en `.yas/figma-state.json`. Si el estado tenía otro `fileKey`, avisa del cambio y pregunta si es un archivo nuevo (empezar de cero) o el mismo sistema movido (conservar el progreso).
+  2. Si no hay URL, el `fileKey` de `.yas/figma-state.json`, confirmando con el usuario el nombre del archivo antes de escribir.
+  3. Si no hay ninguno, pide al usuario que cree un archivo en sus Drafts de Figma y pase el link. **No crees archivos nuevos por tu cuenta**: un archivo creado desde el MCP puede quedar dentro de un equipo con plan Starter y heredar sus límites.
+- Llama a `create_session` con el `fileKey` y una descripción breve antes de cualquier otra herramienta de archivo.
+- Comprueba el nombre del archivo dentro del primer script de `use_figma` (`figma.root.name`) y muéstralo al usuario; no gastes una herramienta de lectura en ello.
 - Carga `figma:figma-use` antes de `use_figma`, `figma:figma-generate-library` para construir librerías y `figma:figma-design-to-code` antes de `get_design_context`. Esas guías las aporta el plugin oficial de Figma; si no está instalado, el propio servidor MCP las sirve como recursos (por ejemplo, `skill://figma/figma-use/SKILL.md`). Si no puedes cargar ninguna, dilo y no uses la herramienta correspondiente a ciegas.
-- Busca con `search_design_system` antes de crear nada, para reutilizar lo existente.
+- Para reutilizar lo existente y no duplicar, consulta `.yas/figma-state.json` y comprueba lo que ya hay dentro del propio script de `use_figma` (ver "Presupuesto de lecturas").
+
+### Presupuesto de lecturas
+
+Figma limita las herramientas de lectura del MCP según el plan y el asiento (el límite exacto no está verificado; se detecta cuando Figma devuelve el error). Las herramientas que escriben en el archivo no cuentan como lectura. Cada lectura puede contar, así que:
+- **No llames a `search_design_system` antes de cada creación.** Usa `.yas/figma-state.json` como registro de lo creado.
+- **Comprueba y verifica dentro de `use_figma`:** el mismo script que crea variables, estilos, páginas o componentes lee con la Plugin API lo que ya existe (por nombre) antes de crear, y devuelve en su resultado los nombres e ids de lo creado. Eso sirve de verificación; no hace falta leer de vuelta con otra herramienta.
+- **Agrupa:** crea varios elementos por llamada a `use_figma` cuando sea razonable, actualizando el estado con lo que devuelva cada llamada.
+- **Herramientas de lectura** (`search_design_system`, `get_metadata`, `get_variable_defs`, `get_screenshot`, `get_libraries`, `get_design_context`, `get_code_connect_map`…): úsalas solo cuando no haya alternativa. Antes, di cuántas vas a usar y para qué, y pide confirmación si son más de una.
+- La primera vez, comprueba con el usuario si una llamada a `use_figma` que solo lee datos le descuenta cuota. Si se la descuenta, aplica las mismas reglas de ahorro a esas llamadas.
 
 ### Si el MCP falla a mitad de trabajo
 
@@ -243,25 +256,28 @@ Si el MCP está instalado pero **no permite seguir editando** (cuota o límite d
 
 ## Creación en Figma (la comparten `mini`, `full` y `push`)
 
-1. **Archivo y sesión:** localiza o crea el archivo de Figma y abre la sesión (ver "Si el MCP está instalado").
-2. **Límite de páginas:** aplica la sección siguiente antes de crear páginas.
-3. **Plan:** lee los tokens, el paquete `.yas/figma-local/` y `.yas/figma-state.json`. Construye la lista de trabajo en este orden: colecciones y modos de variables → variables → estilos de texto, efectos y cuadrículas → componentes (uno a uno, solo en full) → páginas de documentación.
-4. **Estado:** `.yas/figma-state.json` guarda `fileKey`, URL del archivo, `scope` y, por elemento, `pending | done | error` con el id del nodo creado en Figma. Se actualiza **tras cada elemento**, no al final, para no perder avance si el límite vuelve a cortar.
-5. **Reanudación:** si el estado existe, no recrees lo `done`; verifica con `search_design_system` que sigue en Figma y continúa con lo `pending` o `error`. Nunca dupliques variables o componentes.
+1. **Archivo y sesión:** determina el archivo destino según la prioridad de "Si el MCP está instalado" y abre la sesión.
+2. **Plan:** lee los tokens, el paquete `.yas/figma-local/` y `.yas/figma-state.json`. Construye la lista de trabajo en este orden: páginas → colecciones y modos de variables → variables → estilos de texto, efectos y cuadrículas → componentes (uno a uno, solo en full) → contenido de las páginas de documentación.
+3. **Páginas:** créalas con `use_figma` en el archivo destino. Si Figma devuelve el error de límite de páginas, aplica "Límite de páginas en equipos Starter".
+4. **Estado:** `.yas/figma-state.json` guarda `fileKey`, URL del archivo, `scope` y, por elemento, `pending | done | error` con el id del nodo creado en Figma. Se actualiza **tras cada llamada a `use_figma`** con lo que devuelva, no al final, para no perder avance si el límite vuelve a cortar.
+5. **Reanudación:** si el estado existe, no recrees lo `done`. En el primer script de `use_figma` comprueba por id o nombre que lo `done` sigue en el archivo (sin herramientas de lectura) y continúa con lo `pending` o `error`. Nunca dupliques variables o componentes.
 6. **Cortes:** ante un límite de uso o error persistente aplica "Si el MCP falla a mitad de trabajo" y deja el estado consistente para que el siguiente `/yas-figma push` continúe donde se quedó.
 7. **Cierre:** informa lo creado, lo pendiente y la URL del archivo de Figma. Actualiza `design-system.html` para reflejar el estado real (qué ya existe en Figma y qué no) e indica su ruta completa para abrirlo en el navegador.
 
-### Límite de páginas en el plan gratuito de Figma
+### Límite de páginas en equipos Starter
 
-El plan gratuito de Figma limita a **3 páginas por archivo**; el mini necesita 9 y el full 28. La skill no debe fallar ni recortar el sistema por su cuenta. Detecta el límite al intentar crear páginas (error de la herramienta, o comprobación previa si `whoami` indica el plan), no reintentes en bucle y **presenta al usuario estas tres opciones** con AskUserQuestion:
+En el plan Starter de Figma, los archivos dentro de un equipo admiten como máximo **3 páginas**; los archivos en Drafts (borradores) no tienen ese límite (según el blog oficial del plan Starter). El mini necesita 9 páginas y el full 28.
+
+No supongas el límite por el plan que devuelva `whoami`: intenta crear las páginas en el archivo destino y aplica esta sección solo si Figma devuelve el error de límite. No reintentes en bucle ni recortes el sistema por tu cuenta. Explica que el archivo está en un equipo Starter y **presenta estas opciones** con AskUserQuestion:
 
 | Opción | Qué ocurre |
 |---|---|
-| **1. Ampliar el plan de Figma** | Explica que se necesita un plan de pago (o un archivo en un equipo con plan que lo permita). Pausa; cuando el usuario confirme, `/yas-figma push` retoma desde el estado guardado. |
-| **2. Construir la estructura manualmente** | Entrega la lista exacta de nombres del alcance elegido, en orden y lista para copiar (mini: `Cover`, `Icons`, `Brand assets`, `Colors`, `Type scale`, `Spacing and layout`, `Radios`, `Shadows`, `Grids`; full: las 28 páginas de su estructura), sin separadores, para que el usuario cree las páginas en el panel de páginas. Si su plan no admite tantas, debe usar la opción 1 o la 3. Espera confirmación, vuelve a leer el archivo y verifica que existen con esos nombres exactos antes de continuar. |
-| **3. Generar solo iconos, color y tipografía** | Construye en Figma únicamente 3 páginas (que caben en el límite): en mini `Icons`, `Colors` y `Type scale`; en full `Iconography`, `Color` y `Typography`. El resto se entrega en el paquete local y en el HTML. |
+| **1. Usar un archivo en Drafts (recomendada)** | Pide al usuario que mueva el archivo a sus Drafts o cree uno nuevo allí y pase el link. Actualiza el `fileKey` en el estado (conservando el progreso si es el mismo archivo movido) y continúa desde el estado guardado. |
+| **2. Ampliar el plan de Figma** | Explica que se necesita un plan de pago para ese equipo. Pausa; cuando el usuario confirme, `/yas-figma push` retoma desde el estado guardado. |
+| **3. Crear las páginas a mano** | Entrega la lista exacta de nombres del alcance elegido, en orden y lista para copiar (mini: `Cover`, `Icons`, `Brand assets`, `Colors`, `Type scale`, `Spacing and layout`, `Radios`, `Shadows`, `Grids`; full: las 28 páginas de su estructura), sin separadores. Solo sirve si el archivo admite tantas páginas (por ejemplo, en Drafts). Espera confirmación y verifica en el siguiente script de `use_figma` que existen con esos nombres exactos antes de continuar. |
+| **4. Generar solo iconos, color y tipografía** | Construye en Figma únicamente 3 páginas (que caben en el límite): en mini `Icons`, `Colors` y `Type scale`; en full `Iconography`, `Color` y `Typography`. El resto se entrega en el paquete local y en el HTML. |
 
-En cualquier opción, rellena solo páginas que ya existan, sin intentar crear más de las permitidas, y registra en `.yas/figma-state.json` la opción elegida (`"pageLimit": "upgrade" | "manual" | "reduced"`) y qué páginas están `done` o `pending`. Si el estado ya tiene la opción elegida, aplícala sin volver a preguntar.
+En cualquier opción, rellena solo páginas que ya existan, sin intentar crear más de las permitidas, y registra en `.yas/figma-state.json` la opción elegida (`"pageLimit": "drafts" | "upgrade" | "manual" | "reduced"`) y qué páginas están `done` o `pending`. Si el estado ya tiene la opción elegida y el archivo destino no ha cambiado, aplícala sin volver a preguntar.
 
 ## Procedimiento de cada comando
 
@@ -279,10 +295,11 @@ En cualquier opción, rellena solo páginas que ya existan, sin intentar crear m
 
 `push` no genera ni deriva nada del manual: toma el sistema que `mini` o `full` ya dejó en el proyecto y lo carga a Figma. Es **idempotente y reanudable**, así que también sirve para continuar tras un límite de uso.
 
-1. **Conexión:** requiere el MCP instalado, autenticado y con cuota. Si no está instalado, muestra el aviso de instalación y termina; si falla la autenticación o la cuota, di el motivo y termina.
+1. **Conexión:** requiere el MCP instalado y autenticado. Si no está instalado, muestra el aviso de instalación y termina; si falla la autenticación o la cuota, di el motivo y termina.
 2. **Comprobación previa:** verifica que existen `.yas/figma-local/` y `.yas/tokens/tokens.json`. Si no hay un design system generado, dilo y sugiere ejecutar antes `/yas-figma mini` o `/yas-figma full`; no lo generes por tu cuenta.
-3. **Alcance:** léelo de `.yas/figma-state.json` o de la portada del paquete; no lo preguntes.
-4. **Creación en Figma** (ver la sección).
+3. **Archivo destino:** si el usuario pasa una URL de Figma, esa manda sobre la del estado (ver la prioridad en "Si el MCP está instalado").
+4. **Alcance:** léelo de `.yas/figma-state.json` o de la portada del paquete; no lo preguntes.
+5. **Creación en Figma** (ver la sección).
 
 ### `documentation`: entregable HTML del design system
 
@@ -311,16 +328,15 @@ No pregunta el alcance: documenta lo que existe, sin construir nada. Es de solo 
 
 1. **Conexión:** si no hay conexión con el MCP o no se puede leer el archivo (sin MCP, sin autenticación, sin cuota, sin acceso al archivo, error de lectura), **anuncia el problema con el motivo concreto y finaliza**. No generes HTML alternativo, ni paquete local, ni ofrezcas otras salidas.
 2. **Archivo objetivo:** toma el `fileKey` de la URL; si no hay, usa el de `.yas/figma-state.json`; si tampoco, pídelo. Llama a `create_session` (tarea de solo lectura).
-3. **Extracción**, en este orden y guardando lo leído en `.yas/figma-snapshot.json` para no repetir llamadas si se corta:
-   - Estructura: páginas y marcos principales (`get_metadata`).
-   - Variables: colecciones, modos, nombres y valores (`get_variable_defs`).
-   - Estilos de texto, efectos y cuadrículas, y componentes con sus variantes y propiedades (`search_design_system`, `get_libraries`, y `use_figma` en lectura si hace falta).
-   - Capturas de marcos y componentes clave (`get_screenshot`).
-   - Mapeos de Code Connect si existen (`get_code_connect_map`).
-4. **Generación:** escribe `.yas/deliverables/<nombre-archivo>.html`, autocontenido, con las mismas cualidades que la "Especificación del HTML del design system" (navegación lateral, claro/oscuro si hay modos, responsive, imprimible, contraste AA). Secciones: Portada (nombre, fileKey, enlace, fecha de extracción, última modificación si se conoce), Resumen (cifras reales: variables, estilos, componentes, páginas), Color, Tipografía, Espaciado y demás variables por colección y modo, Componentes (captura real, variantes, propiedades), Pantallas, Mapeo a código y Hallazgos.
-5. **Imágenes:** incrústalas como `data:` URI si pesan poco; si el HTML superara ~10 MB, guárdalas en `.yas/deliverables/assets/` y avisa de que el HTML debe moverse junto a esa carpeta.
-6. **Hallazgos honestos:** señala inconsistencias detectadas al leer (valores fijos sin variable, estilos duplicados, componentes sin descripción, nombres fuera de convención, contraste insuficiente). Es un resumen de la lectura, no una auditoría.
-7. **Cierre:** indica ruta del HTML, qué se extrajo y qué **no se pudo leer** (con el motivo). No rellenes con datos inventados: lo ausente aparece como "no disponible".
+3. **Snapshot previo:** si existe `.yas/figma-snapshot.json` para ese `fileKey`, pregunta si se reutiliza en lugar de volver a leer Figma.
+4. **Extracción en una sola llamada a `use_figma`**, con un script que **solo lea** (sin crear, mover ni modificar nada) y devuelva: páginas y marcos principales, colecciones de variables con modos, nombres y valores, estilos de texto, efectos y cuadrículas, y componentes con sus variantes, propiedades y descripciones. Guarda el resultado en `.yas/figma-snapshot.json`. Si el resultado es demasiado grande para una llamada, divídelo en el menor número de llamadas posible y guarda tras cada una.
+   - **Capturas (`get_screenshot`):** opcionales. Solo de los marcos o componentes que el usuario elija, informando de cuántas lecturas consumirán y con confirmación previa.
+   - **Code Connect (`get_code_connect_map`):** solo si el usuario lo pide; omítelo por defecto.
+   - No uses `get_metadata`, `get_variable_defs`, `search_design_system` ni `get_libraries` si el script de `use_figma` ya obtuvo esos datos.
+5. **Generación:** escribe `.yas/deliverables/<nombre-archivo>.html`, autocontenido, con las mismas cualidades que la "Especificación del HTML del design system" (navegación lateral, claro/oscuro si hay modos, responsive, imprimible, contraste AA). Secciones: Portada (nombre, fileKey, enlace, fecha de extracción, última modificación si se conoce), Resumen (cifras reales: variables, estilos, componentes, páginas), Color, Tipografía, Espaciado y demás variables por colección y modo, Componentes (captura real si se tomó; si no, la especificación leída), Pantallas, Mapeo a código (si se leyó) y Hallazgos.
+6. **Imágenes:** incrústalas como `data:` URI si pesan poco; si el HTML superara ~10 MB, guárdalas en `.yas/deliverables/assets/` y avisa de que el HTML debe moverse junto a esa carpeta.
+7. **Hallazgos honestos:** señala inconsistencias detectadas al leer (valores fijos sin variable, estilos duplicados, componentes sin descripción, nombres fuera de convención, contraste insuficiente). Es un resumen de la lectura, no una auditoría.
+8. **Cierre:** indica ruta del HTML, qué se extrajo, cuántas llamadas de lectura se usaron y qué **no se pudo leer** (con el motivo). No rellenes con datos inventados: lo ausente aparece como "no disponible".
 
 ### `colors`: de la paleta de marca a tokens y variables
 
@@ -329,9 +345,9 @@ No pregunta el alcance: documenta lo que existe, sin construir nada. Es de solo 
 1. **Conexión:** comprueba el MCP. Sin MCP, o si el límite de uso corta el trabajo, avisa y sigue en modo local (los tokens se generan igualmente; solo se omite Figma).
 2. **Fuente:** lee la paleta de los artefactos compartidos (`paleta/paleta.md` con su tabla de contrato, y el manual) según "Fuente de datos". Sin paleta, se detiene y la pide.
 3. **Tokens:** crea o actualiza `color.*` en `.yas/tokens/tokens.json` según `tokens-spec.md`: primitivas de la paleta, semánticas (superficie, texto, borde, acción y estado) con modos claro y oscuro, y el informe `.yas/tokens/contraste.md` con los pares calculados según `criterios-calidad.md`. Los roles que el manual no define (estados de acción como `hover` o `pressed`, iconos, enlace, foco, estados de feedback) **se derivan de los colores del manual** con las reglas de "Derivación de los roles que el manual no define" de `tokens-spec.md`, sin añadir matices ajenos a la paleta. Esos roles y las escalas tonales derivadas se marcan como *propuesta* y se **muestran al usuario para aprobar antes de crearlos en Figma**. Si `tokens.json` ya existe, fusiona sin reescribir lo existente y anota el cambio en `.yas/tokens/CHANGELOG.md`.
-4. **Figma (con MCP):** crea la colección de primitivas (sin modos) y la de semánticas (modos Light y Dark) con sus alias, busca antes lo que ya existe para no duplicar, y lee de vuelta las variables para verificarlas. Actualiza `.yas/figma-state.json` tras cada elemento para poder retomar.
+4. **Figma (con MCP):** determina el archivo destino según la prioridad de "Si el MCP está instalado". Con `use_figma`, en el mismo script: comprueba qué colecciones y variables ya existen (para no duplicar), crea la colección de primitivas (sin modos) y la de semánticas (modos Light y Dark) con sus alias, y devuelve nombres, ids y valores de lo creado como verificación. No uses herramientas de lectura para verificar. Actualiza `.yas/figma-state.json` tras cada llamada para poder retomar.
 5. **Modo local:** escribe `variables.md` y `variables.json` con las colecciones y los modos de color, listos para crear a mano en Figma.
-6. **Cierre:** informa qué se generó, qué se verificó (contrastes calculados, variables leídas de vuelta) y qué queda pendiente.
+6. **Cierre:** informa qué se generó, qué se verificó (contrastes calculados, variables devueltas por `use_figma`) y qué queda pendiente.
 
 ## Referencias externas
 
@@ -342,5 +358,7 @@ La lista y sus reglas de uso están en `../yas-core/references/referencias-exter
 - **El manual de identidad aprobado es la fuente de datos; `.yas/tokens/` es su traducción y el código consume esos tokens.** Figma refleja el sistema, no lo contradice. Si hay conflicto entre manual, tokens, código y Figma, señálalo y pregunta; prevalece lo aprobado en el manual.
 - **Tokens antes que componentes, componentes antes que pantallas.**
 - **Nada con valores fijos:** en Figma todo se enlaza a variables.
+- **El archivo que indica el usuario manda:** nunca escribas en otro archivo ni crees uno nuevo sin que el usuario lo pida.
+- **La cuota de lectura es escasa:** el estado local y los scripts de `use_figma` sustituyen a las herramientas de lectura siempre que sea posible.
 - **Declara siempre el modo** (MCP o local) al empezar y al entregar, y qué quedó pendiente.
 - **No inventes:** si no puedes verificar algo en Figma, dilo.

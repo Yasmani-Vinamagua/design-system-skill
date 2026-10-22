@@ -19,6 +19,7 @@ Rutas relativas a la raíz del proyecto. `.yas/brand/` es la carpeta de salida p
 | Especificación y registro de decisiones | `.yas/brand/marca-spec.md` | `/yas-design` | `/yas-audit` (criterio), `/yas-figma` |
 | Paleta de marca | `.yas/brand/paleta/paleta.md` | `/yas-design` (fase 6) | `/yas-figma colors`, `/yas-audit` |
 | Sistema tipográfico | `.yas/brand/tipografia/sistema-tipografico.md` | `/yas-design` (fase 7) | `/yas-figma`, `/yas-audit` |
+| Iconografía | `.yas/brand/iconografia/iconografia.md` y `iconos/*.svg` | `/yas-design` (fase 8b) | `/yas-figma` (Icons), `/yas-audit` |
 | Logo y variantes | `.yas/brand/logo/*.svg` | `/yas-design` (fases 5 y 8) | `/yas-figma` (Brand assets), `/yas-audit` |
 | Manual de identidad | `.yas/brand/manual/manual-identidad.{md,html}` | `/yas-design` (fase 10) | `/yas-figma` (fuente de datos), `/yas-audit` |
 | Origen de datos de marca | `.yas/brand-source.json` | `/yas-figma` | `/yas-design`, `/yas-audit` |
