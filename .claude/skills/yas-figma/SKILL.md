@@ -41,7 +41,8 @@ Los valores de `Colors`, `Typography`, `Brand assets`, `Icons`, etc. **no se inv
 Extracción:
 - Lee el material de verdad (Read para PDF e imágenes, WebFetch para URL) y extrae: paleta con nombres, valores (HEX, y RGB/CMYK/Pantone si constan) y roles; familias tipográficas, pesos y escala; logotipo y versiones; estilo de iconos e imágenes; reglas de espaciado, forma o movimiento si existen.
 - Registra el origen en `.yas/brand-source.json`: archivo o URL usados y, por cada dato, `extracted` (consta en el manual), `inferred` (deducido, con la razón) o `missing` (no consta).
-- Lo `inferred` se muestra al usuario para confirmar antes de construir; lo `missing` aparece como "pendiente" en Figma y en el HTML, nunca con un valor inventado. Ejemplo: si el manual no define escala de espaciado, se propone una (base 4 u 8) y se marca como propuesta.
+- **Antes de marcar algo como `missing`, intenta derivarlo** de lo que el manual sí define (paleta, logotipo, formas, tipografía). Lo derivable es `inferred` y se **propone con valor**, no se deja "pendiente": estados de acción (`hover`, `pressed`, `disabled`, `action.secondary`), roles de iconos (`icon.*`), `feedback.*` (éxito, aviso, error, info), enlace y foco (reglas en `tokens-spec.md`), y la especificación del set de iconos (ver "Iconos derivados").
+- Lo `inferred` se muestra al usuario para confirmar antes de construir. Solo es `missing` lo que no se puede derivar de nada del manual (por ejemplo, el nombre de un archivo de iconos o un Pantone); aparece como "pendiente" en Figma y en el HTML, nunca con un valor inventado. Ejemplo: si el manual no define escala de espaciado, se propone una (base 4 u 8) y se marca como propuesta.
 - Si el adjunto y lo generado por `/yas-design` se contradicen, usa el adjunto, indica las diferencias y pregunta antes de sobrescribir `.yas/tokens/`.
 - Si una fuente tipográfica del manual no está disponible en Figma, avísalo y propón la alternativa más cercana sin sustituirla en silencio.
 
@@ -54,6 +55,16 @@ Comprueba qué hay en `.yas/tokens/tokens.json`:
 - **No existe o está incompleto:** derívalo del manual (según "Fuente de datos") con las categorías del alcance (mini: color, tipografía, espaciado, radios, sombras y cuadrículas; full: además bordes, movimiento, breakpoints y capas), siguiendo `../yas-core/references/tokens-spec.md`. Para `color.*` aplica el mismo procedimiento que `colors` (incluidos el informe de contraste y el registro de cambios); si `colors` ya se ejecutó, reutiliza lo que generó.
 - **Propuestas:** las escalas derivadas y los valores que el manual no define (por ejemplo, la escala de espaciado, los estados de acción como `action.primary.hover` o los iconos, que se derivan de la paleta según `tokens-spec.md`) se marcan como *propuesta* y se **muestran al usuario para aprobar antes de crearlos en Figma**.
 - **Fusión:** si el archivo ya existe, fusiona lo que falta sin reescribir lo existente ni contradecir la paleta aprobada (regla de Protección), y anota el cambio en `.yas/tokens/CHANGELOG.md`.
+
+## Iconos derivados
+
+Si el manual no define un set de iconos, no se deja la sección vacía: se propone la **especificación** a partir del manual, marcada *propuesta*:
+- **Tamaños:** 16, 20 y 24 px (cuadrícula base de 24 con margen de 2 px).
+- **Trazo:** grosor tomado del trazo o del peso del logotipo si lo hay; si no, 1.5 px a 24 px, escalado proporcional.
+- **Esquinas y terminales:** redondeadas o rectas según el radio y la forma del logotipo y de `radius.*`.
+- **Color:** tokens `icon.*` de `tokens-spec.md`.
+- **Nombres:** `icon/<categoría>/<nombre>` en minúsculas con guion.
+Los iconos concretos (dibujos) solo se crean si el proyecto los usa o los pide; la especificación sí se entrega siempre.
 
 ## Qué genera cada alcance
 
@@ -89,7 +100,7 @@ Grids
 | Página | Contenido |
 |---|---|
 | Cover | Nombre del sistema, versión, fecha, descripción breve y estado. |
-| Icons | Set de iconos del proyecto con convención de nombres, cuadrícula base y tamaños (por ejemplo 16, 20, 24), como componentes o vectores nombrados. Solo los iconos que el proyecto use o defina; si no hay, marcador "pendiente". |
+| Icons | Set de iconos del proyecto con convención de nombres, cuadrícula base y tamaños (por ejemplo 16, 20, 24), como componentes o vectores nombrados. Solo los iconos que el proyecto use o defina. Si el manual no define set, se muestra la **especificación derivada** (ver "Iconos derivados") como *propuesta*, no un marcador vacío. |
 | Brand assets | Logotipo y sus versiones (principal, secundaria, símbolo, una tinta, negativa), zona de seguridad y tamaño mínimo. Solo con assets que existan en el proyecto; si faltan, marcador "pendiente". |
 | Colors | Primitivas y semánticas (claro/oscuro) como muestras enlazadas a variables, con ratio de contraste de los pares de texto/fondo. |
 | Type scale | Escala tipográfica con fuente, tamaño, peso e interlineado, como estilos de texto. |
@@ -192,7 +203,7 @@ Un solo archivo autocontenido (CSS y JS inline, sin dependencias externas salvo 
 - **Responsive**, imprimible (CSS `@media print`) y con foco visible y contraste AA en el propio documento.
 - **Pie de implementación:** cada valor indica cómo recrearlo en Figma (colección, modo, nombre de variable).
 
-No inventes componentes ni tokens que no existan en el sistema; si falta algo, márcalo como "pendiente de definir".
+No inventes componentes ni tokens que no existan en el sistema; si falta algo que no se pueda derivar del manual, márcalo como "pendiente de definir". Lo derivable se propone con valor (ver "Tokens" e "Iconos derivados").
 
 ## Conexión con Figma (MCP)
 

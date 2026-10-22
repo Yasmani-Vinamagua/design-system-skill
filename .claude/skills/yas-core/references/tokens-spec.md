@@ -85,6 +85,7 @@ El manual suele dar solo la paleta (principal, apoyo, neutros) y no los estados 
 | `icon.disabled` | = `text.disabled` |
 | `icon.inverse` | = `text.inverse` |
 | `icon.brand` | = `action.primary.bg` |
+| `feedback.success` / `warning` / `error` / `info` | Convención universal de matiz (verde, ámbar, rojo, azul) ajustada a la saturación y luminosidad de la paleta; `fg` y `border` por pasos de su escala. Es la única excepción a "ningún matiz ajeno": se propone y se confirma con el usuario |
 
 - Los tokens de icono salen por **alias** de tokens de texto y de acción, para que cambien con ellos en ambos modos. El estilo de los iconos (trazo, tamaño, esquinas) lo fija el manual; si no consta, queda `missing`.
 - Si el paso derivado no cumple contraste, se ajusta al siguiente paso de la escala; si ninguno cumple, se señala en `contraste.md` y se pregunta.
