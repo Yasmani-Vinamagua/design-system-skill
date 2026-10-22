@@ -62,7 +62,32 @@ Mínimo que debe cubrir la paleta semántica, derivado de los roles de la paleta
 | Texto | `text.primary`, `text.secondary`, `text.disabled`, `text.inverse`, `text.link` |
 | Borde | `border.default`, `border.strong`, `border.focus` |
 | Acción | `action.primary.{bg,fg,hover,pressed,disabled}`, `action.secondary.*` |
+| Icono | `icon.{default,strong,subtle,disabled,inverse,brand}` |
 | Estado | `feedback.{success,warning,error,info}.{bg,fg,border}` |
+
+### Derivación de los roles que el manual no define
+
+El manual suele dar solo la paleta (principal, apoyo, neutros) y no los estados de interacción ni los iconos. Esos tokens **se derivan siempre** de los colores del manual; no se dejan vacíos ni se inventan tonos nuevos. Regla general: no se introduce ningún matiz (hue) que no esté en la paleta; solo se varía la luminosidad dentro de la escala tonal de cada color, y todo token derivado se marca `inferred` / *propuesta*.
+
+| Token | Derivación (modo claro; en oscuro se invierte el sentido del paso) |
+|---|---|
+| `action.primary.bg` | El color principal del manual (`extracted`) |
+| `action.primary.fg` | Blanco o el neutro más oscuro, el que cumpla contraste AA (4.5:1) sobre `bg` |
+| `action.primary.hover` | `bg` un paso más oscuro de su escala (en oscuro, un paso más claro) |
+| `action.primary.pressed` | `bg` dos pasos más oscuros (en oscuro, dos más claros) |
+| `action.primary.disabled` | Neutro claro de la paleta (por ejemplo `neutral.200`) con texto `text.disabled` |
+| `action.secondary.*` | `bg` transparente o `surface.default`, `fg` y borde con el color principal; `hover` con el paso más claro de la escala principal (50 o 100) |
+| `text.link` | El color principal; si no llega a 4.5:1 sobre `surface.default`, el paso más oscuro que cumpla |
+| `border.focus` | El color principal o de apoyo, el que contraste ≥3:1 con la superficie |
+| `icon.default` | = `text.secondary` |
+| `icon.strong` | = `text.primary` |
+| `icon.subtle` | Neutro medio de la paleta, ≥3:1 sobre la superficie |
+| `icon.disabled` | = `text.disabled` |
+| `icon.inverse` | = `text.inverse` |
+| `icon.brand` | = `action.primary.bg` |
+
+- Los tokens de icono salen por **alias** de tokens de texto y de acción, para que cambien con ellos en ambos modos. El estilo de los iconos (trazo, tamaño, esquinas) lo fija el manual; si no consta, queda `missing`.
+- Si el paso derivado no cumple contraste, se ajusta al siguiente paso de la escala; si ninguno cumple, se señala en `contraste.md` y se pregunta.
 
 - Los colores salen de la **paleta aprobada**. Una escala tonal (por ejemplo, 50 a 900) derivada de un color de marca es una **propuesta** y se marca como tal hasta que el usuario la apruebe.
 - Los roles de estado que el manual no define (éxito, aviso, error, información) se proponen y se marcan como *propuesta*.
