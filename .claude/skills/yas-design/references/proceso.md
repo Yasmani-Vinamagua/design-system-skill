@@ -9,7 +9,7 @@ Reglas de las puertas:
 - Distingue siempre lo **verificado** de lo **supuesto**; lo que no conste se pregunta o queda como *pendiente de definir* o *no verificado* (estados y precedencia en "Vocabulario y criterios de marca" de `SKILL.md`).
 - Las referencias externas (ver `SKILL.md`) se consultan en la fase que las necesita y se citan en el spec.
 - Agrupa las preguntas en una sola interacción cuando sea práctico y no exijas respuestas que no sean necesarias para avanzar.
-- **Al cerrar cada fase, enlaza cada archivo generado** con su ruta absoluta, como indica el formato de enlace clicable de `../../yas-core/references/reglas-comunes.md` (sección «Archivos»). Nunca los nombres solo por su nombre. Aplica también al resumen corto de una línea. Los «indica su ruta completa» de las fases significan eso.
+- **Al cerrar cada fase, enlaza cada archivo generado** con su ruta absoluta, como indica el formato de enlace clicable de `../../yas-core/references/reglas-comunes.md` (sección «Archivos»). Nunca los nombres solo por su nombre. Aplica también al resumen corto de una línea y al **rebranding** (archivos de comparación y variantes). Si pides la decisión con la herramienta de preguntas, escribe en el texto de la pregunta la ruta absoluta en texto plano del archivo donde se ven las opciones (ver la misma sección de `reglas-comunes.md`). Los «indica su ruta completa» de las fases significan eso.
 
 **Carpeta de salida:** por defecto `.yas/brand/` (es donde `/yas-figma` busca el manual). Si el usuario elige otra, créala ahí y anota la ruta en `.yas/brand-source.json` (`manualPath`) para que el resto del ecosistema la encuentre. El spec se llama `marca-spec.md` y vive en la raíz de esa carpeta; los entregables van en `investigacion/`, `concepto/`, `logo/`, `paleta/`, `tipografia/`, `aplicaciones/` y `manual/`.
 
@@ -301,6 +301,8 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 7. Generar una vista previa para facilitar la revisión e indicar su ruta completa en el resumen, antes de pedir la aprobación.
 
 **Pruebas:** ejecutar las de la sección 5 de `construccion-logo.md` (negro al 100 %, negativa, tamaño reducido, silueta, equilibrio, espacio negativo, tipografía, contraste, producción física, integridad del archivo, consistencia y diferenciación frente a la competencia estudiada) y marcar cada una con el estado definido allí. Una evaluación visual no sustituye una búsqueda legal de marcas registradas.
+
+**Variantes por decidir:** si al cerrar la fase pides elegir entre variantes (por ejemplo el equilibrio del lockup, o la versión anterior frente a la nueva en un rebranding), genera `logo/comparacion.html` con todas las variantes lado a lado, a tamaño grande y reducido, y cita su ruta en la pregunta.
 
 **Entregable:** `logo/logo-master.svg` (fuente maestra), `logo/logo-1tinta-negro.svg`, vistas previas y documentación de construcción, con las pruebas marcadas como verificada, fallida, no aplicable o no verificada y el registro de entrega de la sección 8 de `construccion-logo.md`.
 **Criterio de aprobación:** el usuario aprueba el diseño a una tinta. Si no funciona, volver a la Fase 4.
