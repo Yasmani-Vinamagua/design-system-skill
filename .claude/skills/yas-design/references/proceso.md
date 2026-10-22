@@ -9,6 +9,7 @@ Reglas de las puertas:
 - Distingue siempre lo **verificado** de lo **supuesto**; lo que no conste se pregunta o queda como *pendiente de definir* o *no verificado* (estados y precedencia en "Vocabulario y criterios de marca" de `SKILL.md`).
 - Las referencias externas (ver `SKILL.md`) se consultan en la fase que las necesita y se citan en el spec.
 - Agrupa las preguntas en una sola interacción cuando sea práctico y no exijas respuestas que no sean necesarias para avanzar.
+- **Al cerrar cada fase, enlaza cada archivo generado** con su ruta absoluta, como indica el formato de enlace clicable de `../../yas-core/references/reglas-comunes.md` (sección «Archivos»). Nunca los nombres solo por su nombre. Aplica también al resumen corto de una línea. Los «indica su ruta completa» de las fases significan eso.
 
 **Carpeta de salida:** por defecto `.yas/brand/` (es donde `/yas-figma` busca el manual). Si el usuario elige otra, créala ahí y anota la ruta en `.yas/brand-source.json` (`manualPath`) para que el resto del ecosistema la encuentre. El spec se llama `marca-spec.md` y vive en la raíz de esa carpeta; los entregables van en `investigacion/`, `concepto/`, `logo/`, `paleta/`, `tipografia/`, `aplicaciones/` y `manual/`.
 

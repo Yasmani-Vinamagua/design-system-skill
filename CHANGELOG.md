@@ -11,6 +11,7 @@
 
 ### Cambiado
 - Regla común nueva en `yas-core`: todo lo que el usuario deba ver se anuncia con su **ruta completa** en el resumen de cierre, y antes de pedir la decisión si depende de ello. Aplicado en `/yas-design` (Fases 3 a 10) y en el cierre de `/yas-figma push`.
+- Los archivos generados se enlazan en cada resumen de cierre como **enlaces clicables con ruta absoluta** (`file:///...`), en todas las fases y en las tres skills; ya no se nombran solo por su nombre.
 - La excepción a «las propuestas conceptuales no se convierten en código» incluye ahora estas vistas de opciones.
 - README: nueva sección «Actualizar» (`npx skills update`).
 

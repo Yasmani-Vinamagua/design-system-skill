@@ -33,6 +33,8 @@ Se aplican a **todas** las skills de Yas Design (`/yas-design`, `/yas-audit`, `/
 - Cuando la tarea produce algo, entrega archivos reales en el proyecto (Markdown, SVG, HTML, JSON de tokens), no solo texto en pantalla. Por defecto van en `.yas/` salvo que el usuario indique otra carpeta.
 - Usa nombres descriptivos y rutas previsibles, respeta las convenciones que el proyecto ya tenga e indica la ruta de cada archivo al terminar.
 - **Todo lo que el usuario deba ver** (vistas de opciones, bocetos, vistas previas, mockups, HTML de entrega, manual) se anuncia con su **ruta completa** en el resumen de cierre del paso que lo genera, y **antes de pedir una decisión** si de él depende. No basta con describirlo en el chat: si hay un archivo para mirar, di dónde está y cómo abrirlo (doble clic en el navegador para HTML; abrir con el navegador o un editor de imágenes para SVG).
+- **Formato de la ruta: enlace clicable con la ruta absoluta.** Nunca nombres un archivo solo por su nombre («opciones.html y paleta.md»). Escríbelo como enlace Markdown cuyo destino es la ruta absoluta del archivo con esquema `file:///`, barras `/` y los espacios como `%20`, y cuyo texto es la ruta relativa al proyecto: `[.yas/brand/paleta/paleta.md](file:///C:/Users/ana/proyecto/.yas/brand/paleta/paleta.md)`. En macOS o Linux: `file:///home/ana/proyecto/...`. Obtén la ruta absoluta del directorio de trabajo real; no la inventes ni la dejes relativa. Si el entorno no hace clicable el enlace, el texto con la ruta relativa sigue permitiendo encontrar el archivo. Para una carpeta, enlaza la carpeta.
+- Esto vale para **todas las fases y todos los subcomandos** de las tres skills, también para los resúmenes cortos de una línea: si el resumen menciona un archivo que el usuario puede abrir, lo enlaza así.
 
 ### Protección
 - **Antes de modificar o reemplazar un archivo existente, léelo y comprueba qué función cumple.** Un archivo que no sabes qué hace no se sobrescribe.
@@ -49,7 +51,7 @@ Se aplican a **todas** las skills de Yas Design (`/yas-design`, `/yas-audit`, `/
 - Documenta lo que otra persona necesitaría para continuar sin tener que adivinar.
 
 ### Transparencia
-- Al terminar, informa en pocas líneas de tres cosas: **qué se generó** (con rutas), **qué se verificó** (y cómo) y **qué quedó pendiente** (incluidas limitaciones y aprobaciones sin resolver).
+- Al terminar, informa en pocas líneas de tres cosas: **qué se generó** (cada archivo como enlace clicable con su ruta, según el formato de «Archivos»), **qué se verificó** (y cómo) y **qué quedó pendiente** (incluidas limitaciones y aprobaciones sin resolver).
 - Usa el vocabulario de estados de cada skill: pruebas *verificada*, *fallida*, *no aplicable*, *no verificada*; datos *verificado*, *no verificado*, *pendiente de definir*; hallazgos de auditoría *comprobado*, *hipótesis*, *no verificado*.
 - No declares terminado un trabajo con aprobaciones o validaciones importantes sin resolver.
 
