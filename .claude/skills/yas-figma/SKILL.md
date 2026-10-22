@@ -240,12 +240,12 @@ Confirma la sesión con `whoami` **una sola vez por ejecución**; si falla la au
 
 ### Presupuesto de lecturas
 
-Figma limita las herramientas de lectura del MCP según el plan y el asiento (el límite exacto no está verificado; se detecta cuando Figma devuelve el error). Las herramientas que escriben en el archivo no cuentan como lectura. Cada lectura puede contar, así que:
+Figma limita las herramientas de lectura del MCP según el plan y el asiento (el límite exacto no está verificado; se detecta cuando Figma devuelve el error). Cuenta como lectura toda llamada que lee, aunque también escriba: `use_figma` descuenta cuota en cada llamada (verificado en la práctica). Solo las herramientas que únicamente escriben, como `upload_assets`, quedan fuera. Cada llamada puede contar, así que:
 - **No llames a `search_design_system` antes de cada creación.** Usa `.yas/figma-state.json` como registro de lo creado.
 - **Comprueba y verifica dentro de `use_figma`:** el mismo script que crea variables, estilos, páginas o componentes lee con la Plugin API lo que ya existe (por nombre) antes de crear, y devuelve en su resultado los nombres e ids de lo creado. Eso sirve de verificación; no hace falta leer de vuelta con otra herramienta.
 - **Agrupa:** crea varios elementos por llamada a `use_figma` cuando sea razonable, actualizando el estado con lo que devuelva cada llamada.
 - **Herramientas de lectura** (`search_design_system`, `get_metadata`, `get_variable_defs`, `get_screenshot`, `get_libraries`, `get_design_context`, `get_code_connect_map`…): úsalas solo cuando no haya alternativa. Antes, di cuántas vas a usar y para qué, y pide confirmación si son más de una.
-- La primera vez, comprueba con el usuario si una llamada a `use_figma` que solo lee datos le descuenta cuota. Si se la descuenta, aplica las mismas reglas de ahorro a esas llamadas.
+- Cada llamada a `use_figma` cuenta, también las que solo leen. Comprobar y verificar dentro del script evita llamadas adicionales, pero no la cuota de esa llamada: agrupa más trabajo en cada una y no hagas llamadas solo para comprobar.
 
 ### Si el MCP falla a mitad de trabajo
 

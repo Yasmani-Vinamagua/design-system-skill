@@ -12,6 +12,7 @@
 - `/yas-figma`: sección «Presupuesto de lecturas» (comprobar y verificar dentro de `use_figma`) y opción de usar un archivo en Drafts ante el límite de páginas.
 
 ### Cambiado
+- `/yas-figma`, «Presupuesto de lecturas»: corregida la contradicción sobre `use_figma`. Cuenta cuota en cada llamada (lee y escribe); solo las herramientas que únicamente escriben quedan fuera. El ahorro pasa por agrupar más trabajo por llamada y no hacer llamadas solo de comprobación.
 - Regla común nueva en `yas-core`: todo lo que el usuario deba ver se anuncia con su **ruta completa** en el resumen de cierre, y antes de pedir la decisión si depende de ello. Aplicado en `/yas-design` (Fases 3 a 10) y en el cierre de `/yas-figma push`.
 - Los archivos generados se enlazan en cada resumen de cierre como **enlaces clicables con ruta absoluta** (`file:///...`), en todas las fases y en las tres skills; ya no se nombran solo por su nombre.
 - Cuando se pide una decisión con la herramienta de preguntas, la ruta absoluta del archivo con las opciones va **dentro de la pregunta**, también en rebranding. Fase 5: `logo/comparacion.html` para decidir entre variantes (por ejemplo el lockup).
