@@ -1,57 +1,93 @@
 <div align="center">
 
-# Design System Skill
+# Yas Design — Design System Skill
 
-**Branding y sistema de diseño con Claude Code:**
-de la idea a una marca documentada, auditada y lista para Figma.
+**De una idea a una marca documentada, auditada y lista para convertirse en un design system.**
+
+Un conjunto de skills para **Claude Code** que guía la creación de identidad de marca, la auditoría y la generación de sistemas de diseño con entregables reales y aprobación humana.
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-D97757?style=flat-square)
-![Idioma](https://img.shields.io/badge/idioma-espa%C3%B1ol-2563EB?style=flat-square)
+![Idioma](https://img.shields.io/badge/skills-espa%C3%B1ol-2563EB?style=flat-square)
 ![Estado](https://img.shields.io/badge/estado-beta-F59E0B?style=flat-square)
 ![Licencia](https://img.shields.io/badge/licencia-MIT-16A34A?style=flat-square)
 
-**Español** · [English](README.en.md)
+**Español** · [English documentation](README.en.md)
 
-[Instalación](#instalación) · [Inicio rápido](#inicio-rápido) · [Las skills](#las-skills) · [Qué genera](#qué-archivos-genera) · [Estado](#estado-y-hoja-de-ruta)
+[Empezar](#empieza-en-un-minuto) · [Qué puedes hacer](#qué-puedes-hacer) · [Instalación](#instalación) · [Documentación](#documentación-detallada) · [Roadmap](#estado-y-hoja-de-ruta)
 
 </div>
 
 ---
 
-## Índice
+## Empieza en un minuto
 
-- [¿Qué es?](#qué-es)
-- [Instalación](#instalación)
-- [Las skills](#las-skills)
-- [Inicio rápido](#inicio-rápido)
-- [Qué archivos genera](#qué-archivos-genera)
-- [Reglas de calidad compartidas](#reglas-de-calidad-compartidas)
-- [Estado y hoja de ruta](#estado-y-hoja-de-ruta)
-- [Estructura del repositorio](#estructura-del-repositorio)
-- [Referencias e inspiración](#referencias-e-inspiración)
-- [Contribuir](#contribuir)
-- [Licencia](#licencia)
+Instala el conjunto de skills en tu proyecto con [`skills`](https://github.com/vercel-labs/skills):
 
-## ¿Qué es?
+```bash
+npx skills add Yasmani-Vinamagua/design-system-skill --all -y -a claude-code
+```
 
-Yas Design **no es una colección de prompts**: es una **metodología de diseño** empaquetada como skills de [Claude Code](https://claude.com/claude-code). Cada skill analiza, decide, ejecuta, documenta y valida, y deja **archivos reales** en tu proyecto.
+Después abre una sesión nueva de Claude Code y ejecuta uno de estos ejemplos:
 
-- **Proceso con puertas de aprobación.** Cada fase tiene objetivo, qué hacer, qué preguntar, entregable y criterio de aprobación. Al terminar, resume y espera tu visto bueno antes de avanzar.
-- **Tres especialistas que comparten resultados.** Lo que crea una skill lo leen las otras; nada se rehace ni se copia.
-- **Honestidad verificable.** Distingue lo comprobado de las hipótesis y de lo que no pudo verificar, y nunca declara validado lo que no ejecutó.
-- **Funciona aunque Figma falle.** Sin el MCP de Figma, o sin cuota, genera el sistema en local con un HTML navegable listo para entregar.
+```text
+/yas-design brand     # Diseñar una marca nueva
+/yas-audit            # Auditar una marca existente
+/yas-figma mini       # Crear un design system de fundamentos
+```
+
+> **Importante:** las cuatro skills se instalan juntas, incluido `yas-core` (núcleo compartido, no invocable). `/yas-figma` necesita un manual de identidad, generado por `/yas-design` o aportado por ti. Consulta [instalación y requisitos](#instalación).
+
+## Qué puedes hacer
+
+| Necesitas… | Usa | Resultado previsto |
+|---|---|---|
+| Crear una identidad desde cero o hacer rebranding | `/yas-design` | Estrategia, marca gráfica, activos y manual de identidad en Markdown/HTML |
+| Evaluar una marca antes de rediseñarla | `/yas-audit` | Diagnóstico argumentado, prioridades y puntuación sobre 20 |
+| Construir un design system desde un manual | `/yas-figma` | Fundamentos, componentes según alcance, tokens y documentación; integración con Figma cuando está disponible |
+
+**No es una colección de prompts.** Yas Design organiza el trabajo como una metodología: explora el contexto, propone decisiones, solicita aprobación cuando corresponde, crea archivos en tu proyecto y declara qué ha podido comprobar.
+
+- **Tú conservas el control:** cada fase del proceso de identidad tiene una puerta de aprobación.
+- **Un flujo conectado:** las skills reutilizan el manual, los tokens y otros artefactos, sin rehacer el mismo trabajo.
+- **Salidas editables:** SVG, Markdown, HTML y JSON en `.yas/`, según la tarea.
+- **Sin dependencia obligatoria de Figma:** `mini` y `full` pueden generar una entrega local navegable si el MCP no está disponible o se agota la cuota.
+- **Validación transparente:** diferencia hechos comprobados, hipótesis y aspectos no verificados.
+
+## Cómo funciona
 
 ```mermaid
 flowchart LR
-    A["/yas-design<br/>crea la identidad"] --> M[("Manual de identidad<br/>.yas/brand/")]
-    M --> B["/yas-figma<br/>design system y Figma"]
-    M --> C["/yas-audit<br/>diagnóstico sobre 20"]
+    A["/yas-design<br/>identidad"] --> M[("Manual de identidad<br/>.yas/brand/")]
+    M --> B["/yas-figma<br/>design system"]
+    M --> C["/yas-audit<br/>diagnóstico /20"]
     B --> T[("Tokens<br/>.yas/tokens/")]
-    C -. recomienda acciones .-> A
-    K["yas-core<br/>reglas y criterios compartidos"] -.-> A
+    C -. recomendaciones .-> A
+    K["yas-core<br/>reglas compartidas"] -.-> A
     K -.-> B
     K -.-> C
 ```
+
+### Ejemplo de flujo
+
+1. Ejecuta `/yas-design brand` para preparar el brief y construir una identidad por fases.
+2. Revisa y aprueba las decisiones hasta obtener el manual de identidad.
+3. Ejecuta `/yas-figma mini` o `/yas-figma full` para generar el sistema a partir de ese manual.
+4. Si quieres un diagnóstico independiente, ejecuta `/yas-audit` con los activos o la documentación de la marca.
+
+> **Demostración visual pendiente:** cuando tengas un caso real, añade aquí capturas o un GIF del manual, la auditoría y `design-system.html`. No se incluyen imágenes de resultados no verificados.
+
+## Documentación detallada
+
+- [Instalación, actualización y requisitos](#instalación)
+- [Las skills y sus comandos](#las-skills)
+- [Inicio rápido por tarea](#inicio-rápido)
+- [Archivos generados](#qué-archivos-genera)
+- [Reglas de calidad](#reglas-de-calidad-compartidas)
+- [Estado y hoja de ruta](#estado-y-hoja-de-ruta)
+- [Estructura del repositorio](#estructura-del-repositorio)
+- [Referencias](#referencias-e-inspiración)
+- [Contribuir](#contribuir)
+- [Licencia](#licencia)
 
 ---
 
@@ -297,7 +333,7 @@ El proyecto está en **beta**. Las skills están diseñadas y revisadas, pero to
 |---|---|
 | Disponible | `/yas-design` (`init`, `brief`, `brand`, `rebrand`) · `/yas-audit` (siete módulos) · `/yas-figma` (`mini`, `full`, `push`, `documentation`, `colors`) |
 | Sin implementar | Importar de Figma al código, sincronizar Figma con el código, Code Connect y llevar pantallas del código a Figma. La skill lo indica con claridad si se piden |
-| Limitaciones conocidas | Solo en español · la creación de variables, estilos y páginas en Figma depende de las herramientas del MCP y de tu plan · las auditorías de percepción real necesitan datos que tú aportes |
+| Limitaciones conocidas | Ejecución de las skills en español (documentación también disponible en inglés) · la creación de variables, estilos y páginas en Figma depende de las herramientas del MCP y de tu plan · las auditorías de percepción real necesitan datos que tú aportes |
 
 ---
 
@@ -339,3 +375,7 @@ Las contribuciones son bienvenidas: abre un *issue* con el problema o la propues
 ## Licencia
 
 Distribuido bajo la licencia [MIT](LICENSE). Puedes usar, copiar, modificar y distribuir el proyecto, conservando el aviso de copyright y la licencia.
+
+---
+
+Si Yas Design te resulta útil, puedes [darle una estrella al repositorio](https://github.com/Yasmani-Vinamagua/design-system-skill) para ayudar a que otras personas lo encuentren.
