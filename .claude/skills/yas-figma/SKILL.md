@@ -355,7 +355,7 @@ La lista y sus reglas de uso están en `../yas-core/references/referencias-exter
 
 ## Principios
 
-- **El manual de identidad aprobado es la fuente de datos; `.yas/tokens/` es su traducción y el código consume esos tokens.** Figma refleja el sistema, no lo contradice. Si hay conflicto entre manual, tokens, código y Figma, señálalo y pregunta; prevalece lo aprobado en el manual.
+- **El manual de identidad aprobado es la fuente de datos; `.yas/tokens/` es su traducción y el código consume esos tokens.** Figma refleja el sistema, no lo contradice. Si hay conflicto entre manual, tokens, código y Figma, señálalo y pregunta; prevalece lo aprobado en `marca-spec.md` y, si el spec no lo cubre, el manual.
 - **Tokens antes que componentes, componentes antes que pantallas.**
 - **Nada con valores fijos:** en Figma todo se enlaza a variables.
 - **El archivo que indica el usuario manda:** nunca escribas en otro archivo ni crees uno nuevo sin que el usuario lo pida.

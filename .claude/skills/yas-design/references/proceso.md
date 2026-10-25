@@ -3,6 +3,9 @@
 Cada fase tiene: **objetivo**, **qué hacer**, **qué preguntar**, **entregable** y **criterio de aprobación**. Al terminar, resume y pide aprobación.
 
 Reglas de las puertas:
+- **Estado de cada fase** (tabla «Estado de las fases» del spec): `Pendiente` → `En curso` → `En revisión` (entregable mostrado, a la espera del usuario) → `Aprobada`. Una fase sustituida tras volver atrás pasa a `Obsoleta` y se conserva como referencia; una que el alcance no toca, a `Omitida` con su motivo. **Solo el usuario aprueba**: una fase pasa a `Aprobada` únicamente con su aprobación explícita, que se anota con fecha y quién; nunca la marcas tú. No se inicia una fase mientras la anterior no esté `Aprobada` u `Omitida`.
+- **Comprobaciones verificables:** cada fase lista las suyas antes de su criterio de aprobación. Ejecútalas antes de pedir la aprobación y muestra el resultado de cada una (cumple / no cumple / no verificada, con el motivo). Si alguna no cumple, corrígela o dilo al pedir la aprobación; no las ocultes ni las des por cumplidas sin ejecutarlas.
+- Si el usuario pide un cambio de alcance a mitad de proceso, vuelve a la fase afectada, actualiza el spec y registra la decisión; no improvises en los entregables.
 - **No avances de fase sin aprobación explícita.** Resume lo hecho en pocas líneas, muestra el entregable (o su ruta) y pregunta con AskUserQuestion: aprobar, pedir cambios o volver a una fase anterior.
 - Cada decisión y aprobación se anota en el **Registro de decisiones** del spec (fecha, fase, decisión, motivo, estado y quién la aprobó).
 - Si una fase falla su criterio, vuelve a la fase indicada; no maquilles el resultado.
@@ -31,6 +34,13 @@ Es el documento vivo del proyecto: se crea en la fase 0 y se completa fase a fas
 - Tipo de encargo: identidad nueva / rebranding / ajuste puntual
 - Alcance del cambio (solo rebranding): ajuste / evolución / rebranding integral
 - Carpeta de salida:
+
+## Estado de las fases
+| Fase | Estado | Aprobada el | Aprobada por |
+|---|---|---|---|
+| 0 | Pendiente | | |
+
+(Una fila por fase del recorrido, incluidas 0b, 8b y 10b si aplican. Se añaden al avanzar y las omitidas se marcan `Omitida` con su motivo.)
 
 ## 0b. Evaluación inicial de la marca existente (solo rebranding)
 - Inventario (logos, tipografías, colores, manuales, aplicaciones) y qué no se pudo verificar:
@@ -147,7 +157,7 @@ Es el documento vivo del proyecto: se crea en la fase 0 y se completa fase a fas
 ```
 
 Notas de uso:
-- `Estado general` y `Fase actual` se actualizan al cerrar cada fase; `Última actualización` lleva la fecha real.
+- `Estado general` y `Fase actual` se actualizan al cerrar cada fase; `Última actualización` lleva la fecha real y la tabla «Estado de las fases» refleja el estado de cada una.
 - **Ajuste puntual** equivale al alcance "ajuste" de la Fase 0b: solo se recorren las fases que el ajuste toca, indicando cuáles se omiten y por qué.
 
 ---
@@ -172,6 +182,7 @@ Notas de uso:
 - ¿Hay restricciones de tiempo, presupuesto, licencias o producción?
 
 **Entregable:** carpeta inicial y secciones conocidas de `marca-spec.md`.
+**Comprobaciones verificables:** La carpeta de salida y `marca-spec.md` existen; el tipo de encargo y la carpeta de salida constan en el spec; las dependencias que faltan están registradas.
 **Criterio de aprobación:** el usuario confirma el alcance y el nombre de marca.
 
 ## Fase 0b — Evaluación inicial de la marca existente (solo rebranding)
@@ -201,6 +212,7 @@ Notas de uso:
 
 Para una evaluación profunda de la marca actual, sugiere `/yas-audit`; no afirmes que se hizo hasta ejecutarlo.
 **Entregable:** sección 0b de `marca-spec.md` con inventario, problemas separados, alcance y tabla de decisión por elemento.
+**Comprobaciones verificables:** Cada elemento del inventario tiene decisión y justificación en la tabla; lo que no se pudo inspeccionar está marcado como no verificado.
 **Criterio de aprobación:** el usuario aprueba el alcance y la decisión de conservar, evolucionar o eliminar cada elemento.
 
 ## Fase 1 — Brief y estrategia
@@ -225,6 +237,7 @@ Para una evaluación profunda de la marca actual, sugiere `/yas-audit`; no afirm
 No convertir preferencias aisladas en decisiones definitivas sin relacionarlas con el brief.
 **Referencia:** Wolff Olins (cómo se plantea la idea y el propósito de una marca).
 **Entregable:** sección Brief de `marca-spec.md`.
+**Comprobaciones verificables:** Cada objetivo dice cómo se sabrá que se cumple; aplicaciones previstas y restricciones registradas; ningún campo del Brief vacío sin marcarlo *pendiente de definir*.
 **Criterio de aprobación:** meta, objetivos, público y dirección estratégica confirmados.
 
 ## Fase 2 — Investigación y documentación
@@ -240,6 +253,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 7. Describir el moodboard en palabras: referencias, texturas, imágenes, composición y atmósfera; no copiar activos de terceros.
 
 **Entregable:** `investigacion/competidores.md` y sección Investigación de `marca-spec.md`, con tabla comparativa, fuentes y oportunidades.
+**Comprobaciones verificables:** Cada hallazgo cita su fuente; las limitaciones de la investigación están declaradas; la dirección visual enlaza con el brief.
 **Criterio de aprobación:** el usuario confirma los hallazgos relevantes y la dirección visual propuesta.
 
 **Rebranding:** el diagnóstico de la marca actual ya se hizo en la Fase 0b; aquí solo se añade la investigación competitiva y se contrasta con la marca existente.
@@ -267,6 +281,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 **Presentación:** diagramas como listas anidadas; tabla de tres conceptos candidatos; recomendación razonada. En el resumen que cierra la fase y antes de preguntar, indica la ruta completa de `concepto/opciones.html` (por ejemplo `.yas/brand/concepto/opciones.html`, o la carpeta de salida elegida) para que el usuario la abra y compare.
 **Referencia:** el caso de LEGO en Logo Design Love (de la idea a un sistema visual coherente).
 **Entregable:** `concepto/diagramas-radiales.md`, `concepto/conceptos.md`, `concepto/opciones.html` y actualización del spec.
+**Comprobaciones verificables:** Hay tres conceptos candidatos, cada uno con justificación y riesgos; `concepto/opciones.html` se abre y muestra los tres.
 **Criterio de aprobación:** el usuario selecciona un concepto, solicita una combinación concreta o autoriza una nueva exploración.
 
 **Rebranding:** según el alcance aprobado en la Fase 0b. En **ajuste** y **evolución**, sustituye los conceptos por 2-3 **líneas de evolución** (grado de cambio por elemento; qué conserva cada una, qué cambia y el riesgo de perder reconocimiento) y recomienda una, respetando la decisión por elemento de la sección 0b. En **rebranding integral**, antes de los conceptos redacta el nuevo posicionamiento, propósito, público y personalidad, que el concepto debe expresar.
@@ -290,6 +305,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 - En el resumen que cierra la fase y antes de preguntar, indica la ruta completa del archivo (por ejemplo `.yas/brand/logo/exploracion/opciones.html`, o la carpeta de salida elegida).
 
 **Entregable:** bocetos, `logo/exploracion/opciones.html` y matriz de evaluación.
+**Comprobaciones verificables:** Cada candidato está puntuado con los criterios de la matriz; el elegido tiene su motivo registrado; `logo/exploracion/opciones.html` se abre.
 **Criterio de aprobación:** el usuario selecciona un candidato —o dos para una comparación controlada— antes de construir el arte final.
 
 **Rebranding:** parte de la marca actual y muestra la comparación antes y después; no reemplaza ningún activo existente sin el alcance aprobado.
@@ -314,6 +330,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 **Variantes por decidir:** si al cerrar la fase pides elegir entre variantes (por ejemplo el equilibrio del lockup, o la versión anterior frente a la nueva en un rebranding), genera `logo/comparacion.html` con todas las variantes lado a lado, a tamaño grande y reducido, y cita su ruta en la pregunta.
 
 **Entregable:** `logo/logo-master.svg` (fuente maestra), `logo/logo-1tinta-negro.svg`, vistas previas y documentación de construcción, con las pruebas marcadas como verificada, fallida, no aplicable o no verificada y el registro de entrega de la sección 8 de `construccion-logo.md`.
+**Comprobaciones verificables:** Cada prueba de la sección 5 de `construccion-logo.md` consta como verificada, fallida, no aplicable o no verificada; ninguna fallida queda sin resolver; los SVG se abren.
 **Criterio de aprobación:** el usuario aprueba el diseño a una tinta. Si no funciona, volver a la Fase 4.
 
 ## Fase 6 — Color
@@ -333,6 +350,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 No afirmar que un color es accesible solo por su nombre o apariencia: registrar la combinación concreta y el resultado del cálculo de contraste cuando sea aplicable.
 
 **Entregable:** `paleta/paleta.md` y actualización del spec. `paleta.md` incluye siempre la tabla de colores del contrato de `../../yas-core/references/artefactos.md` (Nombre, Rol, HEX, RGB, CMYK de referencia, Pantone aproximado), que es la que lee `/yas-figma colors`.
+**Comprobaciones verificables:** Cada combinación aprobada tiene su ratio calculado (texto normal ≥ 4,5:1; texto grande y componentes ≥ 3:1, según `criterios-calidad.md`); `paleta.md` incluye la tabla del contrato.
 **Criterio de aprobación:** el usuario aprueba la paleta, sus funciones y las combinaciones principales.
 
 ## Fase 7 — Tipografía
@@ -357,6 +375,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 - En el resumen que cierra la fase y antes de preguntar, indica la ruta completa del archivo (por ejemplo `.yas/brand/tipografia/opciones.html`, o la carpeta de salida elegida).
 
 **Entregable:** `tipografia/sistema-tipografico.md`, `tipografia/opciones.html` y actualización del spec.
+**Comprobaciones verificables:** Las licencias y fuentes están registradas; escala y jerarquía definidas con valores; las fuentes elegidas se pueden usar según su licencia.
 **Criterio de aprobación:** el usuario aprueba las familias, sus usos y la jerarquía tipográfica.
 
 ## Fase 8 — Versiones y activos de marca
@@ -373,6 +392,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 7. En el resumen, indica la carpeta de `logo/` donde el usuario puede ver las versiones (y la vista previa, si se generó una) antes de pedir la aprobación.
 
 **Entregable:** SVG finales organizados en `logo/` y registro de variantes en el spec.
+**Comprobaciones verificables:** Existen la versión monocromática y las reducidas que realmente funcionan; los SVG se abren; tamaños mínimos y área de respeto salen de pruebas registradas.
 **Criterio de aprobación:** el usuario aprueba el conjunto de versiones y sus reglas de uso.
 
 ## Fase 8b — Iconografía
@@ -396,6 +416,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 
 **Referencia:** M3 o HIG, según la plataforma, para tamaños, cuadrícula y comportamiento de los iconos en interfaz.
 **Entregable:** `iconografia/iconografia.md` (estilo, cuadrícula, tamaños, color, nombres, pruebas y usos incorrectos), `iconografia/iconos/*.svg`, `iconografia/vista-previa.html` y actualización del spec. En el resumen que cierra la fase, indica la ruta completa de la vista previa y de `iconografia.md`.
+**Comprobaciones verificables:** Cada icono es legible a 16 px; solo usa colores de la paleta; su contraste sobre los fondos de la paleta es ≥ 3:1 (combinación y ratio registrados); los nombres siguen la convención; los SVG se abren.
 **Criterio de aprobación:** el usuario aprueba el estilo, las reglas y el set base. Si falla la legibilidad o la coherencia, corrige aquí; si choca con el logo o la tipografía, vuelve a la Fase 5 o 7.
 
 **Rebranding:** compara los iconos actuales con los nuevos solo si existen; no reemplaza ningún icono en uso sin el alcance aprobado.
@@ -414,6 +435,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 8. En el resumen, lista la ruta de cada aplicación en `aplicaciones/` (y el índice o la vista general, si se generó) antes de pedir la aprobación.
 
 **Entregable:** archivos en `aplicaciones/` y registro de las aplicaciones aprobadas.
+**Comprobaciones verificables:** Cada aplicación usa solo activos aprobados de `logo/`, `paleta/` y `tipografia/`; sus rutas existen.
 **Criterio de aprobación:** el usuario aprueba la selección y las aplicaciones representativas.
 
 **Rebranding:** mostrar también antes y después de las aplicaciones clave.
@@ -442,6 +464,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 8. En el resumen, indica la ruta completa de `manual/manual-identidad.html` (para abrirlo en el navegador) y de `manual/manual-identidad.md`.
 
 **Entregable:** `manual/manual-identidad.md`, `manual/manual-identidad.html` y lista de comprobación final.
+**Comprobaciones verificables:** Cada sección de `manual-plantilla.md` está cubierta o declarada como no aplicable; el manual Markdown y el HTML son coherentes; las rutas y recursos del HTML funcionan.
 **Criterio de aprobación:** el usuario aprueba el manual y recibe un resumen de los archivos entregados y pendientes.
 
 ## Fase 10b — Plan de transición (solo rebranding)
@@ -449,12 +472,14 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 **Qué hacer:** definir el orden de actualización, la coexistencia de versiones antiguas y nuevas, qué materiales se retiran y cuáles se agotan, cómo se comunica el cambio, y listar activos a reemplazar y riesgos.
 **Qué preguntar:** fechas clave, canales y materiales en circulación, quién debe aprobar el cambio.
 **Entregable:** sección 10b del spec y `manual/transicion.md`.
+**Comprobaciones verificables:** Cada activo a reemplazar tiene orden y fecha; los materiales a retirar o agotar están listados.
 **Criterio de aprobación:** plan y calendario confirmados.
 
 ## Fase 11 — Control final y entrega
 **Objetivo:** asegurar que los archivos estén completos, organizados y sean utilizables.
 
 **Lista de comprobación**
+- [ ] Todas las fases del recorrido constan como `Aprobada` u `Omitida` (con motivo) en «Estado de las fases», y las comprobaciones verificables de cada una tienen resultado registrado.
 - [ ] El nombre y la estrategia corresponden al brief aprobado.
 - [ ] El concepto y el logo cuentan con aprobación.
 - [ ] Existe una versión monocromática funcional.
