@@ -20,6 +20,22 @@ from an idea to a documented, audited brand that is ready for Figma.
 
 > **Note on language:** this README is a translation. The skills themselves (their instructions, questions, and the documents they generate) are written in **Spanish**, and some command arguments are Spanish words (for example `identidad-verbal`). Claude follows the skill instructions in Spanish, so expect Spanish conversations and deliverables.
 
+## Contents
+
+| Section | Content |
+|---|---|
+| [What is it?](#what-is-it) | What Yas Design is and how it works |
+| [The skills](#the-skills) | `/yas-design`, `/yas-audit` and `/yas-figma` |
+| [Installation](#installation) | Install, update and requirements |
+| [Quick start](#quick-start) | First steps |
+| [Generated files](#generated-files) | Deliverables in your project |
+| [Shared quality rules](#shared-quality-rules) | Criteria all three skills meet |
+| [Status and roadmap](#status-and-roadmap) | Current status and next steps |
+| [Repository structure](#repository-structure) | Folders and files |
+| [References and inspiration](#references-and-inspiration) | Sources consulted |
+| [Contributing](#contributing) | How to collaborate |
+| [License](#license) | MIT |
+
 ## What is it?
 
 Yas Design is **not a collection of prompts**: it is a **design methodology** packaged as [Claude Code](https://claude.com/claude-code) skills. Each skill analyzes, decides, executes, documents, and validates, and leaves **real files** in your project.

@@ -18,6 +18,22 @@ de la idea a una marca documentada, auditada y lista para Figma.
 
 ---
 
+## Índice
+
+| Sección | Contenido |
+|---|---|
+| [¿Qué es?](#qué-es) | Qué es Yas Design y cómo trabaja |
+| [Las skills](#las-skills) | `/yas-design`, `/yas-audit` y `/yas-figma` |
+| [Instalación](#instalación) | Instalar, actualizar y requisitos |
+| [Inicio rápido](#inicio-rápido) | Primeros pasos |
+| [Qué archivos genera](#qué-archivos-genera) | Entregables en tu proyecto |
+| [Reglas de calidad compartidas](#reglas-de-calidad-compartidas) | Criterios que cumplen las tres skills |
+| [Estado y hoja de ruta](#estado-y-hoja-de-ruta) | Estado actual y próximos pasos |
+| [Estructura del repositorio](#estructura-del-repositorio) | Carpetas y archivos |
+| [Referencias e inspiración](#referencias-e-inspiración) | Fuentes consultadas |
+| [Contribuir](#contribuir) | Cómo colaborar |
+| [Licencia](#licencia) | MIT |
+
 ## ¿Qué es?
 
 Yas Design **no es una colección de prompts**: es una **metodología de diseño** empaquetada como skills de [Claude Code](https://claude.com/claude-code). Cada skill analiza, decide, ejecuta, documenta y valida, y deja **archivos reales** en tu proyecto.
