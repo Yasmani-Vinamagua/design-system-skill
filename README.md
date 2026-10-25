@@ -20,19 +20,17 @@ de la idea a una marca documentada, auditada y lista para Figma.
 
 ## Índice
 
-| Sección | Contenido |
-|---|---|
-| [¿Qué es?](#qué-es) | Qué es Yas Design y cómo trabaja |
-| [Las skills](#las-skills) | `/yas-design`, `/yas-audit` y `/yas-figma` |
-| [Instalación](#instalación) | Instalar, actualizar y requisitos |
-| [Inicio rápido](#inicio-rápido) | Primeros pasos |
-| [Qué archivos genera](#qué-archivos-genera) | Entregables en tu proyecto |
-| [Reglas de calidad compartidas](#reglas-de-calidad-compartidas) | Criterios que cumplen las tres skills |
-| [Estado y hoja de ruta](#estado-y-hoja-de-ruta) | Estado actual y próximos pasos |
-| [Estructura del repositorio](#estructura-del-repositorio) | Carpetas y archivos |
-| [Referencias e inspiración](#referencias-e-inspiración) | Fuentes consultadas |
-| [Contribuir](#contribuir) | Cómo colaborar |
-| [Licencia](#licencia) | MIT |
+- [¿Qué es?](#qué-es)
+- [Las skills](#las-skills)
+- [Instalación](#instalación)
+- [Inicio rápido](#inicio-rápido)
+- [Qué archivos genera](#qué-archivos-genera)
+- [Reglas de calidad compartidas](#reglas-de-calidad-compartidas)
+- [Estado y hoja de ruta](#estado-y-hoja-de-ruta)
+- [Estructura del repositorio](#estructura-del-repositorio)
+- [Referencias e inspiración](#referencias-e-inspiración)
+- [Contribuir](#contribuir)
+- [Licencia](#licencia)
 
 ## ¿Qué es?
 

@@ -22,19 +22,17 @@ from an idea to a documented, audited brand that is ready for Figma.
 
 ## Contents
 
-| Section | Content |
-|---|---|
-| [What is it?](#what-is-it) | What Yas Design is and how it works |
-| [The skills](#the-skills) | `/yas-design`, `/yas-audit` and `/yas-figma` |
-| [Installation](#installation) | Install, update and requirements |
-| [Quick start](#quick-start) | First steps |
-| [Generated files](#generated-files) | Deliverables in your project |
-| [Shared quality rules](#shared-quality-rules) | Criteria all three skills meet |
-| [Status and roadmap](#status-and-roadmap) | Current status and next steps |
-| [Repository structure](#repository-structure) | Folders and files |
-| [References and inspiration](#references-and-inspiration) | Sources consulted |
-| [Contributing](#contributing) | How to collaborate |
-| [License](#license) | MIT |
+- [What is it?](#what-is-it)
+- [The skills](#the-skills)
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Generated files](#generated-files)
+- [Shared quality rules](#shared-quality-rules)
+- [Status and roadmap](#status-and-roadmap)
+- [Repository structure](#repository-structure)
+- [References and inspiration](#references-and-inspiration)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## What is it?
 
