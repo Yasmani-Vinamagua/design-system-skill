@@ -186,7 +186,7 @@ It starts by asking where you are starting from:
 | Starting point | What happens |
 |---|---|
 | **New brand** | You pick the type of brand mark (wordmark, symbol, combination mark, or emblem), or let Yas Design propose one based on the brief, with a justification and your approval |
-| **Rebranding** | Initial assessment of the existing brand and the scope of change: **adjustment**, **evolution**, or **full rebrand**. It does not assume everything must change |
+| **Rebranding** | Initial assessment of the existing brand (reason for change and brand equity) and the scope of change: **adjustment**, **evolution**, or **full rebrand**. It does not assume everything must change. Includes refresh techniques and a transition plan |
 
 The full process is a set of **phases with an approval gate**:
 
@@ -196,8 +196,8 @@ The full process is a set of **phases with an approval gate**:
 | 1 | Brief and strategy |
 | 2 | Research and competitor documentation |
 | 3 | Concept exploration (radial diagrams, three concepts) |
-| 4 | Sketches and selection |
-| 5 | Building the brand mark in SVG, one-color first |
+| 4 | Sketches and selection (form character, negative space, fresh-eyes review) |
+| 5 | Building the brand mark in SVG, one-color first, with clean geometry and optical corrections (overshoot, bone effect, irradiation) |
 | 6 · 7 | Color · Typography |
 | 8 · 8b | Brand versions and assets · Iconography (style, grid, base SVG set) |
 | 9 | Brand applications |
@@ -217,6 +217,8 @@ It does not stop at saying whether a logo "looks good": it **detects problems, j
 | 5 · Technical evaluation of assets | Brand system |
 
 **Bands:** 18–20 Excellent · 14–17 Good · 10–13 Acceptable · 6–9 Poor · 0–5 Critical.
+
+It also reviews the logo's first impression and optical corrections, and treats a fatal flaw as a priority even when the total score is high.
 
 Each finding includes **problem, evidence, impact, priority** (critical, high, medium, or low, with explicit criteria), **recommendation, and validation**. The skill also separates what is **verified**, what is a **hypothesis**, and what is **not verified**: if it cannot render or open something, it does not claim a visual validation. Hypotheses do not subtract points.
 

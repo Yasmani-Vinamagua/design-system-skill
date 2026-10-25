@@ -184,7 +184,7 @@ Empieza preguntando el punto de partida:
 | Punto de partida | Qué ocurre |
 |---|---|
 | **Marca nueva** | Eliges el tipo de marca gráfica (logotipo, isotipo, imagotipo o isologo) o dejas que Yas Design lo proponga según el brief, con justificación y tu aprobación |
-| **Rebranding** | Evaluación inicial de la marca existente y alcance del cambio: **ajuste**, **evolución** o **rebranding integral**. No se asume que todo deba cambiar |
+| **Rebranding** | Evaluación inicial de la marca existente (motivo del cambio y equidad de marca) y alcance: **ajuste**, **evolución** o **rebranding integral**. No se asume que todo deba cambiar. Incluye técnicas de refresco y plan de transición |
 
 El proceso completo son **fases con puerta de aprobación**:
 
@@ -194,8 +194,8 @@ El proceso completo son **fases con puerta de aprobación**:
 | 1 | Brief y estrategia |
 | 2 | Investigación y documentación de la competencia |
 | 3 | Exploración conceptual (diagramas radiales, tres conceptos) |
-| 4 | Bocetos y selección |
-| 5 | Construcción de la marca gráfica en SVG, primero a una tinta |
+| 4 | Bocetos y selección (carácter de la forma, espacio negativo, revisión con ojos frescos) |
+| 5 | Construcción de la marca gráfica en SVG, primero a una tinta, con geometría limpia y correcciones ópticas (sobrepaso, efecto hueso, irradiación) |
 | 6 · 7 | Color · Tipografía |
 | 8 · 8b | Versiones y activos de marca · Iconografía (estilo, cuadrícula, set base en SVG) |
 | 9 | Aplicaciones de marca |
@@ -215,6 +215,8 @@ No se limita a decir si un logo «se ve bien»: **detecta problemas, justifica c
 | 5 · Evaluación técnica de los activos | Sistema de marca |
 
 **Bandas:** 18–20 Excelente · 14–17 Bueno · 10–13 Aceptable · 6–9 Pobre · 0–5 Crítico.
+
+Revisa también la primera impresión y las correcciones ópticas del logo, y trata como prioritario un defecto fatal aunque la puntuación total sea alta.
 
 Cada hallazgo incluye **problema, evidencia, impacto, prioridad** (crítica, alta, media o baja, con criterios explícitos), **recomendación y validación**. Además, la skill separa lo **comprobado**, las **hipótesis** y lo **no verificado**: si no puede renderizar o abrir algo, no afirma haberlo validado visualmente. Las hipótesis no restan puntos.
 
