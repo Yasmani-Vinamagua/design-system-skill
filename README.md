@@ -302,6 +302,8 @@ Todo vive en `.yas/` dentro de tu proyecto, y las skills comparten estos archivo
 ├── figma-local/                  ← /yas-figma mini y full
 │   └── design-system.html        entregable navegable
 ├── deliverables/                 ← /yas-figma documentation
+├── brand-source.json             ← /yas-figma: de dónde salen los datos de la marca
+├── figma-snapshot.json           ← /yas-figma documentation figma
 ├── audits/AAAA-MM-DD-marca.md    ← /yas-audit
 └── figma-state.json              progreso de Figma, para reanudar
 ```
