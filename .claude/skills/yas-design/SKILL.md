@@ -118,7 +118,7 @@ Reglas:
 |---|---|
 | `init` | Solo la **Fase 0** del proceso: prepara `.yas/` y la carpeta de salida, inspecciona lo que ya existe y fija el alcance. |
 | `brief` | Las **Fases 0 y 1**: fija el alcance y el brief (negocio, público, objetivos, restricciones) y se detiene tras su aprobación. |
-| `brand` | Identidad desde cero: el proceso completo, de la Fase 0 a la 11, hasta el **manual de identidad**. |
+| `brand` | Identidad desde cero: el proceso completo, de la Fase 0 a la 11 (incluida la 8b, iconografía), hasta el **manual de identidad**. |
 | `rebrand` (alias `rebranding`) | Rebranding de una marca existente: el proceso completo con la Fase 0b (evaluación inicial y alcance) y el plan de transición. |
 
 El manual de identidad se guarda en `.yas/brand/` (ruta que `/yas-figma` ya busca como fuente de datos).
