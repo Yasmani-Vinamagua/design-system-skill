@@ -1,6 +1,6 @@
 <div align="center">
 
-# Yas Design System
+# Design System Skill
 
 **Branding y sistema de diseño con Claude Code:**
 de la idea a una marca documentada, auditada y lista para Figma.
@@ -65,10 +65,10 @@ Usa el instalador [`skills`](https://github.com/vercel-labs/skills), que descubr
 
 ```bash
 # En el proyecto actual
-npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code
+npx skills add Yasmani-Vinamagua/design-system-skill --all -y -a claude-code
 
 # Para todos tus proyectos (instalación global)
-npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
+npx skills add Yasmani-Vinamagua/design-system-skill --all -y -a claude-code -g
 ```
 
 Para ver qué contiene el repositorio sin instalar nada, añade `--list`. No uses `--skill` con una sola skill: faltaría `yas-core`.
@@ -78,19 +78,19 @@ El instalador guarda las skills en `.agents/skills/` y deja en `.claude/skills/`
 **Opción B · Copia manual, para todos tus proyectos (global)**
 
 ```bash
-git clone https://github.com/Yasmani-Vinamagua/yas-design-system.git
+git clone https://github.com/Yasmani-Vinamagua/design-system-skill.git
 ```
 
 ```bash
 # macOS / Linux
 mkdir -p ~/.claude/skills
-cp -r yas-design-system/.claude/skills/yas-* ~/.claude/skills/
+cp -r design-system-skill/.claude/skills/yas-* ~/.claude/skills/
 ```
 
 ```powershell
 # Windows (PowerShell)
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
-Copy-Item -Recurse yas-design-system\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
+Copy-Item -Recurse design-system-skill\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
 ```
 
 **Opción C · Copia manual, solo en un proyecto**
