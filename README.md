@@ -21,8 +21,8 @@ de la idea a una marca documentada, auditada y lista para Figma.
 ## Índice
 
 - [¿Qué es?](#qué-es)
-- [Las skills](#las-skills)
 - [Instalación](#instalación)
+- [Las skills](#las-skills)
 - [Inicio rápido](#inicio-rápido)
 - [Qué archivos genera](#qué-archivos-genera)
 - [Reglas de calidad compartidas](#reglas-de-calidad-compartidas)
@@ -52,6 +52,81 @@ flowchart LR
     K -.-> B
     K -.-> C
 ```
+
+---
+
+## Instalación
+
+Las cuatro skills (`yas-core`, `yas-design`, `yas-audit` y `yas-figma`) **van siempre juntas**: se referencian entre sí con rutas relativas y `yas-core` es obligatoria. Instala las cuatro, nunca una sola.
+
+**Opción A · Con `npx skills` (recomendada)**
+
+Usa el instalador [`skills`](https://github.com/vercel-labs/skills), que descubre las skills del repositorio y las instala por ti.
+
+```bash
+# En el proyecto actual
+npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code
+
+# Para todos tus proyectos (instalación global)
+npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
+```
+
+Para ver qué contiene el repositorio sin instalar nada, añade `--list`. No uses `--skill` con una sola skill: faltaría `yas-core`.
+
+El instalador guarda las skills en `.agents/skills/` y deja en `.claude/skills/` enlaces que apuntan a ellas. No borres `.agents/`: Claude Code dejaría de encontrar las skills.
+
+**Opción B · Copia manual, para todos tus proyectos (global)**
+
+```bash
+git clone https://github.com/Yasmani-Vinamagua/yas-design-system.git
+```
+
+```bash
+# macOS / Linux
+mkdir -p ~/.claude/skills
+cp -r yas-design-system/.claude/skills/yas-* ~/.claude/skills/
+```
+
+```powershell
+# Windows (PowerShell)
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
+Copy-Item -Recurse yas-design-system\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
+```
+
+**Opción C · Copia manual, solo en un proyecto**
+
+Copia las cuatro carpetas `yas-*` dentro de `<tu-proyecto>/.claude/skills/`.
+
+**Verifica:** abre una sesión nueva de Claude Code y escribe `/yas-`. Deberían aparecer `/yas-design`, `/yas-audit` y `/yas-figma` (`yas-core` no aparece porque no se invoca directamente).
+
+### Actualizar
+
+Las skills no se actualizan solas: cada persona trabaja con la copia que instaló. Para recibir los cambios (consulta el [`CHANGELOG.md`](CHANGELOG.md)):
+
+- **Opción A (`npx skills`):** ejecuta `npx skills update`, o vuelve a lanzar el comando de instalación.
+- **Opciones B y C:** haz `git pull` en tu clon y vuelve a copiar las carpetas `yas-*`.
+
+Tus datos están en `.yas/` y no se tocan al actualizar.
+
+### Requisitos
+
+| Requisito | ¿Obligatorio? |
+|---|---|
+| [Claude Code](https://claude.com/claude-code) | Sí |
+| MCP de Figma | **Opcional.** Solo para crear o leer archivos de Figma. Sin él, `/yas-figma` trabaja en modo local |
+| Navegador o herramientas de renderizado | Opcional. Mejoran la validación visual de `/yas-audit`; sin ellas, la skill lo declara como *no verificado* |
+
+**Instalar el MCP de Figma** (según la [documentación oficial de Figma](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation)):
+
+```bash
+# Recomendado por Figma: el plugin oficial
+claude plugin install figma@claude-plugins-official
+
+# O el servidor MCP remoto (añade --scope user para usarlo en todos los proyectos)
+claude mcp add --transport http figma https://mcp.figma.com/mcp
+```
+
+Después, escribe `/mcp` en Claude Code para autenticarte.
 
 ---
 
@@ -132,81 +207,6 @@ Todos los valores salen del **manual de identidad** (el que genera `/yas-design`
 > **Equipos Starter de Figma (3 páginas por archivo; los borradores no tienen ese límite):** la skill lo detecta cuando Figma devuelve el error y te ofrece cuatro opciones: usar un archivo en Drafts, ampliar el plan, crear la estructura de páginas manualmente, o generar solo iconos, color y tipografía.
 >
 > **Archivo de Figma:** la skill escribe solo en el archivo que le indicas (URL) o en el guardado en `.yas/figma-state.json`; no crea archivos por su cuenta. Para ahorrar cuota de lectura del MCP, comprueba y verifica dentro de `use_figma`.
-
----
-
-## Instalación
-
-Las cuatro skills (`yas-core`, `yas-design`, `yas-audit` y `yas-figma`) **van siempre juntas**: se referencian entre sí con rutas relativas y `yas-core` es obligatoria. Instala las cuatro, nunca una sola.
-
-**Opción A · Con `npx skills` (recomendada)**
-
-Usa el instalador [`skills`](https://github.com/vercel-labs/skills), que descubre las skills del repositorio y las instala por ti.
-
-```bash
-# En el proyecto actual
-npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code
-
-# Para todos tus proyectos (instalación global)
-npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
-```
-
-Para ver qué contiene el repositorio sin instalar nada, añade `--list`. No uses `--skill` con una sola skill: faltaría `yas-core`.
-
-El instalador guarda las skills en `.agents/skills/` y deja en `.claude/skills/` enlaces que apuntan a ellas. No borres `.agents/`: Claude Code dejaría de encontrar las skills.
-
-**Opción B · Copia manual, para todos tus proyectos (global)**
-
-```bash
-git clone https://github.com/Yasmani-Vinamagua/yas-design-system.git
-```
-
-```bash
-# macOS / Linux
-mkdir -p ~/.claude/skills
-cp -r yas-design-system/.claude/skills/yas-* ~/.claude/skills/
-```
-
-```powershell
-# Windows (PowerShell)
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
-Copy-Item -Recurse yas-design-system\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
-```
-
-**Opción C · Copia manual, solo en un proyecto**
-
-Copia las cuatro carpetas `yas-*` dentro de `<tu-proyecto>/.claude/skills/`.
-
-**Verifica:** abre una sesión nueva de Claude Code y escribe `/yas-`. Deberían aparecer `/yas-design`, `/yas-audit` y `/yas-figma` (`yas-core` no aparece porque no se invoca directamente).
-
-### Actualizar
-
-Las skills no se actualizan solas: cada persona trabaja con la copia que instaló. Para recibir los cambios (consulta el [`CHANGELOG.md`](CHANGELOG.md)):
-
-- **Opción A (`npx skills`):** ejecuta `npx skills update`, o vuelve a lanzar el comando de instalación.
-- **Opciones B y C:** haz `git pull` en tu clon y vuelve a copiar las carpetas `yas-*`.
-
-Tus datos están en `.yas/` y no se tocan al actualizar.
-
-### Requisitos
-
-| Requisito | ¿Obligatorio? |
-|---|---|
-| [Claude Code](https://claude.com/claude-code) | Sí |
-| MCP de Figma | **Opcional.** Solo para crear o leer archivos de Figma. Sin él, `/yas-figma` trabaja en modo local |
-| Navegador o herramientas de renderizado | Opcional. Mejoran la validación visual de `/yas-audit`; sin ellas, la skill lo declara como *no verificado* |
-
-**Instalar el MCP de Figma** (según la [documentación oficial de Figma](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation)):
-
-```bash
-# Recomendado por Figma: el plugin oficial
-claude plugin install figma@claude-plugins-official
-
-# O el servidor MCP remoto (añade --scope user para usarlo en todos los proyectos)
-claude mcp add --transport http figma https://mcp.figma.com/mcp
-```
-
-Después, escribe `/mcp` en Claude Code para autenticarte.
 
 ---
 

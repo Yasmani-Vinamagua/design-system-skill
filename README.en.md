@@ -23,8 +23,8 @@ from an idea to a documented, audited brand that is ready for Figma.
 ## Contents
 
 - [What is it?](#what-is-it)
-- [The skills](#the-skills)
 - [Installation](#installation)
+- [The skills](#the-skills)
 - [Quick start](#quick-start)
 - [Generated files](#generated-files)
 - [Shared quality rules](#shared-quality-rules)
@@ -54,6 +54,81 @@ flowchart LR
     K -.-> B
     K -.-> C
 ```
+
+---
+
+## Installation
+
+The four skills (`yas-core`, `yas-design`, `yas-audit`, and `yas-figma`) **always go together**: they reference each other with relative paths and `yas-core` is required. Install all four, never just one.
+
+**Option A · With `npx skills` (recommended)**
+
+It uses the [`skills`](https://github.com/vercel-labs/skills) installer, which discovers the skills in the repository and installs them for you.
+
+```bash
+# In the current project
+npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code
+
+# For all your projects (global install)
+npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
+```
+
+To see what the repository contains without installing anything, add `--list`. Do not use `--skill` with a single skill: `yas-core` would be missing.
+
+The installer stores the skills in `.agents/skills/` and leaves links in `.claude/skills/` that point to them. Do not delete `.agents/`: Claude Code would stop finding the skills.
+
+**Option B · Manual copy, for all your projects (global)**
+
+```bash
+git clone https://github.com/Yasmani-Vinamagua/yas-design-system.git
+```
+
+```bash
+# macOS / Linux
+mkdir -p ~/.claude/skills
+cp -r yas-design-system/.claude/skills/yas-* ~/.claude/skills/
+```
+
+```powershell
+# Windows (PowerShell)
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
+Copy-Item -Recurse yas-design-system\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
+```
+
+**Option C · Manual copy, for one project only**
+
+Copy the four `yas-*` folders into `<your-project>/.claude/skills/`.
+
+**Verify:** open a new Claude Code session and type `/yas-`. You should see `/yas-design`, `/yas-audit`, and `/yas-figma` (`yas-core` does not appear because it is not invoked directly).
+
+### Updating
+
+The skills do not update themselves: everyone works with the copy they installed. To get the changes (see [`CHANGELOG.md`](CHANGELOG.md)):
+
+- **Option A (`npx skills`):** run `npx skills update`, or run the install command again.
+- **Options B and C:** `git pull` in your clone and copy the `yas-*` folders again.
+
+Your data lives in `.yas/` and is not touched by an update.
+
+### Requirements
+
+| Requirement | Required? |
+|---|---|
+| [Claude Code](https://claude.com/claude-code) | Yes |
+| Figma MCP | **Optional.** Only to create or read Figma files. Without it, `/yas-figma` works in local mode |
+| Browser or rendering tools | Optional. They improve the visual validation in `/yas-audit`; without them, the skill reports it as *not verified* |
+
+**Installing the Figma MCP** (following the [official Figma documentation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation)):
+
+```bash
+# Recommended by Figma: the official plugin
+claude plugin install figma@claude-plugins-official
+
+# Or the remote MCP server (add --scope user to use it in all projects)
+claude mcp add --transport http figma https://mcp.figma.com/mcp
+```
+
+Then type `/mcp` in Claude Code to authenticate.
 
 ---
 
@@ -134,81 +209,6 @@ Every value comes from the **brand manual** (the one `/yas-design` generates or 
 > **Figma Starter teams (3 pages per file; drafts have no such limit):** the skill detects it when Figma returns the error and offers four options: use a file in Drafts, upgrade the plan, create the page structure manually, or generate only icons, color, and typography.
 >
 > **Figma file:** the skill writes only to the file you point it to (URL) or the one saved in `.yas/figma-state.json`; it never creates files on its own. To save MCP read quota, it checks and verifies inside `use_figma`.
-
----
-
-## Installation
-
-The four skills (`yas-core`, `yas-design`, `yas-audit`, and `yas-figma`) **always go together**: they reference each other with relative paths and `yas-core` is required. Install all four, never just one.
-
-**Option A · With `npx skills` (recommended)**
-
-It uses the [`skills`](https://github.com/vercel-labs/skills) installer, which discovers the skills in the repository and installs them for you.
-
-```bash
-# In the current project
-npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code
-
-# For all your projects (global install)
-npx skills add Yasmani-Vinamagua/yas-design-system --all -y -a claude-code -g
-```
-
-To see what the repository contains without installing anything, add `--list`. Do not use `--skill` with a single skill: `yas-core` would be missing.
-
-The installer stores the skills in `.agents/skills/` and leaves links in `.claude/skills/` that point to them. Do not delete `.agents/`: Claude Code would stop finding the skills.
-
-**Option B · Manual copy, for all your projects (global)**
-
-```bash
-git clone https://github.com/Yasmani-Vinamagua/yas-design-system.git
-```
-
-```bash
-# macOS / Linux
-mkdir -p ~/.claude/skills
-cp -r yas-design-system/.claude/skills/yas-* ~/.claude/skills/
-```
-
-```powershell
-# Windows (PowerShell)
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills" | Out-Null
-Copy-Item -Recurse yas-design-system\.claude\skills\yas-* "$env:USERPROFILE\.claude\skills\"
-```
-
-**Option C · Manual copy, for one project only**
-
-Copy the four `yas-*` folders into `<your-project>/.claude/skills/`.
-
-**Verify:** open a new Claude Code session and type `/yas-`. You should see `/yas-design`, `/yas-audit`, and `/yas-figma` (`yas-core` does not appear because it is not invoked directly).
-
-### Updating
-
-The skills do not update themselves: everyone works with the copy they installed. To get the changes (see [`CHANGELOG.md`](CHANGELOG.md)):
-
-- **Option A (`npx skills`):** run `npx skills update`, or run the install command again.
-- **Options B and C:** `git pull` in your clone and copy the `yas-*` folders again.
-
-Your data lives in `.yas/` and is not touched by an update.
-
-### Requirements
-
-| Requirement | Required? |
-|---|---|
-| [Claude Code](https://claude.com/claude-code) | Yes |
-| Figma MCP | **Optional.** Only to create or read Figma files. Without it, `/yas-figma` works in local mode |
-| Browser or rendering tools | Optional. They improve the visual validation in `/yas-audit`; without them, the skill reports it as *not verified* |
-
-**Installing the Figma MCP** (following the [official Figma documentation](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation)):
-
-```bash
-# Recommended by Figma: the official plugin
-claude plugin install figma@claude-plugins-official
-
-# Or the remote MCP server (add --scope user to use it in all projects)
-claude mcp add --transport http figma https://mcp.figma.com/mcp
-```
-
-Then type `/mcp` in Claude Code to authenticate.
 
 ---
 
