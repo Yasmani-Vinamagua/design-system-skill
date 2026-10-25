@@ -200,6 +200,8 @@ Notas de uso:
 | **Evolución** | Refinar y modernizar manteniendo el reconocimiento ("evolucionar una marca existente"): cambios por elemento con la equidad de marca intacta. |
 | **Rebranding integral** | Replantear estrategia e identidad ("estrategia y nueva identidad"): la marca anterior es referencia, no punto de partida. |
 
+   - **Motivo del cambio.** Son razones sólidas: el negocio cambió (fusión, nueva oferta, público o posicionamiento); la marca falla funcionalmente (ilegible a tamaño pequeño, inutilizable en pantalla, no bordable, se rompe a una tinta); circulan muchas versiones incoherentes; se parece a un competidor o tiene una asociación dañina; o se ve anticuada de forma que contradice la promesa de la marca. Son razones débiles: que un directivo nuevo quiera dejar huella, el aburrimiento interno (el público rara vez se aburre como el equipo) o seguir una moda. Un rediseño radical de una marca querida puede provocar rechazo e incluso revertirse. Si el usuario solo está pensando en cambiar, explorar opciones ya lo justifica: se explora y luego se decide.
+   - **Equidad de marca.** Ordena lo que el público reconoce, de más a menos fuerte: color, forma del símbolo, una letra distintiva, la tipografía del nombre, una mascota, un eslogan, un sonido. Decide qué debe sobrevivir (normalmente uno o dos elementos), qué es accesorio y qué causa problemas (legibilidad, reproducción, asociaciones negativas). Elige de forma explícita entre constancia durante décadas o evolución gestionada que conserva el núcleo y actualiza los detalles. Incluso los cambios radicales suelen mantener un ancla, normalmente el esquema de color (quizá en otro tono) o una forma distintiva.
 5. **Registrar por elemento** si se conserva, se evoluciona o se elimina, con su justificación, en la sección 0b de `marca-spec.md`.
 6. **Obtener la aprobación del alcance antes de reemplazar cualquier activo existente.** Hasta entonces, trabaja sobre copias en la carpeta de salida y no modifiques ni sobrescribas los archivos originales de la marca.
 
@@ -209,6 +211,7 @@ Notas de uso:
 - ¿Qué activos están muy extendidos o registrados y no pueden cambiar?
 - ¿Qué materiales seguirán circulando durante la transición?
 - ¿Existe un manual o archivos originales (vectores, fuentes)?
+- ¿Es consecuencia de una fusión o una nueva estructura? Si lo es, ¿se elige una de las marcas existentes, se combinan elementos (rara vez resulta elegante), se crea una marca nueva que señale la nueva entidad o se usa un respaldo transitorio («X, una empresa de Y»)? Busca elementos que ambas partes reconozcan como propios y comunica el cambio con tacto, porque las personas se identifican con su marca anterior.
 
 Para una evaluación profunda de la marca actual, sugiere `/yas-audit`; no afirmes que se hizo hasta ejecutarlo.
 **Entregable:** sección 0b de `marca-spec.md` con inventario, problemas separados, alcance y tabla de decisión por elemento.
@@ -295,6 +298,9 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 3. Evaluar los bocetos por relevancia, simplicidad, distinción, legibilidad a tamaño pequeño y potencial de aplicación.
 4. Seleccionar tres candidatos y explicar diferencias reales entre ellos.
 5. Si se generan SVG exploratorios, identificarlos claramente como bocetos no finales.
+   - Decide con intención el carácter de la forma: sólida (estable, se ve de lejos) o de línea (ligera, más frágil a tamaño pequeño); angulosa (autoridad, técnica) o redondeada (cercana); simétrica (formal) o con una asimetría sutil que mueva la mirada. Si funciona de las dos maneras, elige una como principal.
+   - Trata el espacio negativo con el mismo cuidado que las formas positivas. Un hueco oculto debe ser sencillo: dos elementos con siluetas distintas y relacionados conceptualmente.
+   - Guarda cada iteración significativa en lugar de sobrescribirla, compara por pares, quédate con la más fuerte y itera desde ella. Revisa con ojos frescos tras un descanso, espejando, desenfocando y reduciendo el boceto.
 6. Generar `logo/exploracion/opciones.html` para que el usuario vea los candidatos antes de elegir (ver "Vista de opciones" abajo). Hazlo antes de pedir la decisión, no después.
 
 **Vista de opciones (`logo/exploracion/opciones.html`)**
@@ -322,12 +328,24 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 3. Construir el símbolo y el nombre en SVG cuando sea posible.
 4. Usar trazados y huecos reales cuando la geometría lo requiera; evitar depender de formas blancas superpuestas que fallen sobre fondos de color.
 5. Mantener la construcción editable y organizada. Evitar complejidad innecesaria y puntos de ancla superfluos.
+   - Al terminar la forma, aplicar las secciones "Geometría" y "Correcciones ópticas" de `construccion-logo.md` (ángulos enteros, sobrepaso, efecto hueso, irradiación) y registrar los ajustes.
 6. Documentar las medidas relevantes. No afirmar que se usa proporción áurea salvo que exista una construcción verificable y justificada.
 7. Generar una vista previa para facilitar la revisión e indicar su ruta completa en el resumen, antes de pedir la aprobación.
 
-**Pruebas:** ejecutar las de la sección 5 de `construccion-logo.md` (negro al 100 %, negativa, tamaño reducido, silueta, equilibrio, espacio negativo, tipografía, contraste, producción física, integridad del archivo, consistencia y diferenciación frente a la competencia estudiada) y marcar cada una con el estado definido allí. Una evaluación visual no sustituye una búsqueda legal de marcas registradas.
+**Pruebas:** ejecutar las de la sección 5 de `construccion-logo.md` (negro al 100 %, negativa, tamaño reducido, silueta, equilibrio, correcciones ópticas, versión invertida, lecturas no intencionadas, espacio negativo, tipografía, contraste, producción física, integridad del archivo, consistencia y diferenciación frente a la competencia estudiada) y marcar cada una con el estado definido allí. Una evaluación visual no sustituye una búsqueda legal de marcas registradas.
 
 **Variantes por decidir:** si al cerrar la fase pides elegir entre variantes (por ejemplo el equilibrio del lockup, o la versión anterior frente a la nueva en un rebranding), genera `logo/comparacion.html` con todas las variantes lado a lado, a tamaño grande y reducido, y cita su ruta en la pregunta.
+
+**Rebranding (ajuste y evolución), técnicas de refresco:**
+- *Redibujar* las curvas con menos anclas y más limpias, corregir el efecto hueso, añadir sobrepaso y unificar grosores y radios.
+- *Simplificar:* quitar biseles, sombras, degradados, contornos y detalles minúsculos; fusionar elementos; reducir colores.
+- *Reajustar la tipografía:* reespaciar, redibujar letras para mejorar la legibilidad, personalizarla para que no se pueda teclear con una fuente de catálogo, o sustituir una tipografía sobreutilizada conservando su carácter.
+- *Suavizar o endurecer:* terminales redondeados y minúsculas resultan más amables; formas angulosas y mayúsculas, más autoritarias.
+- *Color:* conservar la familia de matiz y ajustar saturación y valor para pantallas y accesibilidad.
+- *Contenedor:* añadirlo solo si la marca antigua se pierde en entornos cargados y queda justificado en el sistema.
+- *Variantes que faltan* (símbolo, horizontal o apilada, favicon, invertida): a menudo es el verdadero problema.
+- *Elementos patrimoniales como acento* (un ampersand clásico, un monograma antiguo) junto a tipografía moderna para expresar continuidad y progreso.
+La mayoría de las actualizaciones que funcionan son evolutivas: versiones más limpias de la misma idea.
 
 **Entregable:** `logo/logo-master.svg` (fuente maestra), `logo/logo-1tinta-negro.svg`, vistas previas y documentación de construcción, con las pruebas marcadas como verificada, fallida, no aplicable o no verificada y el registro de entrega de la sección 8 de `construccion-logo.md`.
 **Comprobaciones verificables:** Cada prueba de la sección 5 de `construccion-logo.md` consta como verificada, fallida, no aplicable o no verificada; ninguna fallida queda sin resolver; los SVG se abren.
@@ -470,6 +488,12 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 ## Fase 10b — Plan de transición (solo rebranding)
 **Objetivo:** que el cambio se implante sin romper el reconocimiento.
 **Qué hacer:** definir el orden de actualización, la coexistencia de versiones antiguas y nuevas, qué materiales se retiran y cuáles se agotan, cómo se comunica el cambio, y listar activos a reemplazar y riesgos.
+Incluir también:
+- Una explicación del cambio (por qué, qué se mantiene y qué significa) con comparación antes y después a los mismos tamaños.
+- El coste de sustituir rotulación, vehículos y embalajes, y los plazos.
+- Un despliegue coherente: convivir mucho tiempo con la marca antigua y la nueva genera confusión.
+- Guías y bibliotecas de activos actualizadas el primer día, y una revisión del uso tras el lanzamiento.
+
 **Qué preguntar:** fechas clave, canales y materiales en circulación, quién debe aprobar el cambio.
 **Entregable:** sección 10b del spec y `manual/transicion.md`.
 **Comprobaciones verificables:** Cada activo a reemplazar tiene orden y fecha; los materiales a retirar o agotar están listados.

@@ -38,7 +38,8 @@ Un módulo se puede auditar por separado. Las categorías cuyos módulos no se a
 ### Identidad visual
 **Evalúa:** logo, isotipo, color, tipografía, composición e imágenes.
 **Comprobar:**
-- **Logo:** concepto y relación con el brief; construcción (retícula, geometría, espacio negativo como huecos reales, trazados limpios, equilibrio, silueta); coherencia entre símbolo y nombre.
+- **Logo:** concepto y relación con el brief; construcción (retícula, geometría, espacio negativo como huecos reales, trazados limpios, equilibrio, silueta); coherencia entre símbolo y nombre. Añade la primera impresión (qué ves, sientes y recuerdas en dos segundos, y cómo lo llamaría un desconocido), si hay un rasgo definitorio memorable, si el carácter (forma, peso, color, tipografía) corresponde a la marca y si la idea cabe en una frase.
+- **Correcciones ópticas:** sobrepaso en curvas y vértices, efecto hueso en esquinas redondeadas, peso de la versión invertida, ángulos enteros y centro óptico (ver `construccion-logo.md`, sección 3).
 - **Color:** paleta funcional y diferenciadora; **contraste calculado** de las combinaciones declaradas; valores HEX y RGB coherentes; CMYK y Pantone presentados solo como referencia.
 - **Tipografía:** carácter y coherencia con el símbolo; legibilidad pequeña; jerarquía; licencias registradas sin afirmar lo no verificado.
 - **Composición e imágenes:** estilo fotográfico, iconografía, patrones y recursos de apoyo coherentes con el sistema.
@@ -93,9 +94,18 @@ Si no puedes ejecutarlas, o no hay acceso a la web, **no afirmes sus resultados*
 - Parecido accidental con otra marca (se señala como riesgo; no sustituye una búsqueda legal de marcas registradas).
 - Texto como `<text>` descrito como convertido a trazados; proporción áurea afirmada sin medidas.
 - Tono de voz o nombre escrito de forma distinta según el canal.
+- Círculo que parece pequeño junto a las letras (falta de sobrepaso) o esquina redondeada que parece estrecharse (efecto hueso).
+- Versión invertida que parece más gruesa que la positiva (irradiación sin compensar).
+- Inestabilidad: inclinación accidental o masa superior pesada sin intención.
+- Símbolo y tipografía con lógicas geométricas distintas (radios, grosores, ángulos).
+- Se pierde sobre fotos o fondos cargados, sin versión con contorno o contenedor.
+- Significado oculto que nadie percibe, por demasiado sutil o complejo.
+- Lectura desafortunada u ofensiva que el diseñador no ve tras una larga exposición.
 
 ## Notas
 
-- En un rediseño, valora la equidad de marca existente y no juzgues contra tu gusto.
+- En un rediseño, valora la equidad de marca existente y no juzgues contra tu gusto. Comprueba que el cambio tiene un motivo sólido (negocio, fallo funcional, versiones incoherentes, parecido con un competidor, aspecto anticuado contradictorio) y no uno débil (moda, aburrimiento interno).
+- Un defecto fatal (ilegible a tamaño pequeño, parecido con un competidor, lectura ofensiva) pesa más que una puntuación total alta: señálalo aunque la categoría puntúe bien.
+- Cada hallazgo prioritario debe ser accionable y específico («abre el hueco de la e de 6 a 12 unidades»), no solo «mejorar la legibilidad». Critica el trabajo, nunca a la persona: indica también lo que funciona.
 - Si te piden comparar marcas, usa la misma tabla para cada una y añade una columna de conclusión.
 - No rediseñes el logo: indica la dirección de la mejora.
