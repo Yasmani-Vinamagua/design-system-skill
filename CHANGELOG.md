@@ -9,6 +9,9 @@
   - Fase 7: `tipografia/opciones.html` (las finalistas con el nombre y el logo de la marca, alfabeto, texto corrido y jerarquía).
 - Las exploraciones de paleta de la Fase 6 se guardan en `paleta/exploracion/`.
 - `/yas-design`: **Fase 8b — Iconografía**. Define estilo, cuadrícula, tamaños, color y nombres, y crea el set base en SVG con `iconografia/iconografia.md`, `iconografia/iconos/*.svg` y `iconografia/vista-previa.html`. El manual (sección 10) y `/yas-figma` (Icons e «Iconos derivados») la usan como fuente.
+- `/yas-design`, `construccion-logo.md`: nuevas subsecciones de **geometría** (primitivas, ángulos enteros, retícula al final) y **correcciones ópticas** (sobrepaso, efecto hueso, igualar tamaño visual, horizontales y verticales, centro óptico, irradiación), además de convenciones de escritura del SVG (lienzo, trazados, espacio negativo, trazos, color y tipografía). Tres pruebas nuevas en la sección 5: correcciones ópticas, versión invertida y lecturas no intencionadas.
+- `/yas-design`, `proceso.md`: criterios de carácter de la forma y revisión con ojos frescos en la Fase 4; en la Fase 0b, motivo del cambio, equidad de marca y fusiones; técnicas de refresco en la Fase 5 y lanzamiento (antes y después, coste, revisión posterior) en la Fase 10b.
+- `/yas-audit`: primera impresión y correcciones ópticas en el módulo de identidad visual, ocho antipatrones nuevos y notas sobre defectos fatales, motivo del rediseño y hallazgos accionables.
 - `/yas-figma`: sección «Presupuesto de lecturas» (comprobar y verificar dentro de `use_figma`) y opción de usar un archivo en Drafts ante el límite de páginas.
 
 ### Cambiado
@@ -18,6 +21,7 @@
 - Cuando se pide una decisión con la herramienta de preguntas, la ruta absoluta del archivo con las opciones va **dentro de la pregunta**, también en rebranding. Fase 5: `logo/comparacion.html` para decidir entre variantes (por ejemplo el lockup).
 - La excepción a «las propuestas conceptuales no se convierten en código» incluye ahora estas vistas de opciones.
 - README: nueva sección «Actualizar» (`npx skills update`).
+- README (español e inglés): fases 4 y 5, rebranding y auditoría reflejan las técnicas visuales y de refresco.
 - `/yas-figma`: el archivo destino sigue un orden de prioridad (URL del usuario, estado, Drafts) y ya no se crean archivos por cuenta propia; acepta cualquier prefijo del MCP; `whoami` se usa una vez y no se deduce el límite de páginas del plan; `push` ya no exige cuota; `documentation figma` extrae todo con una sola llamada de solo lectura a `use_figma`, con capturas y Code Connect opcionales; `colors` verifica con lo que devuelve `use_figma`.
 
 ## Primeras versiones
