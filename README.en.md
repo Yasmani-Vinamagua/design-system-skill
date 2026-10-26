@@ -76,7 +76,15 @@ flowchart LR
 3. Run `/yas-figma mini` or `/yas-figma full` to generate the system from that manual.
 4. If you want an independent diagnosis, run `/yas-audit` with the brand's assets or documentation.
 
-> **Visual demo pending:** when you have a real case, add screenshots or a GIF of the manual, the audit, and `design-system.html` here. Images of unverified results are not included.
+### Examples of generated manuals
+
+![What Yas Design generates: manual, visual identity, audit, colour tokens and Figma-ready system](assets/specs.png)
+
+![Example brands created with Yas Design](assets/examples.png)
+
+![Yas Design: from brand identity to a complete design system](assets/general.png)
+
+> Illustrations of the results of `/yas-design`, `/yas-audit` and `/yas-figma` with sample brands. Data and applications are illustrative.
 
 ## Detailed documentation
 
