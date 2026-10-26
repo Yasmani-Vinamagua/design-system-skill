@@ -15,6 +15,8 @@ A set of **Claude Code** skills that guides brand identity creation, auditing, a
 
 [Get started](#start-in-one-minute) · [What you can do](#what-you-can-do) · [Installation](#installation) · [Documentation](#detailed-documentation) · [Roadmap](#status-and-roadmap)
 
+<img src="assets/general.png" alt="Yas Design: from brand identity to a complete design system" width="100%">
+
 </div>
 
 ---
@@ -81,8 +83,6 @@ flowchart LR
 ![What Yas Design generates: manual, visual identity, audit, colour tokens and Figma-ready system](assets/specs.png)
 
 ![Example brands created with Yas Design](assets/examples.png)
-
-![Yas Design: from brand identity to a complete design system](assets/general.png)
 
 > Illustrations of the results of `/yas-design`, `/yas-audit` and `/yas-figma` with sample brands. Data and applications are illustrative.
 
