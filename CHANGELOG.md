@@ -14,6 +14,25 @@
 - `/yas-audit`: primera impresión y correcciones ópticas en el módulo de identidad visual, ocho antipatrones nuevos y notas sobre defectos fatales, motivo del rediseño y hallazgos accionables.
 - `/yas-figma`: sección «Presupuesto de lecturas» (comprobar y verificar dentro de `use_figma`) y opción de usar un archivo en Drafts ante el límite de páginas.
 
+- **Atomic Design (Brad Frost)** como referencia externa y base de varias mejoras:
+  - `/yas-figma full`: nivel atómico de cada componente (sin cambiar las 28 páginas), ficha de documentación (compuesto por / usado en, contenido extremo, ciclo de vida) y sección de gobernanza y versionado.
+  - `/yas-audit`, módulo Sistema de marca: inventario de patrones, gobernanza y tres antipatrones nuevos.
+  - `/yas-design`: test de 20 segundos en la Fase 1 y style tile con collage de elementos en la Fase 9, ambos opcionales.
+
+- ***Design Systems Handbook* (InVision, 2017)** como referencia externa y base de mejoras:
+  - `tokens-spec.md`: reglas de escalas (base 16 px, escala modular, interlineado 1,5, espaciado en base 4, máximo dos familias).
+  - `criterios-calidad.md`: lista de principios del sistema y accesibilidad por componente (teclado, lector de pantalla, etiquetas, alternativas, contraste).
+  - `/yas-figma full`: modelo de equipo, versionado semántico y definición de cambio incompatible en la gobernanza; buscador y navegación plana en el HTML; accesibilidad y principios en la ficha de cada componente.
+  - `/yas-audit`: inventario visual de atributos (Consistencia), principios del sistema y dos antipatrones nuevos (Sistema de marca).
+  - `/yas-design`: inventario visual de atributos en la Fase 0b de rebranding.
+
+- **Checklist de sistema de diseño** (aportado por el usuario) en `yas-core/references/checklist-sistema-diseno.md`:
+  - Fundamentos, requisitos específicos de los componentes base (botón, campo, modal…) y componentes opcionales para `Components - App`.
+  - `/yas-figma full`: la ficha de cada componente incluye sus requisitos del checklist; los iconos se nombran por función y hay iconos reservados (también en la Fase 8b de `/yas-design`).
+  - `tokens-spec.md`: sección de elevación (un token de superficie por nivel de sombra, clave en modo oscuro), tipografía adaptable, legibilidad y fuentes de respaldo.
+  - `/yas-audit`: control de cobertura del checklist en el módulo Sistema de marca.
+  - Quedan fuera el lenguaje de diseño (visión, tono, terminología) y el mantenimiento.
+
 ### Cambiado
 - `/yas-figma`, «Presupuesto de lecturas»: corregida la contradicción sobre `use_figma`. Cuenta cuota en cada llamada (lee y escribe); solo las herramientas que únicamente escriben quedan fuera. El ahorro pasa por agrupar más trabajo por llamada y no hacer llamadas solo de comprobación.
 - Regla común nueva en `yas-core`: todo lo que el usuario deba ver se anuncia con su **ruta completa** en el resumen de cierre, y antes de pedir la decisión si depende de ello. Aplicado en `/yas-design` (Fases 3 a 10) y en el cierre de `/yas-figma push`.

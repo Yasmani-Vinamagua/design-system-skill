@@ -37,6 +37,28 @@ Registra siempre la **combinación concreta** (primer plano, fondo, modo claro u
 - Se construye sobre tokens semánticos y no duplica otro componente con variaciones accidentales.
 - Cita la guía consultada (M3 o HIG, según `referencias-externas.md`).
 
+### Principios del sistema (lista de revisión)
+
+Cada componente y el sistema en conjunto se revisan contra estos cinco principios (*Design Systems Handbook*, cap. 3). Se marca cada uno como cumple, no cumple o no verificado, nunca por impresión:
+
+| Principio | Pregunta de comprobación |
+|---|---|
+| Consistente | ¿Se construye y se nombra igual que los demás, siguiendo las reglas documentadas? |
+| Autocontenido | ¿Vive en un único lugar canónico, sin copias en otros archivos o proyectos? |
+| Reutilizable | ¿Es modular (sin dependencias ocultas), componible, genérico (cubre varios usos) y flexible (se ajusta sin duplicarlo)? Si es demasiado específico o rígido, la gente creará su propio patrón |
+| Accesible | ¿Cumple la lista de accesibilidad por componente de abajo? |
+| Robusto | ¿Sus estados y casos de contenido extremo están definidos y verificados? |
+
+### Accesibilidad por componente
+
+Además de los umbrales de arriba, cada componente interactivo declara:
+- **Teclado:** se alcanza y se opera solo con teclado, con orden de foco lógico.
+- **Lector de pantalla:** nombre accesible y rol claros; los estados (marcado, expandido, error) se anuncian.
+- **Formularios:** todo campo asociado a una etiqueta visible; el error se explica con texto, no solo con color.
+- **Imágenes e iconos:** texto alternativo, o marcados como decorativos.
+- **Contraste:** los pares de color del componente con su ratio calculado (sección anterior).
+En el entregable, lo que no se pudo probar con teclado o lector de pantalla consta como *no verificado*, no como cumplido.
+
 ## Nomenclatura y estructura
 
 - Nombres consistentes en tokens, variables de Figma, capas, variantes y archivos (convenciones de `tokens-spec.md` y de `construccion-logo.md`).

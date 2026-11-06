@@ -47,6 +47,7 @@ Un módulo se puede auditar por separado. Las categorías cuyos módulos no se a
 ### Consistencia
 **Evalúa:** aplicación de la identidad en web, redes, documentos, publicidad y material físico.
 **Comprobar:** en una muestra declarada de piezas (con enlace o archivo y fecha), si usan el mismo logo y versiones, la misma paleta, las mismas tipografías y el mismo tono; desviaciones entre canales; uso de versiones no oficiales; si el logo conserva su legibilidad y no se deforma. Solo se afirma consistencia de lo que se vio; lo demás es *no verificado*.
+**Inventario visual de atributos** (*Design Systems Handbook*, cap. 2): en la misma muestra, cuenta los colores, las familias y tamaños tipográficos y los valores de espaciado **realmente usados** y compáralos con la paleta, el sistema tipográfico y la escala aprobados. Muchos tonos casi iguales del mismo color, más familias de las definidas o valores fuera de escala son hallazgos de consistencia; indica cuáles se fusionarían (la decisión es de `/yas-design`). En una web, un contador de CSS (por ejemplo CSS Stats) lo mide; si no lo ejecutaste, el recuento es *no verificado*. Distinto del inventario de patrones del módulo Sistema de marca.
 
 ### Presencia digital
 **Evalúa:** web, redes, legibilidad, accesibilidad y adaptación a dispositivos.
@@ -68,6 +69,10 @@ Si no puedes ejecutarlas, o no hay acceso a la web, **no afirmes sus resultados*
 - **Activos y organización:** los archivos están disponibles, ordenados y con nombres previsibles, como en un centro de recursos de marca.
 - **Reglas de uso:** área de respeto y tamaño mínimo **basados en pruebas**, usos incorrectos ilustrados, combinaciones permitidas sobre fondos.
 - **Documentación:** manual completo frente a `yas-design/references/manual-plantilla.md` (sus 11 secciones y su lista de comprobación); datos idénticos en todas las secciones; rutas y enlaces que funcionan; pendientes declarados; versión y registro de cambios.
+- **Inventario de patrones** (método de inventario de interfaz de Atomic Design, cap. 4): en una muestra declarada de piezas y canales, recoge una instancia de cada elemento único (logos, versiones, botones, iconos, colores, tipografías, plantillas) y compara. Señala duplicados, variantes casi iguales, el mismo elemento con nombres distintos y elementos sin nombre; indica cuáles convendría conservar, fusionar o eliminar (la decisión es de `/yas-design`). Solo se afirma lo que se vio.
+- **Principios del sistema:** si hay componentes o tokens, revísalos con la lista "Principios del sistema" de `../../yas-core/references/criterios-calidad.md` (consistente, autocontenido, reutilizable, accesible, robusto) y con "Accesibilidad por componente". Solo se afirma lo probado.
+- **Cobertura del checklist**, si hay un sistema de diseño: marca cada punto de las secciones 1 y 2 de `../../yas-core/references/checklist-sistema-diseno.md` (y de la 3 solo para los componentes que existan) como cubierto, parcial, no cubierto o *no verificado*, con la evidencia. Informa «n de N verificados» y qué falta completar. Un punto sin material que lo muestre es *no verificado*; la cobertura orienta la recomendación y no resta puntos por sí sola.
+- **Gobernanza** (Atomic Design, cap. 5; versionado semántico y modelo de equipo, *Design Systems Handbook*), si existe un sistema de diseño o un manual con vocación de mantenerse: constan quién lo mantiene y quién aprueba cambios, un proceso para modificar, añadir y retirar elementos, versión y registro de cambios, política de obsolescencia (aviso, alternativa y fecha) y cómo se comunican los cambios. Si el material no lo muestra, es *no verificado*, no un fallo; si hay sistema y no hay ninguna regla de mantenimiento, es un hallazgo de prioridad media o baja.
 - **Calidad técnica:** SVG válidos que se abren y no dependen de recursos externos; texto convertido a trazados o declarado como dependiente de fuente; pruebas de la sección 5 de `construccion-logo.md` que apliquen (negro al 100 %, negativa, tamaño reducido a 16 px y 2 cm, silueta, equilibrio, espacio negativo, contraste, producción física como revisión preliminar, integridad del archivo, consistencia, diferenciación).
 
 ## Anclajes de puntuación por categoría
@@ -78,7 +83,7 @@ Si no puedes ejecutarlas, o no hay acceso a la web, **no afirmes sus resultados*
 | 2. Identidad visual | Construcción deficiente o paleta y tipografía sin criterio | Funciona con irregularidades, contraste sin verificar o inconsistencias | Sistema visual preciso, verificado y coherente |
 | 3. Consistencia de marca | Cada pieza usa una marca distinta | Coherente en lo principal con desviaciones notables entre canales | Aplicación consistente en todos los canales vistos |
 | 4. Experiencia digital | Ilegible, inaccesible o roto en móvil | Funciona con carencias de accesibilidad o adaptación | Legible, accesible y adaptada, comprobado |
-| 5. Evaluación técnica de los activos | Sin versión a una tinta, ni reglas, ni manual; archivos inservibles | Variantes básicas con reglas sin probar o manual parcial | Conjunto completo, probado y documentado, utilizable por un tercero sin adivinar |
+| 5. Evaluación técnica de los activos | Sin versión a una tinta, ni reglas, ni manual; archivos inservibles | Variantes básicas con reglas sin probar o manual parcial; duplicados o nombres inconsistentes sin resolver | Conjunto completo, probado y documentado, utilizable por un tercero sin adivinar; sin duplicados y con reglas de mantenimiento si hay sistema |
 
 ## Antipatrones a buscar y nombrar
 
@@ -101,6 +106,11 @@ Si no puedes ejecutarlas, o no hay acceso a la web, **no afirmes sus resultados*
 - Se pierde sobre fotos o fondos cargados, sin versión con contorno o contenedor.
 - Significado oculto que nadie percibe, por demasiado sutil o complejo.
 - Lectura desafortunada u ofensiva que el diseñador no ve tras una larga exposición.
+- El mismo elemento con varios nombres, o varios elementos casi idénticos que nadie decidió fusionar (síntoma de ausencia de inventario).
+- Sistema o manual publicado como definitivo, sin versión, registro de cambios ni responsable.
+- Cambios que rompen usos existentes sin aviso, versión mayor ni guía de migración; o un componente duplicado con otro nombre y el viejo sin plazo de retirada.
+- Decenas de tonos casi iguales, tamaños o espaciados fuera de la escala aprobada.
+- Elementos retirados que siguen disponibles sin marca de obsoletos ni alternativa.
 
 ## Notas
 

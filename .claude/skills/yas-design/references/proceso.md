@@ -190,6 +190,7 @@ Notas de uso:
 
 **Qué hacer**
 1. **Inventariar** logos, tipografías, colores, manuales y aplicaciones existentes (adjuntos, carpetas, URL, redes, aplicaciones visibles). Mirar el material de verdad; marcar como no verificable lo que no se pueda ver.
+   - Si la marca tiene aplicaciones en pantalla, añade un **inventario visual de atributos**: cuántos colores, tipografías y tamaños se usan de verdad frente a lo que dice el manual. Muchos tonos casi iguales o valores fuera de escala indican qué fusionar; no es una auditoría (para eso, `/yas-audit`).
 2. **Identificar los activos reconocibles** que convenga conservar (símbolo, color, silueta, tipografía, nombre, tono).
 3. **Separar los problemas de ejecución visual** (construcción, legibilidad pequeña, versiones, kerning, inconsistencia) **de los problemas de posicionamiento** (público, diferenciación, mensaje, propósito). Un problema de ejecución no justifica cambiar la estrategia, ni al revés.
 4. **Definir el alcance del cambio**, que condiciona todo el resto del proceso:
@@ -238,6 +239,9 @@ Para una evaluación profunda de la marca actual, sugiere `/yas-audit`; no afirm
 - ¿En qué soportes debe funcionar: pantalla, impresión, bordado, grabado, señalética u otros?
 
 No convertir preferencias aisladas en decisiones definitivas sin relacionarlas con el brief.
+
+**Técnica opcional, test de 20 segundos** (Atomic Design, cap. 4): para fijar la dirección visual sin discutir en abstracto, pide al usuario (o a quienes decidan) 4-6 marcas o sitios de referencia, que los miren unos 20 segundos cada uno y los puntúen de 1 a 10 según lo bien que representan lo que quiere transmitir. Pregunta por qué en los extremos (los mejores y los peores) y anota los patrones en el Brief (atributos deseados y a evitar). Es una técnica de conversación: no sustituye la investigación de la Fase 2 ni se presenta como dato de mercado.
+
 **Referencia:** Wolff Olins (cómo se plantea la idea y el propósito de una marca).
 **Entregable:** sección Brief de `marca-spec.md`.
 **Comprobaciones verificables:** Cada objetivo dice cómo se sabrá que se cumple; aplicaciones previstas y restricciones registradas; ningún campo del Brief vacío sin marcarlo *pendiente de definir*.
@@ -421,7 +425,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 2. Definir el **estilo**: contorno, relleno o dual; esquinas y terminales (redondeados o rectos); grosor de trazo; perspectiva plana, sin sombras salvo que el brief las pida.
 3. Definir la **cuadrícula y los tamaños**: base de 24 px con margen de 2 px (área de seguridad) y tamaños de uso 16, 20 y 24 px, salvo que el brief justifique otros. Los valores que no consten se marcan como *propuesta*.
 4. Definir el **color**: los iconos usan solo colores de la paleta, por los roles `icon.*` de `../../yas-core/references/tokens-spec.md`; sin colores nuevos.
-5. Definir la **convención de nombres**: `icon/<categoría>/<nombre>` en minúsculas con guion; archivos `iconografia/iconos/<categoria>-<nombre>.svg`.
+5. Definir la **convención de nombres**: `icon/<categoría>/<nombre>` en minúsculas con guion; archivos `iconografia/iconos/<categoria>-<nombre>.svg`. Los nombres describen la **función**, no la forma (`reproducir`, no `triangulo`); define también los iconos reservados para acciones comunes (navegar, añadir, eliminar), que no se reutilizan con otro sentido, y cuáles llevan nombre accesible (los decorativos, ninguno).
 6. Acordar el **set base** con el usuario: solo los iconos que las aplicaciones previstas necesiten (por ejemplo navegación, acciones y estados), no una librería genérica. Si el proyecto ya usa una librería externa, registrarla con su licencia en lugar de redibujarla.
 7. Dibujar los iconos en SVG sobre la cuadrícula, con `currentColor` o un único relleno/trazo editable, sin recursos externos ni formas superpuestas que fallen sobre fondos de color.
 8. Probar: legibilidad a 16 px, coherencia de trazo y esquinas entre iconos, peso visual homogéneo, contraste sobre los fondos de la paleta (registrar la combinación y el resultado del cálculo) y que el icono no dependa solo del color para comunicar.
@@ -451,6 +455,7 @@ No afirmar que un color es accesible solo por su nombre o apariencia: registrar 
 6. Diferenciar claramente los mockups ilustrativos de los archivos listos para producción.
 7. Indicar las especificaciones que necesitan revisión física o técnica.
 8. En el resumen, lista la ruta de cada aplicación en `aplicaciones/` (y el índice o la vista general, si se generó) antes de pedir la aprobación.
+9. **Técnica opcional, style tile y collage de elementos** (Atomic Design, cap. 4), si el destino incluye interfaz o el usuario quiere ver el estilo antes de producir aplicaciones: un *style tile* (una sola lámina con paleta, tipografías, tratamiento de imagen e iconos, y 2-3 adjetivos del brief) y un *collage de elementos* (el estilo aplicado a 3-5 componentes reales: botón, campo, tarjeta, encabezado). Usa solo activos aprobados de `logo/`, `paleta/`, `tipografia/` e `iconografia/`; rotúlalos «Exploración de estilo, sujeta a aprobación» y guárdalos en `aplicaciones/` (por ejemplo `aplicaciones/style-tile.html`). Son hipótesis que se validan en el navegador, no el design system (eso es `/yas-figma`).
 
 **Entregable:** archivos en `aplicaciones/` y registro de las aplicaciones aprobadas.
 **Comprobaciones verificables:** Cada aplicación usa solo activos aprobados de `logo/`, `paleta/` y `tipografia/`; sus rutas existen.

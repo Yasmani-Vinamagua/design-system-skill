@@ -21,7 +21,7 @@ Antes de actuar, lee `../yas-core/references/reglas-comunes.md`: inspección ini
 Se usan los mismos criterios y los mismos archivos que `/yas-design` y `/yas-figma`; no se redefinen aquí (viven en `../yas-core/references/`):
 - `artefactos.md`: de dónde sale cada dato (manual, paleta, activos del logo) y contra qué se audita.
 - `criterios-calidad.md`: umbrales de contraste y accesibilidad y el método de cálculo.
-- `referencias-externas.md`: Google Brand Resource Center, las plantillas de auditoría y las herramientas complementarias, con sus reglas de uso.
+- `referencias-externas.md`: Google Brand Resource Center, las plantillas de auditoría, Atomic Design (inventario de patrones y gobernanza del módulo Sistema de marca) y las herramientas complementarias, con sus reglas de uso.
 
 ## Módulos y categorías
 

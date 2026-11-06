@@ -52,6 +52,31 @@ En Figma, las semánticas viven en una colección con los modos **Light** y **Da
 
 El alcance mini incluye color, tipografía, espaciado, radios y las sombras y cuadrículas; el full añade el resto (ver `/yas-figma`).
 
+## Reglas de escalas (tipografía y espaciado)
+
+Valores por defecto cuando el manual no define la escala; lo que el manual defina prevalece. Todo lo que se derive aquí se marca `inferred` / *propuesta* y se aprueba antes de crearlo (fuente: *Design Systems Handbook*, cap. 2, ver `referencias-externas.md`).
+
+| Aspecto | Regla |
+|---|---|
+| Tamaño base | 16 px (`1rem` en sistemas con CSS). Los demás tamaños se expresan en relación con él |
+| Escala de títulos | Escala modular: un número base y una razón que se aplica una y otra vez. Declara la razón elegida en `font.size.*` |
+| Interlineado | Texto de párrafo ≈ 1,5 (valor que recomienda la WAI). Títulos más ajustados: 1,25 o 1,125. Se guarda sin unidad en `font.line-height.*` |
+| Familias | Máximo dos: una para títulos y texto y, si hace falta, una monoespaciada para código. Una tercera solo con justificación (por ejemplo, un sistema multimarca) |
+| Pesos finos | Solo en tamaños grandes; en texto pequeño comprometen la legibilidad |
+| Espaciado | Escala con múltiplos de 4 (base 4); 8 para el horizontal es habitual. Un valor fuera de la escala (por ejemplo, compensar un borde de 1 px) es la excepción y se justifica caso a caso |
+| Tamaños de elementos | Evita fijar anchos y alturas salvo necesidad: deja que el contenido fluya |
+| Iconos | Tamaños de la misma escala (16, 24, 32) |
+| Tipografía adaptable | Tamaños de títulos que crecen en pantallas grandes y se contienen en móvil (por breakpoint o con unidades de viewport). Tamaño e interlineado múltiplos de la unidad de espaciado para alinear con la cuadrícula |
+| Legibilidad | Declara interletraje, interlineado y longitud de línea cómoda para el texto de párrafo; no se fijan sin criterio |
+| Fuentes de respaldo | Cada familia declara una alternativa de sistema para mientras carga o si falla; una fuente personalizada pesa en la carga |
+
+## Elevación
+
+- 3 o 4 niveles bastan en la mayoría de productos: `shadow.1` a `shadow.4`.
+- **Cada nivel de sombra tiene un token de superficie asociado** (por ejemplo `surface.elevation.1`). En modo claro, la superficie se acerca al blanco y la sombra comunica la altura. En modo oscuro la sombra apenas se ve: la altura se comunica con un fondo más claro a mayor elevación, por eso el token existe en ambos modos.
+- Los niveles de `z.*` (solo full) definen qué se pinta por encima: contenido, desplegables, modales, avisos. Un valor de z fijo en un componente es un hallazgo.
+- Fuente: `checklist-sistema-diseno.md`, sección 1.
+
 ## Roles semánticos de color
 
 Mínimo que debe cubrir la paleta semántica, derivado de los roles de la paleta (`principal`, `apoyo`, `neutro`) y de los roles de estado:

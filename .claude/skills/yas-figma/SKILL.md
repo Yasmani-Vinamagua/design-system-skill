@@ -53,6 +53,7 @@ Los archivos que esta skill lee y escribe, y quién es dueño de cada uno, está
 Comprueba qué hay en `.yas/tokens/tokens.json`:
 - **Existe y cubre el alcance:** úsalo tal cual.
 - **No existe o está incompleto:** derívalo del manual (según "Fuente de datos") con las categorías del alcance (mini: color, tipografía, espaciado, radios, sombras y cuadrículas; full: además bordes, movimiento, breakpoints y capas), siguiendo `../yas-core/references/tokens-spec.md`. Para `color.*` aplica el mismo procedimiento que `colors` (incluidos el informe de contraste y el registro de cambios); si `colors` ya se ejecutó, reutiliza lo que generó.
+- **Escalas por defecto:** la tipografía y el espaciado que el manual no defina siguen las "Reglas de escalas" de `../yas-core/references/tokens-spec.md` (base 16 px, razón modular, interlineado 1,5, base 4, máximo dos familias).
 - **Propuestas:** las escalas derivadas y los valores que el manual no define (por ejemplo, la escala de espaciado, los estados de acción como `action.primary.hover` o los iconos, que se derivan de la paleta según `tokens-spec.md`) se marcan como *propuesta* y se **muestran al usuario para aprobar antes de crearlos en Figma**.
 - **Fusión:** si el archivo ya existe, fusiona lo que falta sin reescribir lo existente ni contradecir la paleta aprobada (regla de Protección), y anota el cambio en `.yas/tokens/CHANGELOG.md`.
 
@@ -63,7 +64,7 @@ Si existe `iconografia/iconografia.md` (Fase 8b de `/yas-design`), es la fuente:
 - **Trazo:** grosor tomado del trazo o del peso del logotipo si lo hay; si no, 1.5 px a 24 px, escalado proporcional.
 - **Esquinas y terminales:** redondeadas o rectas según el radio y la forma del logotipo y de `radius.*`.
 - **Color:** tokens `icon.*` de `tokens-spec.md`.
-- **Nombres:** `icon/<categoría>/<nombre>` en minúsculas con guion.
+- **Nombres:** `icon/<categoría>/<nombre>` en minúsculas con guion, **por función y no por forma** (`reproducir`, no `triangulo`); palabras clave opcionales para buscarlos; los de acciones comunes (navegar, añadir, eliminar) quedan reservados y no se reutilizan con otro sentido. Un icono con significado lleva nombre accesible; uno decorativo, ninguno.
 Los iconos concretos (dibujos) solo se crean si el proyecto los usa o los pide; la especificación sí se entrega siempre.
 
 ## Qué genera cada alcance
@@ -164,9 +165,46 @@ Las páginas con subsecciones las llevan **dentro de la página**, como marcos o
 
 La página `Check` agrupa toda la familia de selección, cada una como sección con sus variantes y estados: **Checkbox** (sin marcar, marcado, indeterminado), **Check list** (lista de checkboxes con etiqueta y texto de apoyo), **Radio** y **Radio group**. El `Toggle` queda en su propia página. Si el proyecto necesita otra variante de selección (por ejemplo, tarjetas seleccionables), se añade como sección de esta página.
 
-Las demás páginas de componentes siguen la misma lógica: una sección `Documentation` (uso, anatomía, cuándo sí y cuándo no, fuente M3/HIG) y la sección con los componentes y sus variantes. Corrige el error de escritura de la especificación: la página es `Inputs`, no `imputs`.
+Las demás páginas de componentes siguen la misma lógica: una sección `Documentation` (uso, anatomía, cuándo sí y cuándo no, fuente M3/HIG, y la ficha de "Niveles atómicos") y la sección con los componentes y sus variantes. Corrige el error de escritura de la especificación: la página es `Inputs`, no `imputs`.
 
 Cada página de contenido de Foundations enlaza sus valores a variables; `Components - App` reúne los componentes específicos de la aplicación (compuestos a partir de los base), `Patterns` las composiciones recurrentes (formularios, listas, navegación, estados vacíos y de error) y `Templates and applications` las pantallas completas.
+
+### Niveles atómicos (solo full)
+
+Cada componente de `componentes.md`, del HTML y de la descripción del componente en Figma lleva su **nivel** según Atomic Design (Brad Frost, cap. 2; ver `../yas-core/references/referencias-externas.md`). Es una etiqueta de organización: **no cambia los nombres ni el orden de las páginas** de arriba, y el vocabulario puede renombrarse si el equipo ya usa otro (se anota en `nomenclatura.md`).
+
+| Nivel | Qué es aquí | Ejemplos de la estructura |
+|---|---|---|
+| Átomo | Elemento que no se divide sin perder su función | `Buttons`, `Badge`, `Tag`, `Toggle`, `Avatar`, Checkbox y Radio de `Check`, `Progress bar`, `Help text` |
+| Molécula | Grupo pequeño que hace una sola cosa | `Inputs` (etiqueta + campo + ayuda), `Search bar`, `Text area`, `Tooltip`, Check list y Radio group |
+| Organismo | Sección diferenciada compuesta de átomos y moléculas | `Accordion`, `Banner`, `Card`, y los de `Components - App` |
+| Plantilla | Estructura de página sin contenido final | `Patterns` y `Templates and applications` (estructura) |
+| Página | Plantilla con contenido real o representativo | `Templates and applications` (pantallas completas) |
+
+Si un componente cae entre dos niveles, se elige el más alto y se explica en una línea. `componentes.md` se ordena de átomos a organismos.
+
+### Ficha de documentación de cada componente (full)
+
+La sección `Documentation` de cada página de componente, `componentes.md` y el HTML incluyen, además de uso, anatomía, cuándo sí y cuándo no, y fuente M3/HIG:
+- **Nivel** atómico (tabla anterior).
+- **Compuesto por / Usado en:** qué átomos o moléculas contiene y en qué organismos, patrones o plantillas aparece, para saber qué revisar si cambia. Se rellena solo con lo que el sistema contiene; lo demás, *pendiente de definir*.
+- **Estados y variaciones con contenido extremo:** además de los estados interactivos, el caso de texto muy largo o muy corto, vacío y con muchos elementos, para comprobar el patrón con contenido real.
+- **Ciclo de vida:** `estable`, `propuesto` u `obsoleto` (con la alternativa recomendada y la versión en que se retira).
+- **Requisitos del checklist:** los puntos de su fila en la sección 2 de `../yas-core/references/checklist-sistema-diseno.md` (por ejemplo, el botón: estado de carga sin cambiar de tamaño, etiqueta accesible si solo lleva icono, foco visible). Cada uno consta como cubierto, `no aplica` con motivo o *pendiente de definir*. Los componentes de su sección 3 (Modal, Tabs, Toast, Dropdown…) se añaden solo si el proyecto los necesita, como secciones de `Components - App`, nunca como páginas nuevas.
+- **Accesibilidad:** la lista "Accesibilidad por componente" de `../yas-core/references/criterios-calidad.md` (teclado, lector de pantalla, etiquetas, alternativas y contraste), con lo no probado como *no verificado*.
+- **Principios:** resultado de la lista "Principios del sistema" de la misma referencia (consistente, autocontenido, reutilizable, accesible, robusto).
+
+### Gobernanza y versionado (full)
+
+Un sistema de diseño es un producto vivo (Atomic Design, cap. 5). El full entrega una sección **Gobernanza** (en el HTML, dentro de Changelog, y en `.yas/tokens/CHANGELOG.md`) con propuestas marcadas *propuesta* para que el equipo las apruebe:
+- **Roles:** quién mantiene el sistema y quién lo usa; quién aprueba cambios.
+- **Modelo de equipo** (*Design Systems Handbook*, cap. 2): se propone uno y se explica por qué, con su límite. *Solitario* (una persona; rápido, pero cuello de botella), *centralizado* (un equipo dedicado; bien mantenido, pero alejado del uso real) o *federado* (personas de distintos equipos; más implicación, pero con poco tiempo). Se trata el sistema como producto, no como proyecto. Si el manual no indica el tamaño del equipo, el modelo queda *pendiente de definir*.
+- **Cambios:** modificar un patrón se hace a nivel de sistema, no en la pantalla donde surgió el problema; un patrón nuevo se añade solo si la necesidad se repite; cómo se registran los errores. Un **cambio incompatible** es el que rompe usos existentes de un componente o token (renombrar, quitar una variante, cambiar el significado de un valor): lleva versión mayor, aviso y guía de migración.
+- **Versionado semántico** (mayor.menor.parche): la versión del sistema consta en la portada y en el changelog. *Mayor* = cambio incompatible; *menor* = añade algo compatible (componente, variante, token); *parche* = corrige sin cambiar el uso. Cada entrada del changelog indica si modifica, añade o elimina, y las notas de publicación explican el impacto. Se elige entre versionar el sistema entero (más simple) o por módulo (por ejemplo, color, tipografía y componentes por separado; más flexible para quien adopta, pero exige decidir los límites de cada módulo). Duplicar un componente con otro nombre y dejar el viejo sin plazo (`Tabs2`) es el antipatrón: se depreca con fecha y alternativa.
+- **Deprecación:** aviso previo, marca `obsoleto`, alternativa recomendada y fecha de retirada.
+- **Comunicación y contribución:** dónde se anuncian los cambios y cómo se propone uno.
+
+No inventes personas ni fechas: si el manual no las da, quedan *pendiente de definir*.
 
 ### Reglas entre alcances
 
@@ -186,7 +224,7 @@ El **paquete local** vive en `.yas/figma-local/` y lo producen `mini` y `full`. 
 | `variables.md` | Colecciones y modos (Primitivas, Semánticas, Claro/Oscuro) con nombre, tipo y valor, listos para crear en el panel de Variables. |
 | `variables.json` | Mismo contenido en JSON, importable con plugins de tokens (formato DTCG). |
 | `estilos.md` | Estilos de texto, efectos y cuadrículas. |
-| `componentes.md` | **Solo en alcance full** (el mini no tiene componentes y no lo genera). Por componente: anatomía, variantes, propiedades, estados, auto layout, variables enlazadas. |
+| `componentes.md` | **Solo en alcance full** (el mini no tiene componentes y no lo genera). Por componente, ordenado de átomos a organismos: nivel, anatomía, variantes, propiedades, estados, auto layout, variables enlazadas, compuesto por / usado en y ciclo de vida. |
 | `nomenclatura.md` | Convención de nombres de capas, páginas y variantes. |
 
 ### Especificación del HTML del design system
@@ -194,10 +232,12 @@ El **paquete local** vive en `.yas/figma-local/` y lo producen `mini` y `full`. 
 Un solo archivo autocontenido (CSS y JS inline, sin dependencias externas salvo fuentes del proyecto), que se abre con doble clic y se puede enviar a un cliente o equipo. Debe leerse como un entregable profesional, no como un volcado de datos. Lo usan `design-system.html` (paquete local) y el HTML de `documentation manual`:
 
 - **Portada:** nombre del sistema, versión, fecha, alcance y origen de los datos.
+- **Buscador y navegación plana:** un campo de búsqueda (JS inline, sin dependencias) que filtra por nombre de token, color, estilo o componente, y una navegación que lista todos los elementos directamente, sin esconderlos tras varios niveles. Lo que no se encuentra con facilidad no se usa (caso de Primer, *Design Systems Handbook*, cap. 4). Sin JS, el índice sigue siendo navegable.
 - **Navegación lateral** fija con las secciones del alcance elegido. **Mini:** Color, Tipografía, Espaciado y layout, Radios, Sombras, Cuadrículas, Iconos y Brand assets. **Full:** además Principios, Imágenes, Movimiento, Componentes, Patrones, Plantillas, Accesibilidad y Changelog. Lo que queda fuera del alcance se marca como «fuera de alcance (full)», no se muestra vacío.
 - **Color:** muestras con nombre del token, valor, y ratio de contraste WCAG de los pares de texto/fondo; primitivas y semánticas separadas.
 - **Tipografía:** escala real renderizada con la fuente, tamaño, peso e interlineado.
-- **Componentes (solo full):** cada uno renderizado vivo con todas sus variantes y estados (reposo, hover, foco, activo, deshabilitado, error), con anatomía y reglas de uso (cuándo sí, cuándo no).
+- **Componentes (solo full):** cada uno renderizado vivo con todas sus variantes y estados (reposo, hover, foco, activo, deshabilitado, error), con anatomía y reglas de uso (cuándo sí, cuándo no), agrupados por nivel atómico y con la ficha de "Ficha de documentación de cada componente" (nivel, compuesto por / usado en, contenido extremo y ciclo de vida).
+- **Gobernanza (solo full):** la sección de "Gobernanza y versionado", dentro de Changelog.
 - **Modo claro/oscuro** conmutable si el sistema define ambos.
 - **Tokens como fuente:** el HTML declara en su propio `<style>` las variables CSS derivadas de `.yas/tokens/` (convención de `tokens-spec.md`; no hay un archivo CSS aparte), de modo que el entregable usa el sistema que documenta.
 - **Responsive**, imprimible (CSS `@media print`) y con foco visible y contraste AA en el propio documento.
