@@ -14,6 +14,14 @@
 - `/yas-audit`: primera impresión y correcciones ópticas en el módulo de identidad visual, ocho antipatrones nuevos y notas sobre defectos fatales, motivo del rediseño y hallazgos accionables.
 - `/yas-figma`: sección «Presupuesto de lecturas» (comprobar y verificar dentro de `use_figma`) y opción de usar un archivo en Drafts ante el límite de páginas.
 
+- **Material Design 2, sistema de color** como referencia externa y base de ampliaciones en `tokens-spec.md`: `surface.background`, `accent.*` (opcional, con alias al color principal si no hay apoyo), `control.{selected,track,progress}` y `chart.categorical.*` (opcional), con sus reglas de derivación y contraste.
+
+- **Adobe Spectrum, design tokens** como referencia externa y base de ampliaciones en `tokens-spec.md`: nivel opcional de **tokens de componente** (`component.<nombre>.*`, solo en `full`), regla de **orden de segmentos** de general a específico, y espaciado semántico opcional (`space.inset.*`, `space.gap.*`) como alias de la escala.
+
+- `/yas-figma` incorpora los tokens nuevos de `tokens-spec.md`: `surface.background`, `accent.*`, `control.*` y `chart.categorical.*` en `colors` y en las semánticas de color; `space.inset/gap` y `component.*` (solo `full`) en el alcance y las variables.
+
+- **Figma, variables, colecciones y modos** como referencia externa: `tokens-spec.md` incorpora la sección «Tokens y variables de Figma» (tipo de variable por categoría, sombras y easing fuera de las variables, alias solo del mismo tipo, redondeo a dos decimales, estilos frente a variables y límite de modos por plan), y `/yas-figma` la aplica y comprueba el plan antes de crear un tercer modo.
+
 - **Atomic Design (Brad Frost)** como referencia externa y base de varias mejoras:
   - `/yas-figma full`: nivel atómico de cada componente (sin cambiar las 28 páginas), ficha de documentación (compuesto por / usado en, contenido extremo, ciclo de vida) y sección de gobernanza y versionado.
   - `/yas-audit`, módulo Sistema de marca: inventario de patrones, gobernanza y tres antipatrones nuevos.

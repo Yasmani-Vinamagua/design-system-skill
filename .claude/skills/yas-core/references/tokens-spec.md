@@ -11,14 +11,24 @@ Formato único de los tokens de diseño del ecosistema. Lo usa `/yas-figma` (`co
 | **Primitivas** | Valores crudos de la marca, sin significado de uso. | `color.primitive.brand.500` = `#1A5FB4` |
 | **Semánticas** | Roles de uso que **alias** a primitivas; son lo que usan los componentes. | `color.semantic.action.primary.bg` = `{color.primitive.brand.500}` |
 
-Los componentes y las pantallas **solo** consumen tokens semánticos. Un valor fijo en un componente es un hallazgo de auditoría.
+Los componentes y las pantallas **solo** consumen tokens semánticos y, en `full`, los tokens de su propio componente (ver abajo). Un valor fijo en un componente es un hallazgo de auditoría. Las primitivas se usan directamente solo cuando no existe un token semántico adecuado (fuente: Adobe Spectrum, design tokens).
+
+### Tokens de componente (opcional, solo en `full`)
+
+Tercer nivel para las medidas o decisiones que pertenecen a **un solo componente** y no tienen sentido como rol general (ancho máximo de un tooltip, altura de un campo).
+
+- Ruta: `component.<nombre>.<propiedad>` (por ejemplo `component.tooltip.max-width`).
+- Siempre son **alias** de un token semántico o primitivo (o, para una medida sin equivalente, de un valor de la escala `space.*`); un valor suelto solo se admite justificado.
+- Deben ser **minoritarios** frente a los semánticos. Si un mismo valor se repite en dos o más componentes, se sube a un token semántico.
+- Los consume únicamente su componente. Un componente no usa los tokens de otro.
 
 ## Nomenclatura
 
 - Ruta con puntos, en minúsculas y con guion para palabras compuestas: `color.semantic.text.primary`.
+- **Orden de los segmentos: de lo general a lo específico.** Categoría → nivel → qué se comunica (rol) → qué afecta → estado o variante. Ejemplo: `color.semantic.action.primary.hover` (color → semántica → acción → principal → hover). Dos tokens del mismo rol comparten prefijo, para que se agrupen y se lean de izquierda a derecha (fuente: Adobe Spectrum, nomenclatura).
 - Convención para variables CSS, cuando un entregable o el proyecto las use: la ruta con guiones y prefijo `--` (`--color-semantic-text-primary`). No hay un archivo CSS de tokens generado por el ecosistema; el HTML de `/yas-figma` las declara en su propio `<style>`.
 - Variable de Figma: la ruta con barras (`color/semantic/text/primary`), en la colección correspondiente.
-- Alias entre llaves: `{color.primitive.brand.500}`. Sin referencias circulares ni sin resolver.
+- Alias entre llaves: `{color.primitive.brand.500}`. Sin referencias circulares ni sin resolver, y **solo entre tokens del mismo tipo** (ver «Tokens y variables de Figma»).
 
 ## Modos claro y oscuro
 
@@ -42,7 +52,8 @@ En Figma, las semánticas viven en una colección con los modos **Light** y **Da
 |---|---|---|
 | Color | `color.primitive.*`, `color.semantic.*` | Ver roles abajo |
 | Tipografía | `font.family.*`, `font.size.*`, `font.weight.*`, `font.line-height.*` | La familia sale del sistema tipográfico del manual |
-| Espaciado | `space.*` | Escala con unidad base (4 u 8 px) |
+| Espaciado | `space.*` | Escala con unidad base (4 u 8 px). Opcional: `space.inset.*` (relleno interior) y `space.gap.*` (separación entre elementos), como **alias** de la escala, por ejemplo `space.inset.md` = `{space.16}` |
+| Componente | `component.<nombre>.*` | Solo en full; ver «Tokens de componente» |
 | Radios | `radius.*` | |
 | Sombras | `shadow.*` | Composite o cadena CSS, por niveles de elevación |
 | Bordes | `border.width.*` | Solo en full |
@@ -51,6 +62,26 @@ En Figma, las semánticas viven en una colección con los modos **Light** y **Da
 | Capas | `z.*` | Solo en full |
 
 El alcance mini incluye color, tipografía, espaciado, radios y las sombras y cuadrículas; el full añade el resto (ver `/yas-figma`).
+
+## Tokens y variables de Figma
+
+Figma tiene cuatro tipos de variable: color, número, cadena y booleana. Un token se crea como variable según esta tabla (fuente: ayuda de Figma, «variables, colecciones y modos»):
+
+| Token | Variable de Figma |
+|---|---|
+| `color.*` | Color |
+| `font.family.*` | Cadena |
+| `font.size.*`, `font.weight.*`, `font.line-height.*` | Número |
+| `space.*`, `radius.*`, `border.width.*`, `breakpoint.*`, `z.*`, `motion.duration.*` | Número |
+| `component.*` | El tipo del token al que apuntan |
+| `shadow.*` | **No es variable**: va como estilo de efecto. Los colores que usa sí pueden ser variables de color |
+| `motion.easing.*` | **No es variable**: no hay tipo equivalente. Se documenta (valores y uso) y, si hace falta, se guarda como cadena de referencia |
+
+- **Alias solo entre el mismo tipo.** Un alias de número a cadena, o de color a número, no es válido en Figma; un token no puede apuntar a otro de distinto tipo.
+- **Dos decimales como máximo.** Las variables de número admiten hasta dos decimales: una razón de 1,333 o un interlineado de 1,125 se redondea (1,33 y 1,13). En `tokens.json` se guarda ya el valor redondeado y se anota en la cabecera de origen que se redondeó.
+- **Estilos frente a variables.** Los estilos (texto, efecto, cuadrícula) agrupan valores fijos y **no pueden referenciarse desde variables**. Se usan donde Figma no admite variable (sombras, escala de texto); el resto va como variable para poder tener alias y modos.
+- **Modos por colección.** El número de modos depende del plan de Figma. El mínimo de yas son 2 (Light y Dark en las semánticas de color). Un tercer modo (por ejemplo, densidad) solo se crea tras comprobar que el plan lo permite; si no, se propone otra vía (una colección aparte sin modos, o documentar la variante).
+- **Grupos.** La ruta con barras crea los grupos dentro de la colección (`color/semantic/text/primary`). Una colección admite hasta 5000 variables, límite que un sistema de yas no se acerca a tocar.
 
 ## Reglas de escalas (tipografía y espaciado)
 
@@ -83,12 +114,30 @@ Mínimo que debe cubrir la paleta semántica, derivado de los roles de la paleta
 
 | Grupo | Tokens |
 |---|---|
-| Superficie | `surface.default`, `surface.subtle`, `surface.inverse`, `surface.overlay` |
+| Superficie | `surface.background`, `surface.default`, `surface.subtle`, `surface.inverse`, `surface.overlay` |
 | Texto | `text.primary`, `text.secondary`, `text.disabled`, `text.inverse`, `text.link` |
 | Borde | `border.default`, `border.strong`, `border.focus` |
 | Acción | `action.primary.{bg,fg,hover,pressed,disabled}`, `action.secondary.*` |
+| Acento | `accent.{bg,fg,subtle}` (opcional; ver «Acento y controles») |
+| Controles | `control.{selected,track,progress}` (ver «Acento y controles») |
 | Icono | `icon.{default,strong,subtle,disabled,inverse,brand}` |
 | Estado | `feedback.{success,warning,error,info}.{bg,fg,border}` |
+| Datos | `chart.categorical.{1..n}` (opcional; ver «Colores de visualización de datos») |
+
+`surface.background` es el lienzo detrás del contenido con scroll; `surface.default` es la superficie de componentes (cards, hojas, menús). Pueden tener el mismo valor, pero son tokens distintos para poder separarlos sin tocar los componentes (fuente: Material Design 2, sistema de color).
+
+### Acento y controles
+
+- `accent.*` es el color de `apoyo` de la paleta usado **con moderación** como acento: elementos destacados puntuales, selección de texto, enlaces o titulares si el manual lo indica. Es **opcional**: si la paleta no tiene color de apoyo, no se crea y el color principal hace de acento (`accent.bg` = `action.primary.bg` por alias, no un token vacío).
+- `action.secondary.*` es un **estilo de botón** (borde y texto en el color principal) y no sustituye a `accent.*`: son conceptos distintos.
+- `control.selected` (interruptores, casillas, radios, sliders activos), `control.progress` (barras de progreso) y `control.track` (el carril sin rellenar) salen por **alias** de `accent.bg` si existe, o de `action.primary.bg` si no. `control.track` = `border.default`, o un neutro de la paleta que cumpla ≥3:1 sobre la superficie.
+- Fuente: Material Design 2, sistema de color (usos del color secundario).
+
+### Colores de visualización de datos
+
+- Opcional, solo si el producto tiene gráficos. `chart.categorical.1` a `chart.categorical.n` (de 5 a 8 suelen bastar) para distinguir categorías fuera del tema principal.
+- Parten de la paleta; los matices adicionales se **proponen** (`inferred`) y se confirman, igual que `feedback.*`. Deben distinguirse entre sí y cumplir ≥3:1 sobre `surface.default` en ambos modos.
+- No se usa solo el color para distinguir categorías: se acompaña de etiqueta, forma o patrón.
 
 ### Derivación de los roles que el manual no define
 
@@ -104,6 +153,12 @@ El manual suele dar solo la paleta (principal, apoyo, neutros) y no los estados 
 | `action.secondary.*` | `bg` transparente o `surface.default`, `fg` y borde con el color principal; `hover` con el paso más claro de la escala principal (50 o 100) |
 | `text.link` | El color principal; si no llega a 4.5:1 sobre `surface.default`, el paso más oscuro que cumpla |
 | `border.focus` | El color principal o de apoyo, el que contraste ≥3:1 con la superficie |
+| `surface.background` | = `surface.default` salvo que el manual distinga lienzo y superficie |
+| `accent.bg` | El color de apoyo del manual; si no hay, = `action.primary.bg` (alias) |
+| `accent.fg` | Blanco o el neutro más oscuro, el que cumpla AA (4.5:1) sobre `accent.bg` |
+| `accent.subtle` | Paso muy claro de la escala del acento (50 o 100); en oscuro, muy oscuro |
+| `control.selected` / `control.progress` | = `accent.bg` (alias) |
+| `control.track` | = `border.default`, o neutro de la paleta ≥3:1 sobre la superficie |
 | `icon.default` | = `text.secondary` |
 | `icon.strong` | = `text.primary` |
 | `icon.subtle` | Neutro medio de la paleta, ≥3:1 sobre la superficie |
