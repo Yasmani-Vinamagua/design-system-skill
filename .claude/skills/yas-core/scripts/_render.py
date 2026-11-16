@@ -50,6 +50,7 @@ def html_to_png(html_path, png_path, width, height):
     exe = find_chromium()
     if not exe:
         return False
+    png_path = str(Path(png_path).resolve())
     profile = tempfile.mkdtemp(prefix="yas-render-")
     try:
         subprocess.run(
