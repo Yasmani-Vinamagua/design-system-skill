@@ -277,7 +277,7 @@ No convertir preferencias aisladas en decisiones definitivas sin relacionarlas c
 6. Para cada concepto, documentar idea central, relevancia, traducción visual, fortalezas y riesgos.
 7. Recomendar uno con criterios explícitos, sin ocultar las ventajas de las alternativas.
 8. Si el tipo de marca gráfica quedó en "lo decide Yas Design", proponerlo aquí con su justificación y la alternativa más cercana (ver "Inicio" en `SKILL.md`), para que los bocetos partan de él.
-9. Generar `concepto/opciones.html` para que el usuario vea las opciones antes de elegir (ver "Vista de opciones" abajo). Hazlo antes de pedir la decisión, no después.
+9. Generar `concepto/opciones.html` para que el usuario vea las opciones antes de elegir (ver "Vista de opciones" abajo). Hazlo antes de pedir la decisión, no después. Puedes generarlo con `yas-core/scripts/concept_sheet.py` a partir de un JSON con los tres conceptos.
 
 **Vista de opciones (`concepto/opciones.html`)**
 - Archivo único y autocontenido (estilos y SVG incrustados, sin recursos externos), que se abre con doble clic en el navegador.

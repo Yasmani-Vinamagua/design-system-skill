@@ -166,6 +166,8 @@ Utiliza las herramientas disponibles en el entorno para renderizar y revisar el 
 
 Cuando sea posible:
 
+Herramientas de `yas-core/scripts/` (opcionales; si faltan, aplica las comprobaciones a mano y márcalas como no verificadas): `svg_audit.py` para la auditoría estructural, `test_sheet.py` para la hoja de pruebas visual y `export_variants.py` para derivar las variantes a una tinta y los PNG. Sus resultados son evidencia, no sustituyen la revisión visual.
+
 1. Renderiza el SVG a una imagen para inspeccionar su apariencia.
 2. Inspecciona visualmente el resultado renderizado; no te bases únicamente en el código.
 3. Comprueba la validez del XML y las referencias internas.
